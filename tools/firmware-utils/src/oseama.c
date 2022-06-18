@@ -1,12 +1,8 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
 /*
  * oseama
  *
  * Copyright (C) 2016 Rafał Miłecki <zajec5@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the Free
- * Software Foundation; either version 2 of the License, or (at your option)
- * any later version.
  */
 
 #include <byteswap.h>
@@ -64,6 +60,44 @@ static inline size_t oseama_min(size_t x, size_t y) {
 }
 
 /**************************************************
+ * Helpers
+ **************************************************/
+
+static FILE *oseama_open(const char *pathname, const char *mode) {
+	if (strcmp(pathname, "-"))
+		return fopen(pathname, mode);
+
+	if (isatty(fileno(stdin))) {
+		fprintf(stderr, "Reading from TTY stdin is unsupported\n");
+		return NULL;
+	}
+
+	return stdin;
+}
+
+static int oseama_skip(FILE *fp, size_t length)
+{
+	if (fseek(fp, length, SEEK_CUR)) {
+		uint8_t buf[1024];
+		size_t bytes;
+
+		do {
+			bytes = fread(buf, 1, oseama_min(sizeof(buf), length), fp);
+			if (bytes <= 0)
+				return -EIO;
+			length -= bytes;
+		} while (length);
+	}
+
+	return 0;
+}
+
+static void oseama_close(FILE *fp) {
+	if (fp != stdin)
+		fclose(fp);
+}
+
+/**************************************************
  * Info
  **************************************************/
 
@@ -79,7 +113,7 @@ static void oseama_info_parse_options(int argc, char **argv) {
 	}
 }
 
-static int oseama_info_entities(FILE *seama) {
+static int oseama_info_entities(FILE *seama, size_t *pos) {
 	struct seama_entity_header hdr;
 	size_t bytes, metasize, imagesize;
 	uint8_t buf[1024];
@@ -88,6 +122,8 @@ static int oseama_info_entities(FILE *seama) {
 	int err = 0;
 
 	while ((bytes = fread(&hdr, 1, sizeof(hdr), seama)) == sizeof(hdr)) {
+		*pos += bytes;
+
 		if (be32_to_cpu(hdr.magic) != SEAMA_MAGIC) {
 			fprintf(stderr, "Invalid Seama magic: 0x%08x\n", be32_to_cpu(hdr.magic));
 			err =  -EINVAL;
@@ -97,7 +133,8 @@ static int oseama_info_entities(FILE *seama) {
 		imagesize = be32_to_cpu(hdr.imagesize);
 
 		if (entity_idx >= 0 && i != entity_idx) {
-			fseek(seama, metasize + imagesize, SEEK_CUR);
+			oseama_skip(seama, metasize + imagesize);
+			*pos += metasize + imagesize;
 			i++;
 			continue;
 		}
@@ -110,7 +147,7 @@ static int oseama_info_entities(FILE *seama) {
 
 		if (entity_idx < 0)
 			printf("\n");
-		printf("Entity offset:\t%ld\n", ftell(seama) - sizeof(hdr));
+		printf("Entity offset:\t%ld\n", *pos - sizeof(hdr));
 		printf("Entity size:\t%zd\n", sizeof(hdr) + metasize + imagesize);
 		printf("Meta size:\t%zd\n", metasize);
 		printf("Image size:\t%zd\n", imagesize);
@@ -121,6 +158,7 @@ static int oseama_info_entities(FILE *seama) {
 			err =  -EIO;
 			goto err_out;
 		}
+		*pos += bytes;
 
 		end = (char *)&buf[metasize - 1];
 		*end = '\0';
@@ -128,7 +166,8 @@ static int oseama_info_entities(FILE *seama) {
 			printf("Meta entry:\t%s\n", tmp);
 		}
 
-		fseek(seama, imagesize, SEEK_CUR);
+		oseama_skip(seama, imagesize);
+		*pos += imagesize;
 		i++;
 	}
 
@@ -143,6 +182,7 @@ static int oseama_info(int argc, char **argv) {
 	uint16_t metasize;
 	uint32_t imagesize;
 	uint8_t buf[1024];
+	size_t pos = 0;
 	int err = 0;
 
 	if (argc < 3) {
@@ -155,7 +195,7 @@ static int oseama_info(int argc, char **argv) {
 	optind = 3;
 	oseama_info_parse_options(argc, argv);
 
-	seama = fopen(seama_path, "r");
+	seama = oseama_open(seama_path, "r");
 	if (!seama) {
 		fprintf(stderr, "Couldn't open %s\n", seama_path);
 		err = -EACCES;
@@ -168,6 +208,8 @@ static int oseama_info(int argc, char **argv) {
 		err =  -EIO;
 		goto err_close;
 	}
+	pos += bytes;
+
 	metasize = be16_to_cpu(hdr.metasize);
 	imagesize = be32_to_cpu(hdr.imagesize);
 
@@ -195,6 +237,7 @@ static int oseama_info(int argc, char **argv) {
 		err =  -EIO;
 		goto err_close;
 	}
+	pos += bytes;
 
 	if (entity_idx < 0) {
 		char *end, *tmp;
@@ -209,10 +252,10 @@ static int oseama_info(int argc, char **argv) {
 		}
 	}
 
-	oseama_info_entities(seama);
+	oseama_info_entities(seama, &pos);
 
 err_close:
-	fclose(seama);
+	oseama_close(seama);
 out:
 	return err;
 }
@@ -428,14 +471,18 @@ static int oseama_extract_entity(FILE *seama, FILE *out) {
 		imagesize = be32_to_cpu(hdr.imagesize);
 
 		if (i != entity_idx) {
-			fseek(seama, metasize + imagesize, SEEK_CUR);
+			oseama_skip(seama, metasize + imagesize);
 			i++;
 			continue;
 		}
 
-		fseek(seama, -sizeof(hdr), SEEK_CUR);
+		if (fwrite(&hdr, 1, sizeof(hdr), out) != sizeof(hdr)) {
+			fprintf(stderr, "Couldn't write %zu B to %s\n", sizeof(hdr), out_path);
+			err = -EIO;
+			break;
+		}
 
-		length = sizeof(hdr) + metasize + imagesize;
+		length = metasize + imagesize;
 		while ((bytes = fread(buf, 1, oseama_min(sizeof(buf), length), seama)) > 0) {
 			if (fwrite(buf, 1, bytes, out) != bytes) {
 				fprintf(stderr, "Couldn't write %zu B to %s\n", bytes, out_path);
@@ -478,24 +525,24 @@ static int oseama_extract(int argc, char **argv) {
 		fprintf(stderr, "No entity specified\n");
 		err = -EINVAL;
 		goto out;
-	} else if (!out_path) {
-		fprintf(stderr, "No output file specified\n");
-		err = -EINVAL;
-		goto out;
 	}
 
-	seama = fopen(seama_path, "r");
+	seama = oseama_open(seama_path, "r");
 	if (!seama) {
 		fprintf(stderr, "Couldn't open %s\n", seama_path);
 		err = -EACCES;
 		goto out;
 	}
 
-	out = fopen(out_path, "w");
-	if (!out) {
-		fprintf(stderr, "Couldn't open %s\n", out_path);
-		err = -EACCES;
-		goto err_close_seama;
+	if (out_path) {
+		out = fopen(out_path, "w");
+		if (!out) {
+			fprintf(stderr, "Couldn't open %s\n", out_path);
+			err = -EACCES;
+			goto err_close_seama;
+		}
+	} else {
+		out = stdout;
 	}
 
 	bytes = fread(&hdr, 1, sizeof(hdr), seama);
@@ -506,14 +553,15 @@ static int oseama_extract(int argc, char **argv) {
 	}
 	metasize = be16_to_cpu(hdr.metasize);
 
-	fseek(seama, metasize, SEEK_CUR);
+	oseama_skip(seama, metasize);
 
 	oseama_extract_entity(seama, out);
 
 err_close_out:
-	fclose(out);
+	if (out != stdout)
+		fclose(out);
 err_close_seama:
-	fclose(seama);
+	oseama_close(seama);
 out:
 	return err;
 }

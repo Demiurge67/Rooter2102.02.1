@@ -1,26 +1,7 @@
+// SPDX-License-Identifier: BSD-2-Clause
 /*
   Copyright (c) 2014, Matthias Schiffer <mschiffer@universe-factory.net>
   All rights reserved.
-
-  Redistribution and use in source and binary forms, with or without
-  modification, are permitted provided that the following conditions are met:
-
-    1. Redistributions of source code must retain the above copyright notice,
-       this list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright notice,
-       this list of conditions and the following disclaimer in the documentation
-       and/or other materials provided with the distribution.
-
-  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
@@ -33,8 +14,10 @@
 
 
 #include <assert.h>
+#include <ctype.h>
 #include <errno.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -80,18 +63,39 @@ enum partition_trail_value {
 	PART_TRAIL_NONE = 0x100
 };
 
+/** soft-version value overwrite types
+ * The default (for an uninitialised soft_ver field) is to use the numerical
+ * version number "0.0.0"
+ */
+enum soft_ver_type {
+	SOFT_VER_TYPE_NUMERIC = 0,
+	SOFT_VER_TYPE_TEXT = 1,
+};
+
 /** Firmware layout description */
 struct device_info {
 	const char *id;
 	const char *vendor;
 	const char *support_list;
 	enum partition_trail_value part_trail;
-	const char *soft_ver;
+	struct {
+		enum soft_ver_type type;
+		union {
+			const char *text;
+			uint8_t num[3];
+		};
+	} soft_ver;
 	uint32_t soft_ver_compat_level;
 	struct flash_partition_entry partitions[MAX_PARTITIONS+1];
 	const char *first_sysupgrade_partition;
 	const char *last_sysupgrade_partition;
 };
+
+#define SOFT_VER_TEXT(_t) {.type = SOFT_VER_TYPE_TEXT, .text = _t}
+#define SOFT_VER_NUMERIC(_maj, _min, _patch) {  \
+		.type = SOFT_VER_TYPE_NUMERIC,          \
+		.num = {_maj, _min, _patch}}
+#define SOFT_VER_DEFAULT SOFT_VER_NUMERIC(0, 0, 0)
 
 struct __attribute__((__packed__)) meta_header {
 	uint32_t length;
@@ -146,7 +150,7 @@ static struct device_info boards[] = {
 			"CPE220(TP-LINK|US|N300-2):1.1\r\n"
 			"CPE220(TP-LINK|EU|N300-2):1.1\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -185,7 +189,7 @@ static struct device_info boards[] = {
 			"CPE210(TP-LINK|EU|N300-2):2.0\r\n"
 			"CPE210(TP-LINK|US|N300-2):2.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -227,7 +231,7 @@ static struct device_info boards[] = {
 			"CPE210(TP-LINK|UN|N300-2|00000000):3.20\r\n"
 			"CPE210(TP-LINK|US|N300-2|55530000):3.20\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -268,7 +272,7 @@ static struct device_info boards[] = {
 			"CPE220(TP-LINK|EU|N300-2):2.0\r\n"
 			"CPE220(TP-LINK|US|N300-2):2.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -307,7 +311,7 @@ static struct device_info boards[] = {
 			"CPE220(TP-LINK|EU|N300-2):3.0\r\n"
 			"CPE220(TP-LINK|US|N300-2):3.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -346,7 +350,7 @@ static struct device_info boards[] = {
 			"CPE520(TP-LINK|US|N300-5):1.1\r\n"
 			"CPE520(TP-LINK|EU|N300-5):1.1\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -387,7 +391,7 @@ static struct device_info boards[] = {
 			"CPE510(TP-LINK|EU|N300-5):2.0\r\n"
 			"CPE510(TP-LINK|US|N300-5):2.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -431,7 +435,7 @@ static struct device_info boards[] = {
 			"CPE510(TP-LINK|US|N300-5|55530000):3.20\r\n"
 			"CPE510(TP-LINK|EU|N300-5|45550000):3.20\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -470,7 +474,7 @@ static struct device_info boards[] = {
 			"CPE610(TP-LINK|EU|N300-5):1.0\r\n"
 			"CPE610(TP-LINK|US|N300-5):1.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -509,7 +513,7 @@ static struct device_info boards[] = {
 			"CPE610(TP-LINK|EU|N300-5):2.0\r\n"
 			"CPE610(TP-LINK|US|N300-5):2.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -530,6 +534,43 @@ static struct device_info boards[] = {
 		.first_sysupgrade_partition = "os-image",
 		.last_sysupgrade_partition = "support-list",
 	},
+	/** Firmware layout for the CPE710 V1 */
+	{
+		.id     = "CPE710V1",
+		.vendor = "CPE710(TP-LINK|UN|AC866-5|00000000):1.0\r\n",
+		.support_list =
+			"SupportList:\r\n"
+			"CPE710(TP-LINK|UN|AC866-5|00000000):1.0\r\n"
+			"CPE710(TP-LINK|EU|AC866-5|45550000):1.0\r\n"
+			"CPE710(TP-LINK|US|AC866-5|55530000):1.0\r\n"
+			"CPE710(TP-LINK|UN|AC866-5):1.0\r\n"
+			"CPE710(TP-LINK|EU|AC866-5):1.0\r\n"
+			"CPE710(TP-LINK|US|AC866-5):1.0\r\n",
+		.part_trail = 0xff,
+		.soft_ver = SOFT_VER_DEFAULT,
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x50000},
+			{"partition-table", 0x50000, 0x02000},
+			{"default-mac", 0x60000, 0x00020},
+			{"serial-number", 0x60100, 0x00020},
+			{"product-info", 0x61100, 0x00100},
+			{"device-info", 0x61400, 0x00400},
+			{"signature", 0x62000, 0x00400},
+			{"device-id", 0x63000, 0x00100},
+			{"firmware", 0x70000, 0xf40000},
+			{"soft-version", 0xfb0000, 0x00100},
+			{"support-list", 0xfb1000, 0x01000},
+			{"user-config", 0xfc0000, 0x10000},
+			{"default-config", 0xfd0000, 0x10000},
+			{"log", 0xfe0000, 0x10000},
+			{"radio", 0xff0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "support-list",
+	},
 
 	{
 		.id     = "WBS210",
@@ -540,7 +581,7 @@ static struct device_info boards[] = {
 			"WBS210(TP-LINK|US|N300-2):1.20\r\n"
 			"WBS210(TP-LINK|EU|N300-2):1.20\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -571,7 +612,7 @@ static struct device_info boards[] = {
 			"WBS210(TP-LINK|US|N300-2|55530000):2.0\r\n"
 			"WBS210(TP-LINK|EU|N300-2|45550000):2.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -603,7 +644,7 @@ static struct device_info boards[] = {
 			"WBS510(TP-LINK|EU|N300-5):1.20\r\n"
 			"WBS510(TP-LINK|CA|N300-5):1.20\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -635,7 +676,7 @@ static struct device_info boards[] = {
 			"WBS510(TP-LINK|EU|N300-5|45550000):2.0\r\n"
 			"WBS510(TP-LINK|CA|N300-5|43410000):2.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -665,7 +706,7 @@ static struct device_info boards[] = {
 			"SupportList:\r\n"
 			"{product_name:AD7200,product_ver:1.0.0,special_id:00000000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"SBL1", 0x00000, 0x20000},
@@ -709,7 +750,7 @@ static struct device_info boards[] = {
 			"SupportList:\r\n"
 			"{product_name:Archer C2600,product_ver:1.0.0,special_id:00000000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/**
 		    We use a bigger os-image partition than the stock images (and thus
@@ -761,7 +802,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer A7,product_ver:5.0.0,special_id:54570000}\n"
 			"{product_name:Archer A7,product_ver:5.0.0,special_id:52550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:7.0.0\n"),
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -790,6 +831,49 @@ static struct device_info boards[] = {
 		.last_sysupgrade_partition = "file-system",
 	},
 
+	/** Firmware layout for the Archer A9 v6 */
+	{
+		.id     = "ARCHER-A9-V6",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:Archer A9,product_ver:6.0,special_id:55530000}\n"
+			"{product_name:Archer A9,product_ver:6.0,special_id:45550000}\n"
+			"{product_name:Archer A9,product_ver:6.0,special_id:52550000}\n"
+			"{product_name:Archer A9,product_ver:6.0,special_id:4A500000}\n"
+			"{product_name:Archer C90,product_ver:6.0,special_id:55530000}\n",
+		.part_trail = 0x00,
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.1.0\n"),
+
+		/* We're using a dynamic kernel/rootfs split here */
+		.partitions = {
+			{"factory-boot", 0x00000, 0x20000},
+			{"fs-uboot", 0x20000, 0x20000},
+			{"partition-table", 0x40000, 0x10000},
+			{"radio", 0x50000, 0x10000},
+			{"default-mac", 0x60000, 0x00200},
+			{"pin", 0x60200, 0x00200},
+			{"device-id", 0x60400, 0x00100},
+			{"product-info", 0x60500, 0x0fb00},
+			{"soft-version", 0x70000, 0x01000},
+			{"extra-para", 0x71000, 0x01000},
+			{"support-list", 0x72000, 0x0a000},
+			{"profile", 0x7c000, 0x04000},
+			{"user-config", 0x80000, 0x10000},
+			{"ap-config", 0x90000, 0x10000},
+			{"apdef-config", 0xa0000, 0x10000},
+			{"router-config", 0xb0000, 0x10000},
+			{"firmware", 0xc0000, 0xf00000},	/* Stock: name os-image base 0xc0000 size 0x120000 */
+								/* Stock: name file-system base 0x1e0000 size 0xde0000 */
+			{"log", 0xfc0000, 0x20000},
+			{"certificate", 0xfe0000, 0x10000},
+			{"default-config", 0xff0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system",
+	},
+
 	/** Firmware layout for the C2v3 */
 	{
 		.id     = "ARCHER-C2-V3",
@@ -799,7 +883,7 @@ static struct device_info boards[] = {
 			"{product_name:ArcherC2,product_ver:3.0.0,special_id:55530000}\n"
 			"{product_name:ArcherC2,product_ver:3.0.0,special_id:45550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:3.0.1\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:3.0.1\n"),
 
 		/** We're using a dynamic kernel/rootfs split here */
 
@@ -837,7 +921,7 @@ static struct device_info boards[] = {
 			"{product_name:ArcherC25,product_ver:1.0.0,special_id:55530000}\n"
 			"{product_name:ArcherC25,product_ver:1.0.0,special_id:45550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.0\n"),
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -876,7 +960,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C58,product_ver:1.0.0,special_id:45550000}\r\n"
 			"{product_name:Archer C58,product_ver:1.0.0,special_id:55530000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.0\n"),
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x10000},
@@ -911,7 +995,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C59,product_ver:1.0.0,special_id:52550000}\r\n"
 			"{product_name:Archer C59,product_ver:1.0.0,special_id:55530000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.0\n"),
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -949,7 +1033,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C59,product_ver:2.0.0,special_id:45550000}\r\n"
 			"{product_name:Archer C59,product_ver:2.0.0,special_id:55530000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:2.0.0 Build 20161206 rel.7303\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:2.0.0 Build 20161206 rel.7303\n"),
 
 		/** We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -989,7 +1073,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C6,product_ver:2.0.0,special_id:52550000}\r\n"
 			"{product_name:Archer C6,product_ver:2.0.0,special_id:4A500000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.9.1\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.9.1\n"),
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -1024,7 +1108,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer A6,product_ver:2.0.0,special_id:54570000}\n"
 			"{product_name:Archer C6,product_ver:2.0.0,special_id:55530000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.9.1\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.9.1\n"),
 
 		.partitions = {
 			{"factory-boot", 0x00000, 0x20000},
@@ -1048,16 +1132,60 @@ static struct device_info boards[] = {
 		.first_sysupgrade_partition = "os-image",
 		.last_sysupgrade_partition = "file-system",
 	},
+	/** Firmware layout for the Archer C6 v3 */
+	{
+		.id     = "ARCHER-C6-V3",
+		.vendor = "",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:Archer C6,product_ver:3.20,special_id:55530000}"
+			"{product_name:Archer C6,product_ver:3.20,special_id:45550000}"
+			"{product_name:Archer C6,product_ver:3.20,special_id:52550000}"
+			"{product_name:Archer C6,product_ver:3.20,special_id:4A500000}"
+			"{product_name:Archer C6,product_ver:3.20,special_id:4B520000}"
+			"{product_name:Archer C6,product_ver:3.0.0,special_id:42520000}",
+		.part_trail = 0x00,
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.9\n"),
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x40000},
+			{"firmware", 0x40000, 0xf60000},
+			{"default-mac", 0xfa0000, 0x00200},
+			{"pin", 0xfa0200, 0x00100},
+			{"device-id", 0xfa0300, 0x00100},
+			{"product-info", 0xfa0400, 0x0fc00},
+			{"default-config", 0xfb0000, 0x08000},
+			{"ap-def-config", 0xfb8000, 0x08000},
+			{"user-config", 0xfc0000, 0x0a000},
+			{"ag-config", 0xfca000, 0x04000},
+			{"certificate", 0xfce000, 0x02000},
+			{"ap-config", 0xfd0000, 0x06000},
+			{"router-config", 0xfd6000, 0x06000},
+			{"favicon", 0xfdc000, 0x02000},
+			{"logo", 0xfde000, 0x02000},
+			{"partition-table", 0xfe0000, 0x00800},
+			{"soft-version", 0xfe0800, 0x00100},
+			{"support-list", 0xfe0900, 0x00200},
+			{"profile", 0xfe0b00, 0x03000},
+			{"extra-para", 0xfe3b00, 0x00100},
+			{"radio", 0xff0000, 0x10000},
+			{NULL, 0, 0}
+		},
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system",
+	},
 	/** Firmware layout for the Archer A6 v3  */
 	{
 		.id     = "ARCHER-A6-V3",
 		.vendor = "",
 		.support_list =
 			"SupportList:\n"
+			"{product_name:Archer A6,product_ver:3.0.0,special_id:43410000}\n"
 			"{product_name:Archer A6,product_ver:3.0.0,special_id:55530000}\n"
-			"{product_name:Archer A6,product_ver:3.0.0,special_id:54570000}\n",
+			"{product_name:Archer A6,product_ver:3.0.0,special_id:54570000}\n"
+			"{product_name:Archer A6,product_ver:3.0.0,special_id:4A500000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.5\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.5\n"),
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x40000},
@@ -1094,7 +1222,7 @@ static struct device_info boards[] = {
 			"SupportList:\n"
 			"{product_name:Archer C6U,product_ver:1.0.0,special_id:45550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.2\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.2\n"),
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x40000},
@@ -1130,7 +1258,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C60,product_ver:1.0.0,special_id:45550000}\r\n"
 			"{product_name:Archer C60,product_ver:1.0.0,special_id:55530000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.0\n"),
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x10000},
@@ -1164,7 +1292,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C60,product_ver:2.0.0,special_id:45550000}\r\n"
 			"{product_name:Archer C60,product_ver:2.0.0,special_id:55530000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:2.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:2.0.0\n"),
 
 		.partitions = {
 			{"factory-boot", 0x00000, 0x1fb00},
@@ -1200,7 +1328,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C60,product_ver:3.0.0,special_id:45550000}\r\n"
 			"{product_name:Archer C60,product_ver:3.0.0,special_id:55530000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:3.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:3.0.0\n"),
 
 		.partitions = {
 			{"factory-boot", 0x00000, 0x1fb00},
@@ -1236,7 +1364,7 @@ static struct device_info boards[] = {
 			"{product_name:ArcherC5,product_ver:2.0.0,special_id:55530000}\r\n"
 			"{product_name:ArcherC5,product_ver:2.0.0,special_id:4A500000}\r\n", /* JP version */
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x40000},
@@ -1277,7 +1405,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C7,product_ver:4.0.0,special_id:55530000}\n"
 			"{product_name:Archer C7,product_ver:4.0.0,special_id:43410000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.0\n"),
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -1322,7 +1450,7 @@ static struct device_info boards[] = {
 			"{product_name:Archer C7,product_ver:5.0.0,special_id:4B520000}\n",
 
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:7.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:7.0.0\n"),
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -1365,7 +1493,7 @@ static struct device_info boards[] = {
 			"product_ver:1.0.0,"
 			"special_id:00000000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x40000},
@@ -1390,6 +1518,53 @@ static struct device_info boards[] = {
 		.last_sysupgrade_partition = "file-system"
 	},
 
+	/** Firmware layout for the Deco M4R v1 and v2 */
+	{
+		.id     = "DECO-M4R-V1",
+		.vendor = "",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:M4R,product_ver:1.0.0,special_id:55530000}\n"
+			"{product_name:M4R,product_ver:1.0.0,special_id:45550000}\n"
+			"{product_name:M4R,product_ver:1.0.0,special_id:43410000}\n"
+			"{product_name:M4R,product_ver:1.0.0,special_id:4A500000}\n"
+			"{product_name:M4R,product_ver:1.0.0,special_id:41550000}\n"
+			"{product_name:M4R,product_ver:1.0.0,special_id:4B520000}\n"
+			"{product_name:M4R,product_ver:1.0.0,special_id:49440000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:55530000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:45550000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:43410000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:4A500000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:41550000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:4B520000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:54570000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:42340000}\n"
+			"{product_name:M4R,product_ver:2.0.0,special_id:49440000}\n",
+		.part_trail = 0x00,
+		.soft_ver = SOFT_VER_DEFAULT,
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x80000},
+			{"firmware", 0x80000, 0xe00000},
+			{"product-info", 0xe80000, 0x05000},
+			{"default-mac", 0xe85000, 0x01000},
+			{"device-id", 0xe86000, 0x01000},
+			{"support-list", 0xe87000, 0x10000},
+			{"user-config", 0xea7000, 0x10000},
+			{"device-config", 0xeb7000, 0x10000},
+			{"group-info", 0xec7000, 0x10000},
+			{"partition-table", 0xed7000, 0x02000},
+			{"soft-version", 0xed9000, 0x10000},
+			{"profile", 0xee9000, 0x10000},
+			{"default-config", 0xef9000, 0x10000},
+			{"url-sig", 0xfe0000, 0x10000},
+			{"radio", 0xff0000, 0x10000},
+			{NULL, 0, 0}
+		},
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system",
+	},
+
 	/** Firmware layout for the EAP120 */
 	{
 		.id     = "EAP120",
@@ -1398,7 +1573,7 @@ static struct device_info boards[] = {
 			"SupportList:\r\n"
 			"EAP120(TP-LINK|UN|N300-2):1.0\r\n",
 		.part_trail = 0xff,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -1427,7 +1602,7 @@ static struct device_info boards[] = {
 			"SupportList:\r\n"
 			"EAP225-Outdoor(TP-Link|UN|AC1200-D):1.0\r\n",
 		.part_trail = PART_TRAIL_NONE,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 		.soft_ver_compat_level = 1,
 
 		.partitions = {
@@ -1449,6 +1624,32 @@ static struct device_info boards[] = {
 		.last_sysupgrade_partition = "file-system"
 	},
 
+	/** Firmware layout for the EAP225 v1 */
+	{
+		.id     = "EAP225-V1",
+		.support_list =
+			"SupportList:\r\n"
+			"EAP225(TP-LINK|UN|AC1200-D):1.0\r\n",
+		.part_trail = PART_TRAIL_NONE,
+		.soft_ver = SOFT_VER_DEFAULT,
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x20000},
+			{"partition-table", 0x20000, 0x02000},
+			{"default-mac", 0x30000, 0x01000},
+			{"support-list", 0x31000, 0x00100},
+			{"product-info", 0x31100, 0x00400},
+			{"soft-version", 0x32000, 0x00100},
+			{"firmware", 0x40000, 0xd80000},
+			{"user-config", 0xdc0000, 0x30000},
+			{"radio", 0xff0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system"
+	},
+
 	/** Firmware layout for the EAP225 v3 */
 	{
 		.id     = "EAP225-V3",
@@ -1456,7 +1657,7 @@ static struct device_info boards[] = {
 			"SupportList:\r\n"
 			"EAP225(TP-Link|UN|AC1350-D):3.0\r\n",
 		.part_trail = PART_TRAIL_NONE,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 		.soft_ver_compat_level = 1,
 
 		.partitions = {
@@ -1485,7 +1686,7 @@ static struct device_info boards[] = {
 			"SupportList:\r\n"
 			"EAP225-Wall(TP-Link|UN|AC1200-D):2.0\r\n",
 		.part_trail = PART_TRAIL_NONE,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 		.soft_ver_compat_level = 1,
 
 		.partitions = {
@@ -1514,7 +1715,7 @@ static struct device_info boards[] = {
 			"SupportList:\r\n"
 			"EAP235-Wall(TP-Link|UN|AC1200-D):1.0\r\n",
 		.part_trail = PART_TRAIL_NONE,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_NUMERIC(3, 0, 0),
 		.soft_ver_compat_level = 1,
 
 		.partitions = {
@@ -1543,7 +1744,7 @@ static struct device_info boards[] = {
 			"SupportList:\r\n"
 			"EAP245(TP-LINK|UN|AC1750-D):1.0\r\n",
 		.part_trail = PART_TRAIL_NONE,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -1567,9 +1768,10 @@ static struct device_info boards[] = {
 		.id     = "EAP245-V3",
 		.support_list =
 			"SupportList:\r\n"
-			"EAP245(TP-Link|UN|AC1750-D):3.0\r\n",
+			"EAP245(TP-Link|UN|AC1750-D):3.0\r\n"
+			"EAP265 HD(TP-Link|UN|AC1750-D):1.0",
 		.part_trail = PART_TRAIL_NONE,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 		.soft_ver_compat_level = 1,
 
 		/** Firmware partition with dynamic kernel/rootfs split */
@@ -1594,6 +1796,79 @@ static struct device_info boards[] = {
 		.last_sysupgrade_partition = "file-system"
 	},
 
+	/** Firmware layout for the EAP615-Wall v1 */
+	{
+		.id = "EAP615-WALL-V1",
+		.soft_ver = SOFT_VER_DEFAULT,
+		.soft_ver_compat_level = 1,
+		.support_list =
+			"SupportList:\r\n"
+			"EAP615-Wall(TP-Link|UN|AX1800-D):1.0\r\n"
+			"EAP615-Wall(TP-Link|CA|AX1800-D):1.0\r\n"
+			"EAP615-Wall(TP-Link|JP|AX1800-D):1.0\r\n",
+		.part_trail = PART_TRAIL_NONE,
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x80000},
+			{"partition-table", 0x80000, 0x02000},
+			{"default-mac", 0x90000, 0x01000},
+			{"support-list", 0x91000, 0x00100},
+			{"product-info", 0x91100, 0x00400},
+			{"soft-version", 0x92000, 0x00100},
+			{"firmware", 0xa0000, 0xcf0000},
+			{"user-config", 0xd90000, 0x60000},
+			{"mutil-log", 0xf30000, 0x80000},
+			{"oops", 0xfb0000, 0x40000},
+			{"radio", 0xff0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system"
+	},
+
+	/** Firmware layout for the TL-WA1201 v2 */
+	{
+		.id     = "TL-WA1201-V2",
+		.vendor = "",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:TL-WA1201,product_ver:2.0.0,special_id:45550000}\n"
+			"{product_name:TL-WA1201,product_ver:2.0.0,special_id:55530000}\n",
+		.part_trail = 0x00,
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.1 Build 20200709 rel.66244\n"),
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x20000},
+			{"default-mac", 0x20000, 0x00200},
+			{"pin", 0x20200, 0x00100},
+			{"product-info", 0x20300, 0x00200},
+			{"device-id", 0x20500, 0x0fb00},
+			{"firmware", 0x30000, 0xce0000},
+			{"portal-logo", 0xd10000, 0x20000},
+			{"portal-back", 0xd30000, 0x200000},
+			{"soft-version", 0xf30000, 0x00200},
+			{"extra-para", 0xf30200, 0x00200},
+			{"support-list", 0xf30400, 0x00200},
+			{"profile", 0xf30600, 0x0fa00},
+			{"apdef-config", 0xf40000, 0x10000},
+			{"ap-config", 0xf50000, 0x10000},
+			{"redef-config", 0xf60000, 0x10000},
+			{"re-config", 0xf70000, 0x10000},
+			{"multidef-config", 0xf80000, 0x10000},
+			{"multi-config", 0xf90000, 0x10000},
+			{"clientdef-config", 0xfa0000, 0x10000},
+			{"client-config", 0xfb0000, 0x10000},
+			{"partition-table", 0xfc0000, 0x10000},
+			{"user-config", 0xfd0000, 0x10000},
+			{"certificate", 0xfe0000, 0x10000},
+			{"radio", 0xff0000, 0x10000},
+			{NULL, 0, 0}
+		},
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system",
+	},
+
 	/** Firmware layout for the TL-WA850RE v2 */
 	{
 		.id     = "TLWA850REV2",
@@ -1611,7 +1886,7 @@ static struct device_info boards[] = {
 			"{product_name:TL-WA850RE,product_ver:2.0.0,special_id:41550000}\n"
 			"{product_name:TL-WA850RE,product_ver:2.0.0,special_id:52550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/**
 		   576KB were moved from file-system to os-image
@@ -1653,7 +1928,7 @@ static struct device_info boards[] = {
 			"{product_name:TL-WA855RE,product_ver:1.0.0,special_id:41550000}\n"
 			"{product_name:TL-WA855RE,product_ver:1.0.0,special_id:52550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -1684,7 +1959,7 @@ static struct device_info boards[] = {
 			"SupportList:\n"
 			"{product_name:TL-WPA8630P,product_ver:2.0.0,special_id:45550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"factory-uboot", 0x00000, 0x20000},
@@ -1721,7 +1996,7 @@ static struct device_info boards[] = {
 			"{product_name:TL-WPA8630P,product_ver:2.0.0,special_id:44450000}\n"
 			"{product_name:TL-WPA8630P,product_ver:2.1.0,special_id:41550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"factory-uboot", 0x00000, 0x20000},
@@ -1756,7 +2031,7 @@ static struct device_info boards[] = {
 			"SupportList:\n"
 			"{product_name:TL-WPA8630P,product_ver:2.1.0,special_id:45550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"factory-uboot", 0x00000, 0x20000},
@@ -1783,6 +2058,45 @@ static struct device_info boards[] = {
 		.last_sysupgrade_partition = "file-system"
 	},
 
+	/** Firmware layout for the TL-WPA8631P v3 */
+	{
+		.id     = "TL-WPA8631P-V3",
+		.vendor = "",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:TL-WPA8631P,product_ver:3.0.0,special_id:41550000}\n"
+			"{product_name:TL-WPA8631P,product_ver:3.0.0,special_id:45550000}\n"
+			"{product_name:TL-WPA8631P,product_ver:3.0.0,special_id:55530000}\n",
+		.part_trail = 0x00,
+		.soft_ver = SOFT_VER_DEFAULT,
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x20000},
+			{"firmware", 0x20000, 0x710000},
+			{"partition-table", 0x730000, 0x02000},
+			{"default-mac", 0x732000, 0x00020},
+			{"pin", 0x732100, 0x00020},
+			{"device-id", 0x732200, 0x00030},
+			{"default-region", 0x732300, 0x00010},
+			{"product-info", 0x732400, 0x00200},
+			{"extra-para", 0x732600, 0x00200},
+			{"soft-version", 0x732800, 0x00200},
+			{"support-list", 0x732a00, 0x00100},
+			{"profile", 0x732b00, 0x00100},
+			{"default-config", 0x732c00, 0x00800},
+			{"plc-type", 0x733400, 0x00020},
+			{"default-pib", 0x733500, 0x06000},
+			{"user-config", 0x740000, 0x10000},
+			{"plc-pib", 0x750000, 0x10000},
+			{"plc-nvm", 0x760000, 0x90000},
+			{"radio", 0x7f0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system"
+	},
+
 	/** Firmware layout for the TL-WR1043 v5 */
 	{
 		.id     = "TLWR1043NV5",
@@ -1792,7 +2106,7 @@ static struct device_info boards[] = {
 			"{product_name:TL-WR1043N,product_ver:5.0.0,special_id:45550000}\n"
 			"{product_name:TL-WR1043N,product_ver:5.0.0,special_id:55530000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.0.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.0.0\n"),
 		.partitions = {
 			{"factory-boot", 0x00000, 0x20000},
 			{"fs-uboot", 0x20000, 0x20000},
@@ -1826,7 +2140,7 @@ static struct device_info boards[] = {
 			"SupportList:\n"
 			"{product_name:TL-WR1043ND,product_ver:4.0.0,special_id:45550000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -1859,12 +2173,43 @@ static struct device_info boards[] = {
 			"{product_name:TL-WR902AC,product_ver:1.0.0,special_id:45550000}\n"
 			"{product_name:TL-WR902AC,product_ver:1.0.0,special_id:55530000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/**
 		   384KB were moved from file-system to os-image
 		   in comparison to the stock image
 		*/
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x20000},
+			{"firmware", 0x20000, 0x730000},
+			{"default-mac", 0x750000, 0x00200},
+			{"pin", 0x750200, 0x00200},
+			{"product-info", 0x750400, 0x0fc00},
+			{"soft-version", 0x760000, 0x0b000},
+			{"support-list", 0x76b000, 0x04000},
+			{"profile", 0x770000, 0x04000},
+			{"default-config", 0x774000, 0x0b000},
+			{"user-config", 0x780000, 0x40000},
+			{"partition-table", 0x7c0000, 0x10000},
+			{"log", 0x7d0000, 0x20000},
+			{"radio", 0x7f0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system",
+	},
+
+	/** Firmware layout for the TL-WR941HP v1 */
+	{
+		.id     = "TL-WR941HP-V1",
+		.vendor = "",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:TL-WR941HP,product_ver:1.0.0,special_id:00000000}\n",
+		.part_trail = 0x00,
+		.soft_ver = SOFT_VER_DEFAULT,
+
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
 			{"firmware", 0x20000, 0x730000},
@@ -1895,7 +2240,7 @@ static struct device_info boards[] = {
 			"{product_name:TL-WR942N,product_ver:1.0.0,special_id:00000000}\r\n"
 			"{product_name:TL-WR942N,product_ver:1.0.0,special_id:52550000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -1942,7 +2287,7 @@ static struct device_info boards[] = {
 			"{product_name:RE200,product_ver:2.0.0,special_id:54570000}\n"
 			"{product_name:RE200,product_ver:2.0.0,special_id:55530000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -1986,7 +2331,7 @@ static struct device_info boards[] = {
 			"{product_name:RE200,product_ver:3.0.0,special_id:54570000}\n"
 			"{product_name:RE200,product_ver:3.0.0,special_id:55530000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -2030,7 +2375,7 @@ static struct device_info boards[] = {
 			"{product_name:RE200,product_ver:4.0.0,special_id:49440000}\n"
 			"{product_name:RE200,product_ver:4.0.0,special_id:45470000}\n",
 		.part_trail = 0x00,
-		.soft_ver = "soft_ver:1.1.0\n",
+		.soft_ver = SOFT_VER_TEXT("soft_ver:1.1.0\n"),
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -2073,7 +2418,7 @@ static struct device_info boards[] = {
 			"{product_name:RE220,product_ver:2.0.0,special_id:54570000}\n"
 			"{product_name:RE220,product_ver:2.0.0,special_id:55530000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -2110,7 +2455,7 @@ static struct device_info boards[] = {
 			"{product_name:RE305,product_ver:1.0.0,special_id:41550000}\n"
 			"{product_name:RE305,product_ver:1.0.0,special_id:43410000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		.partitions = {
 			{"fs-uboot", 0x00000, 0x20000},
@@ -2124,6 +2469,47 @@ static struct device_info boards[] = {
 			{"profile", 0x622000, 0x08000},
 			{"user-config", 0x630000, 0x10000},
 			{"default-config", 0x640000, 0x10000},
+			{"radio", 0x7f0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system"
+	},
+
+	/** Firmware layout for the RE305 v3 */
+	{
+		.id     = "RE305-V3",
+		.vendor = "",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:00000000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:45550000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:4A500000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:4B520000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:41550000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:42520000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:55530000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:45530000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:41530000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:43410000}\n"
+			"{product_name:RE305,product_ver:3.0.0,special_id:52550000}\n",
+		.part_trail = 0x00,
+		.soft_ver = SOFT_VER_TEXT("soft_ver:2.0.0\n"),
+
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x20000},
+			{"firmware", 0x20000, 0x7a0000},
+			{"partition-table", 0x7c0000, 0x02000},
+			{"default-mac", 0x7c2000, 0x00020},
+			{"pin", 0x7c2100, 0x00020},
+			{"product-info", 0x7c3100, 0x01000},
+			{"soft-version", 0x7c4200, 0x01000},
+			{"support-list", 0x7c5200, 0x01000},
+			{"profile", 0x7c6200, 0x08000},
+			{"config-info", 0x7ce200, 0x00400},
+			{"user-config", 0x7d0000, 0x10000},
+			{"default-config", 0x7e0000, 0x10000},
 			{"radio", 0x7f0000, 0x10000},
 			{NULL, 0, 0}
 		},
@@ -2146,7 +2532,7 @@ static struct device_info boards[] = {
 			"{product_name:RE350,product_ver:1.0.0,special_id:4b520000}\n"
 			"{product_name:RE350,product_ver:1.0.0,special_id:4a500000}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/** We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -2177,7 +2563,7 @@ static struct device_info boards[] = {
 			"SupportList:\n"
 			"{product_name:RE350K,product_ver:1.0.0,special_id:00000000,product_region:US}\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/** We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -2216,7 +2602,7 @@ static struct device_info boards[] = {
 			"{product_name:RE355,product_ver:1.0.0,special_id:4B520000}\r\n"
 			"{product_name:RE355,product_ver:1.0.0,special_id:55534100}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -2254,7 +2640,7 @@ static struct device_info boards[] = {
 			"{product_name:RE450,product_ver:1.0.0,special_id:4B520000}\r\n"
 			"{product_name:RE450,product_ver:1.0.0,special_id:55534100}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/** We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -2293,7 +2679,7 @@ static struct device_info boards[] = {
 			"{product_name:RE450,product_ver:2.0.0,special_id:4B520000}\r\n"
 			"{product_name:RE450,product_ver:2.0.0,special_id:42520000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -2332,7 +2718,47 @@ static struct device_info boards[] = {
 			"{product_name:RE450,product_ver:3.0.0,special_id:4B520000}\r\n"
 			"{product_name:RE450,product_ver:3.0.0,special_id:42520000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
+
+		/* We're using a dynamic kernel/rootfs split here */
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x20000},
+			{"default-mac", 0x20000, 0x00020},
+			{"pin", 0x20020, 0x00020},
+			{"product-info", 0x21000, 0x01000},
+			{"partition-table", 0x22000, 0x02000},
+			{"soft-version", 0x24000, 0x01000},
+			{"support-list", 0x25000, 0x01000},
+			{"profile", 0x26000, 0x08000},
+			{"user-config", 0x2e000, 0x10000},
+			{"default-config", 0x3e000, 0x10000},
+			{"config-info", 0x4e000, 0x00400},
+			{"firmware", 0x50000, 0x7a0000},
+			{"radio", 0x7f0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system"
+	},
+
+	/** Firmware layout for the RE455 v1 */
+	{
+		.id     = "RE455-V1",
+		.vendor = "",
+		.support_list =
+			"SupportList:\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:00000000}\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:55530000}\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:45550000}\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:4A500000}\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:43410000}\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:41550000}\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:41530000}\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:4B520000}\r\n"
+			"{product_name:RE455,product_ver:1.0.0,special_id:42520000}\r\n",
+		.part_trail = 0x00,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -2370,7 +2796,7 @@ static struct device_info boards[] = {
 			"{product_name:RE500,product_ver:1.0.0,special_id:41550000}\r\n"
 			"{product_name:RE500,product_ver:1.0.0,special_id:41530000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -2407,7 +2833,7 @@ static struct device_info boards[] = {
 			"{product_name:RE650,product_ver:1.0.0,special_id:41550000}\r\n"
 			"{product_name:RE650,product_ver:1.0.0,special_id:41530000}\r\n",
 		.part_trail = 0x00,
-		.soft_ver = NULL,
+		.soft_ver = SOFT_VER_DEFAULT,
 
 		/* We're using a dynamic kernel/rootfs split here */
 		.partitions = {
@@ -2429,6 +2855,45 @@ static struct device_info boards[] = {
 		.first_sysupgrade_partition = "os-image",
 		.last_sysupgrade_partition = "file-system"
 	},
+	/** Firmware layout for the RE650 V2 (8MB Flash)*/
+	{
+		.id     = "RE650-V2",
+		.vendor = "",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:RE650,product_ver:2.0.0,special_id:00000000}\n"
+			"{product_name:RE650,product_ver:2.0.0,special_id:45550000}\n"
+			"{product_name:RE650,product_ver:2.0.0,special_id:4A500000}\n"
+			"{product_name:RE650,product_ver:2.0.0,special_id:41550000}\n"
+			"{product_name:RE650,product_ver:2.0.0,special_id:43410000}\n"
+			"{product_name:RE650,product_ver:2.0.0,special_id:41530000}\n"
+			"{product_name:RE650,product_ver:2.0.0,special_id:55530000}\n",
+		.part_trail = 0x00,
+		/* For RE650 v2, soft ver is required, otherwise OEM install doesn't work */
+		.soft_ver = SOFT_VER_TEXT("soft_ver:2.0.0\n"),
+
+		/* We're using a dynamic kernel/rootfs split here */
+		.partitions = {
+			{"fs-uboot", 0x00000, 0x20000},
+			{"firmware", 0x20000, 0x7a0000},
+			{"partition-table", 0x7c0000, 0x02000},
+			{"default-mac", 0x7c2000, 0x00020},
+			{"pin", 0x7c2100, 0x00020},
+			{"product-info", 0x7c3100, 0x01000},
+			{"soft-version", 0x7c4200, 0x01000},
+			{"support-list", 0x7c5200, 0x01000},
+			{"profile", 0x7c6200, 0x08000},
+			{"config-info", 0x7ce200, 0x00400},
+			{"user-config", 0x7d0000, 0x10000},
+			{"default-config", 0x7e0000, 0x10000},
+			{"radio", 0x7f0000, 0x10000},
+			{NULL, 0, 0}
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system"
+	},
+
 
 	{}
 };
@@ -2558,10 +3023,10 @@ static struct image_partition_entry make_soft_version(
 {
 	/** If an info string is provided, use this instead of
 	 * the structured data, and include the null-termination */
-	if (info->soft_ver) {
-		uint32_t len = strlen(info->soft_ver) + 1;
+	if (info->soft_ver.type == SOFT_VER_TYPE_TEXT) {
+		uint32_t len = strlen(info->soft_ver.text) + 1;
 		return init_meta_partition_entry("soft-version",
-			info->soft_ver, len, info->part_trail);
+			info->soft_ver.text, len, info->part_trail);
 	}
 
 	time_t t;
@@ -2576,14 +3041,15 @@ static struct image_partition_entry make_soft_version(
 	struct soft_version s = {
 		.pad1 = 0xff,
 
-		.version_major = 0,
-		.version_minor = 0,
-		.version_patch = 0,
+		.version_major = info->soft_ver.num[0],
+		.version_minor = info->soft_ver.num[1],
+		.version_patch = info->soft_ver.num[2],
 
 		.year_hi = bcd((1900+tm->tm_year)/100),
 		.year_lo = bcd(tm->tm_year%100),
 		.month = bcd(tm->tm_mon+1),
 		.day = bcd(tm->tm_mday),
+		.rev = htonl(rev),
 
 		.compat_level = htonl(info->soft_ver_compat_level)
 	};
@@ -2886,6 +3352,7 @@ static void build_image(const char *output,
 	/* Some devices need the extra-para partition to accept the firmware */
 	if (strcasecmp(info->id, "ARCHER-A6-V3") == 0 ||
 	    strcasecmp(info->id, "ARCHER-A7-V5") == 0 ||
+	    strcasecmp(info->id, "ARCHER-A9-V6") == 0 ||
 	    strcasecmp(info->id, "ARCHER-C2-V3") == 0 ||
 	    strcasecmp(info->id, "ARCHER-C7-V4") == 0 ||
 	    strcasecmp(info->id, "ARCHER-C7-V5") == 0 ||
@@ -2894,11 +3361,13 @@ static void build_image(const char *output,
 	    strcasecmp(info->id, "ARCHER-C60-V2") == 0 ||
 	    strcasecmp(info->id, "ARCHER-C60-V3") == 0 ||
 	    strcasecmp(info->id, "ARCHER-C6U-V1") == 0 ||
+	    strcasecmp(info->id, "ARCHER-C6-V3") == 0 ||
 	    strcasecmp(info->id, "TLWR1043NV5") == 0) {
 		const uint8_t extra_para[2] = {0x01, 0x00};
 		parts[5] = make_extra_para(info, extra_para,
 			sizeof(extra_para));
-	} else if (strcasecmp(info->id, "ARCHER-C6-V2") == 0) {
+	} else if (strcasecmp(info->id, "ARCHER-C6-V2") == 0 ||
+		   strcasecmp(info->id, "TL-WA1201-V2") == 0) {
 		const uint8_t extra_para[2] = {0x00, 0x01};
 		parts[5] = make_extra_para(info, extra_para,
 			sizeof(extra_para));
@@ -2939,6 +3408,8 @@ static void usage(const char *argv0) {
 		"Options:\n"
 		"  -h              show this help\n"
 		"\n"
+		"Info about an image:\n"
+		"  -i <file>       input file to read from\n"
 		"Create a new image:\n"
 		"  -B <board>      create image for the board specified with <board>\n"
 		"  -k <file>       read kernel image from the file <file>\n"
@@ -3203,8 +3674,122 @@ static struct flash_partition_entry *find_partition(
 			return entries;
 	}
 
-	error(1, 0, "%s", error_msg);
+	if (error_msg) {
+		error(1, 0, "%s", error_msg);
+	}
+
 	return NULL;
+}
+
+static int firmware_info(const char *input)
+{
+	struct flash_partition_entry pointers[MAX_PARTITIONS] = { };
+	struct flash_partition_entry *e;
+	FILE *fp;
+	int i;
+
+	fp = fopen(input, "r");
+
+	if (read_partition_table(fp, 0x1014, pointers, MAX_PARTITIONS, 0)) {
+		error(1, 0, "Error can not read the partition table (fwup-ptn)");
+	}
+
+	printf("Firmware image partitions:\n");
+	printf("%-8s %-8s %s\n", "base", "size", "name");
+	for (i = 0; i < MAX_PARTITIONS; i++) {
+		e = &pointers[i];
+
+		if (!e->name && !e->base && !e->size)
+			continue;
+
+		printf("%08x %08x %s\n", e->base, e->size, e->name ? e->name : "");
+	}
+
+	e = find_partition(pointers, MAX_PARTITIONS, "soft-version", NULL);
+	if (e) {
+		size_t data_len = e->size - sizeof(struct meta_header);
+		char *buf = malloc(data_len);
+		struct soft_version *s;
+		bool isstr;
+		int i;
+
+		if (!buf)
+			error(1, errno, "Failed to alloc buffer");
+
+		if (fseek(fp, 0x1014 + e->base + sizeof(struct meta_header), SEEK_SET))
+			error(1, errno, "Can not seek in the firmware");
+
+		if (fread(buf, data_len, 1, fp) != 1)
+			error(1, errno, "Can not read fwup-ptn data from the firmware");
+
+		/* Check for string ignoring padding character */
+		isstr = true;
+		for (i = 0; i < data_len - 1; i++) {
+			if (!isascii(buf[i])) {
+				isstr = false;
+				break;
+			}
+		}
+
+		printf("\n[Software version]\n");
+		if (isstr) {
+			fwrite(buf, data_len, 1, stdout);
+			putchar('\n');
+		} else if (data_len >= offsetof(struct soft_version, rev)) {
+			s = (struct soft_version *)buf;
+
+			printf("Version: %d.%d.%d\n", s->version_major, s->version_minor, s->version_patch);
+			printf("Date: %02x%02x-%02x-%02x\n", s->year_hi, s->year_lo, s->month, s->day);
+			printf("Revision: %d\n", ntohl(s->rev));
+		} else {
+			printf("Failed to parse data\n");
+		}
+
+		free(buf);
+	}
+
+	e = find_partition(pointers, MAX_PARTITIONS, "support-list", NULL);
+	if (e) {
+		char buf[128];
+		size_t length;
+		size_t bytes;
+
+		if (fseek(fp, 0x1014 + e->base + sizeof(struct meta_header), SEEK_SET))
+			error(1, errno, "Can not seek in the firmware");
+
+		printf("\n[Support list]\n");
+		for (length = e->size - sizeof(struct meta_header); length; length -= bytes) {
+			bytes = fread(buf, 1, length > sizeof(buf) ? sizeof(buf) : length, fp);
+			if (bytes <= 0)
+				error(1, errno, "Can not read fwup-ptn data from the firmware");
+
+			puts(buf);
+		}
+	}
+
+	e = find_partition(pointers, MAX_PARTITIONS, "partition-table", NULL);
+	if (e) {
+		struct flash_partition_entry parts[MAX_PARTITIONS] = { };
+
+		if (read_partition_table(fp, 0x1014 + e->base + 4, parts, MAX_PARTITIONS, 1)) {
+			error(1, 0, "Error can not read the partition table (partition)");
+		}
+
+		printf("\n[Partition table]\n");
+		printf("%-8s %-8s %s\n", "base", "size", "name");
+		for (i = 0; i < MAX_PARTITIONS; i++) {
+			e = &parts[i];
+
+			if (!e->name && !e->base && !e->size)
+				continue;
+
+			printf("%08x %08x %s\n", e->base, e->size, e->name ? e->name : "");
+		}
+	}
+
+	fclose(fp);
+
+	return 0;
 }
 
 static void write_ff(FILE *output_file, size_t size)
@@ -3286,7 +3871,7 @@ static void convert_firmware(const char *input, const char *output)
 }
 
 int main(int argc, char *argv[]) {
-	const char *board = NULL, *kernel_image = NULL, *rootfs_image = NULL, *output = NULL;
+	const char *info_image = NULL, *board = NULL, *kernel_image = NULL, *rootfs_image = NULL, *output = NULL;
 	const char *extract_image = NULL, *output_directory = NULL, *convert_image = NULL;
 	bool add_jffs2_eof = false, sysupgrade = false;
 	unsigned rev = 0;
@@ -3296,11 +3881,15 @@ int main(int argc, char *argv[]) {
 	while (true) {
 		int c;
 
-		c = getopt(argc, argv, "B:k:r:o:V:jSh:x:d:z:");
+		c = getopt(argc, argv, "i:B:k:r:o:V:jSh:x:d:z:");
 		if (c == -1)
 			break;
 
 		switch (c) {
+		case 'i':
+			info_image = optarg;
+			break;
+
 		case 'B':
 			board = optarg;
 			break;
@@ -3351,7 +3940,9 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	if (extract_image || output_directory) {
+	if (info_image) {
+		firmware_info(info_image);
+	} else if (extract_image || output_directory) {
 		if (!extract_image)
 			error(1, 0, "No factory/oem image given via -x <file>. Output directory is only valid with -x");
 		if (!output_directory)
