@@ -1,5 +1,45 @@
 {
-	"ARCHERC6UV1": {
+	"WIFIRES1500": {
+		"details": "WiFire S1500",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_wifires1500",
+		"image1": "openwrt-ramips-mt7621-sercomm_wifires1500-squashfs-kernel.bin",
+		"image2": "openwrt-ramips-mt7621-sercomm_wifires1500-squashfs-rootfs.bin",
+		"image3": "openwrt-ramips-mt7621-sercomm_wifires1500-squashfs-factory.img",
+		"image4": "openwrt-ramips-mt7621-sercomm_wifires1500-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "WiFire_S1500",
+		"ext1": "-kernel.bin",
+		"ext2": "-rootfs.bin",
+		"ext3": "-factory.img",
+		"ext4": "-upgrade.bin",
+		"addons": ["readme_s1500.pdf"],
+		"custom": {
+			"name": {
+				"model": "WiFire S1500"
+			}
+		}
+	},
+		"SMARTBOXGIGA": {
+		"details": "Beeline SmartBox Giga",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_smartboxgiga",
+		"image1": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-sysupgrade.bin",
+		"image2": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-breed.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "SmartBox_Giga",
+		"ext1": "-upgrade.bin",
+		"ext2": "-for-breed.bin",
+		"addons": ["readme.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartBox Giga"
+			}
+		}
+	},
+		"ARCHERC6UV1": {
 		"details": "TP-Link Archer C6Uv1",
 		"type": "2",
 		"build": "2102",
@@ -569,19 +609,6 @@
 		"image2": "openwrt-ramips-mt7621-linksys_ea7500-v2-squashfs-factory.bin",
 		"imagepath": "/ramips/mt7621/",
 		"mod": "Linksys-EA7500v2",
-		"ext1": "-upgrade.bin",
-		"ext2": "-factory.bin",
-		"addons": ["readme.pdf"]
-	},
-	"EA8100V1": {
-		"details": "Linksys EA8100v1",
-		"type": "2",
-		"build": "2102",
-		"config": ".config_ea8100v1",
-		"image1": "openwrt-ramips-mt7621-linksys_ea8100-v1-squashfs-sysupgrade.bin",
-		"image2": "openwrt-ramips-mt7621-linksys_ea8100-v1-squashfs-factory.bin",
-		"imagepath": "/ramips/mt7621/",
-		"mod": "Linksys-EA8100v1",
 		"ext1": "-upgrade.bin",
 		"ext2": "-factory.bin",
 		"addons": ["readme.pdf"]
