@@ -62,7 +62,7 @@
 			label = "Factory";
 			reg = <0x100000 0x100000>;
 			read-only;
-			
+
 			compatible = "nvmem-cells";
 			#address-cells = <1>;
 			#size-cells = <1>;
@@ -136,8 +136,8 @@
 		};
 
 		/*
-		 * U-Boot Sercomm saves the environment at 0x800000, 
-		 * destroying the sys_data partition. To do this, this section has 
+		 * U-Boot Sercomm saves the environment at 0x800000,
+		 * destroying the sys_data partition. To do this, this section has
 		 * been split to bypass the uboot env area.
 		 */
 
@@ -153,10 +153,10 @@
 	};
 };
 
-&wlan_5g {
-	mac-address-increment = <2>;
-};
-
 &wan {
 	mac-address-increment = <1>;
+};
+
+&wlan_5g {
+	mac-address-increment = <2>;
 };

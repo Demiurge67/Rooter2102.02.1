@@ -35,7 +35,7 @@
 &nand {
 	status = "okay";
 
-	partitions { // Требуется узнать разметку WiFire S1500.NBN
+	partitions {
 		compatible = "fixed-partitions";
 		#address-cells = <1>;
 		#size-cells = <1>;
@@ -99,12 +99,12 @@
 		};
 
 		ubiconcat2: partition@7b00000 {
-			label = "Ftool"; // ?
+			label = "Ftool";
 			reg = <0x7b00000 0x100000>;
 		};
 
 		ubiconcat3: partition@7c00000 {
-			label = "BCT"; // ?
+			label = "BCT";
 			reg = <0x7c00000 0x380000>;
 		};
 
@@ -120,14 +120,14 @@
 	};
 };
 
+&wan {
+	mac-address-increment = <1>;
+};
+
 &wlan_2g {
 	mac-address-increment = <1>;
 };
 
 &wlan_5g {
 	mac-address-increment = <2>;
-};
-
-&wan {
-	mac-address-increment = <1>;
 };

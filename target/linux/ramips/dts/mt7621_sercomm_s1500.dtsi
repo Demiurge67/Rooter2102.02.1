@@ -6,10 +6,7 @@
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/leds/common.h>
 
-/ { // SerComm S1500 Clone's
-//	model = "Beeline SmartBox PRO";
-//	model = "WiFire S1500.NBN";
-
+/ {
 	aliases {
 		led-boot = &led_status;
 		led-running = &led_status;
@@ -18,14 +15,32 @@
 	};
 
 	/*
-	bootargs (/proc/cmdline) forced by u-boot Sercomm command:
-	Sercomm0 - console=ttyS1,57600 ubi.mtd=7 root=ubi0:rootfs rw rootfstype=ubifs
-	Sercomm1 - console=ttyS1,57600 ubi.mtd=8 root=ubi0:rootfs rw rootfstype=ubifs
-	need a patch to lookup the block number of the root device in this bootarg
-	chosen {
-		find-rootblock = "ubi.mtd=";
-	};
+	 * bootargs (/proc/cmdline) forced by u-boot Sercomm command:
+	 * Slot Sercomm0
+	 * console=ttyS1,57600 ubi.mtd=7 root=ubi0:rootfs rw rootfstype=ubifs
+	 * Slot Sercomm1
+	 * console=ttyS1,57600 ubi.mtd=8 root=ubi0:rootfs rw rootfstype=ubifs
+	 * need a patch to lookup the block number of the root device in this bootarg
+	 * chosen {
+	 *	find-rootblock = "ubi.mtd=";
+	 * };
 	 */
+
+	keys {
+		compatible = "gpio-keys";
+
+		reset {
+			label = "Reset Button";
+			gpios = <&gpio 7 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_RESTART>;
+		};
+
+		wps {
+			label = "WPS Button";
+			gpios = <&gpio 18 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_WPS_BUTTON>;
+		};
+	};
 
 	leds {
 		compatible = "gpio-leds";
@@ -118,22 +133,15 @@
 			gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
 		};
 	};
+};
 
-	keys {
-		compatible = "gpio-keys";
+&ethernet {
+	pinctrl-0 = <&mdio_pins>, <&rgmii1_pins>;
+};
 
-		reset {
-			label = "Reset Button";
-			gpios = <&gpio 7 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_RESTART>;
-		};
-
-		wps {
-			label = "WPS Button";
-			gpios = <&gpio 18 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_WPS_BUTTON>;
-		};
-	};
+&gmac0 {
+	nvmem-cells = <&macaddr_factory_1000>;
+	nvmem-cell-names = "mac-address";
 };
 
 &pcie {
@@ -171,15 +179,6 @@
 	};
 };
 
-&ethernet {
-	pinctrl-0 = <&mdio_pins>, <&rgmii1_pins>;
-};
-
-&gmac0 {
-	nvmem-cells = <&macaddr_factory_1000>;
-	nvmem-cell-names = "mac-address";
-};
-
 &switch0 {
 	ports {
 		port@0 {
@@ -211,4 +210,3 @@
 		};
 	};
 };
-

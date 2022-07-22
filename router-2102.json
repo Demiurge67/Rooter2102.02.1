@@ -1,4 +1,48 @@
 {
+	"TURBO+": {
+		"details": "SmartBox Turbo+",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_beeline_smartbox-turbo-plus",
+		"image1": "openwrt-ramips-mt7621-turbo+-squashfs-kernel.bin",
+		"image2": "openwrt-ramips-mt7621-turbo+-squashfs-rootfs.bin",
+		"image3": "openwrt-ramips-mt7621-turbo+-squashfs-factory.img",
+		"image4": "openwrt-ramips-mt7621-turbo+-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "SmartBox_Turbo+",
+		"ext1": "-kernel.bin",
+		"ext2": "-rootfs.bin",
+		"ext3": "-factory.img",
+		"ext4": "-upgrade.bin",
+		"addons": ["readme_s1500.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartBox Turbo+"
+			}
+		}
+	},
+	"TURBO": {
+		"details": "SmartBox Turbo",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_beeline_smartbox-turbo",
+		"image1": "openwrt-ramips-mt7621-turbo-squashfs-kernel.bin",
+		"image2": "openwrt-ramips-mt7621-turbo-squashfs-rootfs.bin",
+		"image3": "openwrt-ramips-mt7621-turbo-squashfs-factory.img",
+		"image4": "openwrt-ramips-mt7621-turbo-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "SmartBox_Turbo",
+		"ext1": "-kernel.bin",
+		"ext2": "-rootfs.bin",
+		"ext3": "-factory.img",
+		"ext4": "-upgrade.bin",
+		"addons": ["readme_s1500.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartBox Turbo"
+			}
+		}
+	},
 	"WIFIRES1500": {
 		"details": "WiFire S1500",
 		"type": "2",
@@ -21,7 +65,29 @@
 			}
 		}
 	},
-		"SMARTBOXGIGA": {
+	"SMARTBOXGIGAstok": {
+		"details": "Beeline SmartBox Giga",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_beeline_smartbox-giga",
+		"image1": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-kernel.bin",
+		"image2": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-rootfs.bin",
+		"image3": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-factory.img",
+		"image4": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "SmartBox_Giga",
+		"ext1": "-kernel.bin",
+		"ext2": "-rootfs.bin",
+		"ext3": "-factory.img",
+		"ext4": "-upgrade.bin",
+		"addons": ["readme_s1500.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartBox Giga"
+			}
+		}
+	},
+		"SMARTBOXGIGABREED": {
 		"details": "Beeline SmartBox Giga",
 		"type": "2",
 		"build": "2102",
