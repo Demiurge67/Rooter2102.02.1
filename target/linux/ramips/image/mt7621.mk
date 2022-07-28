@@ -2,30 +2,12 @@
 # MT7621 Profiles
 #
 
-include ./common-sercomm.mk
 include ./common-tp-link.mk
 
 DEFAULT_SOC := mt7621
 
 KERNEL_DTB += -d21
 DEVICE_VARS += ELECOM_HWNAME LINKSYS_HWNAME
-
-ifdef CONFIG_LINUX_5_10
-  DTS_CPPFLAGS += -DDTS_LEGACY
-endif
-
-define Build/arcadyan-trx
-	echo -ne "hsqs" > $@.hsqs
-	$(eval trx_magic=$(word 1,$(1)))
-	$(STAGING_DIR_HOST)/bin/otrx create $@.trx -M $(trx_magic) -f $@ \
-		-a 0x20000 -b 0x420000 -f $@.hsqs -a 1000
-	mv $@.trx $@
-	dd if=/dev/zero bs=1024 count=1 >> $@.tail
-	echo -ne "HDR0" | dd of=$@.tail bs=1 seek=$$((0x10c)) count=4 \
-		conv=notrunc 2>/dev/null
-	dd if=$@.tail >> $@ 2>/dev/null
-	rm $@.hsqs $@.tail
-endef
 
 define Build/elecom-wrc-gs-factory
 	$(eval product=$(word 1,$(1)))
@@ -243,132 +225,6 @@ define Device/asus_rt-n56u-b1
 	kmod-usb-ledtrig-usbport
 endef
 TARGET_DEVICES += asus_rt-n56u-b1
-
-define Device/beeline_smartbox-flash
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox Flash
-  IMAGE_SIZE := 32768k
-  KERNEL_SIZE := 4352k
-  UBINIZE_OPTS := -E 5
-  BLOCKSIZE := 128k
-  PAGESIZE := 2048
-  KERNEL := kernel-bin | append-dtb | lzma | loader-kernel | \
-	uImage none | arcadyan-trx 0x746f435d | pad-to $$(KERNEL_SIZE)
-  KERNEL_INITRAMFS := kernel-bin | append-dtb | lzma | loader-kernel | \
-	uImage none
-  IMAGES += factory.trx
-  IMAGE/factory.trx := append-kernel | append-ubi | check-size
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_PACKAGES := kmod-usb3 kmod-mt7615e kmod-mt7615-firmware \
-	uboot-envtools uencrypt
-endef
-TARGET_DEVICES += beeline_smartbox-flash
-
-define Device/beeline_smartbox-giga
-  $(Device/sercomm_dxx)
-  IMAGE_SIZE := 24576k
-  SERCOMM_HWID := DBE
-  SERCOMM_HWVER := 10100
-  SERCOMM_SWVER := 1001
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox GIGA
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7663-firmware-ap \
-	kmod-usb3 uboot-envtools
-endef
-TARGET_DEVICES += beeline_smartbox-giga
-
-define Device/beeline_smartbox-turbo
-  $(Device/sercomm_dxx)
-  IMAGE_SIZE := 32768k
-  SERCOMM_HWID := DF3
-  SERCOMM_HWVER := 10200
-  SERCOMM_SWVER := 1004
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox TURBO
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
-	kmod-usb3 uboot-envtools
-endef
-TARGET_DEVICES += beeline_smartbox-turbo
-
-define Device/beeline_smartbox-turbo-plus
-  $(Device/sercomm_dxx)
-  IMAGE_SIZE := 32m
-  SERCOMM_HWID := CQR
-  SERCOMM_HWVER := 10000
-  SERCOMM_SWVER := 2010
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox TURBO+
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
-	kmod-usb3 uboot-envtools
-  IMAGE/factory.img := append-ubi | sercomm-tag-factory-type-B-turbo-plus
-endef
-TARGET_DEVICES += beeline_smartbox-turbo-plus
-
-define Device/beeline_smartbox-pro
-  $(Device/sercomm-s1500-common)
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox PRO
-  SERCOMM_HWID := AWI
-  SERCOMM_HWVER := 10000
-  SERCOMM_SWVER := 2020
-  DEVICE_ALT0_VENDOR := Sercomm
-  DEVICE_ALT0_MODEL := S1500 AWI
-endef
-TARGET_DEVICES += beeline_smartbox-pro
-
-define Device/beeline_smartbox-giga
-  $(Device/sercomm_dxx)
-  IMAGE_SIZE := 24576k
-  SERCOMM_HWID := DBE
-  SERCOMM_HWVER := 10100
-  SERCOMM_SWVER := 1001
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox GIGA
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7663-firmware-ap \
-	kmod-usb3 uboot-envtools
-endef
-TARGET_DEVICES += beeline_smartbox-giga
-
-define Device/beeline_smartbox-turbo
-  $(Device/sercomm_dxx)
-  IMAGE_SIZE := 32768k
-  SERCOMM_HWID := DF3
-  SERCOMM_HWVER := 10200
-  SERCOMM_SWVER := 1004
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox TURBO
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
-	kmod-usb3 uboot-envtools
-endef
-TARGET_DEVICES += beeline_smartbox-turbo
-
-define Device/beeline_smartbox-turbo-plus
-  $(Device/sercomm_dxx)
-  IMAGE_SIZE := 32m
-  SERCOMM_HWID := CQR
-  SERCOMM_HWVER := 10000
-  SERCOMM_SWVER := 2010
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox TURBO+
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
-	kmod-usb3 uboot-envtools
-  IMAGE/factory.img := append-ubi | sercomm-tag-factory-type-B-turbo-plus
-endef
-TARGET_DEVICES += beeline_smartbox-turbo-plus
-
-define Device/beeline_smartbox-pro
-  $(Device/sercomm-s1500-common)
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox PRO
-  SERCOMM_HWID := AWI
-  SERCOMM_HWVER := 10000
-  SERCOMM_SWVER := 2020
-  DEVICE_ALT0_VENDOR := Sercomm
-  DEVICE_ALT0_MODEL := S1500 AWI
-endef
-TARGET_DEVICES += beeline_smartbox-pro
 
 define Device/buffalo_wsr-1166dhp
   $(Device/dsa-migration)
@@ -1080,50 +936,59 @@ define Device/mikrotik_routerboard-m33g
 endef
 TARGET_DEVICES += mikrotik_routerboard-m33g
 
-define Device/mqmaker_witi
+define Device/beeline_sbtplus
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_MODEL := Beeline Smart Box Turbo+
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 40960k
+  IMAGES += kernel.bin rootfs.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGE/kernel.bin := append-kernel
+  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
+	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
+endef
+TARGET_DEVICES += beeline_sbtplus
+
+define Device/beeline_sbtplusspi
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
   IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := MQmaker
-  DEVICE_MODEL := WiTi
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-mt76x2 kmod-sdhci-mt7620 kmod-usb3 \
-	kmod-usb-ledtrig-usbport
-  SUPPORTED_DEVICES += witi mqmaker,witi-256m mqmaker,witi-512m
+  DEVICE_MODEL := Beeline Smart Box Turbo+ SPI
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
+	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
 endef
-TARGET_DEVICES += mqmaker_witi
+TARGET_DEVICES += beeline_sbtplusspi
 
-define Device/mtc_wr1201
+define Device/beeline_sbgiga
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16000k
-  DEVICE_VENDOR := MTC
-  DEVICE_MODEL := Wireless Router WR1201
-  KERNEL_INITRAMFS := $(KERNEL_DTB) | uImage lzma -n 'WR1201_8_128'
-  DEVICE_PACKAGES := kmod-sdhci-mt7620 kmod-mt76x2 kmod-usb3 \
-	kmod-usb-ledtrig-usbport
-endef
-TARGET_DEVICES += mtc_wr1201
-
-define Device/mts_wg430223
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  DEVICE_VENDOR := MTS
-  DEVICE_MODEL := WG430223
-  IMAGE_SIZE := 32768k
-  KERNEL_SIZE := 4352k
-  UBINIZE_OPTS := -E 5
+  DEVICE_MODEL := Beeline Smart Box Giga
   BLOCKSIZE := 128k
   PAGESIZE := 2048
-  KERNEL := kernel-bin | append-dtb | lzma | loader-kernel | \
-	uImage none | arcadyan-trx 0x53485231 | pad-to $$(KERNEL_SIZE)
-  KERNEL_INITRAMFS := kernel-bin | append-dtb | lzma | loader-kernel | \
-	uImage none
-  IMAGES += factory.trx
-  IMAGE/factory.trx := append-kernel | append-ubi | check-size
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 40960k
+  IMAGES += kernel.bin rootfs.bin
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware uboot-envtools uencrypt
+  IMAGE/kernel.bin := append-kernel
+  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
+	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
 endef
-TARGET_DEVICES += mts_wg430223
+TARGET_DEVICES += beeline_sbgiga
+
+define Device/beeline_sbgigaspi
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 16064k
+  DEVICE_MODEL := Beeline Smart Box Giga SPI
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
+	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
+endef
+TARGET_DEVICES += beeline_sbgigaspi
 
 define Device/netgear_ex6150
   $(Device/dsa-migration)
@@ -1356,26 +1221,6 @@ define Device/storylink_sap-g3200u3
 endef
 TARGET_DEVICES += storylink_sap-g3200u3
 
-define Device/telco-electronics_x1
-  $(Device/dsa-migration)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Telco Electronics
-  DEVICE_MODEL := X1
-  DEVICE_PACKAGES := kmod-usb3 kmod-mt76
-endef
-TARGET_DEVICES += telco-electronics_x1
-
-define Device/thunder_timecloud
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Thunder
-  DEVICE_MODEL := Timecloud
-  DEVICE_PACKAGES := kmod-usb3 -wpad-basic-wolfssl
-  SUPPORTED_DEVICES += timecloud
-endef
-TARGET_DEVICES += thunder_timecloud
-
 define Device/totolink_a7000r
   $(Device/dsa-migration)
   IMAGE_SIZE := 16064k
@@ -1540,109 +1385,6 @@ define Device/unielec_u7621-06-16m
 endef
 TARGET_DEVICES += unielec_u7621-06-16m
 
-define Device/dualq_H721-16m
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := DualQ
-  DEVICE_MODEL := H721
-  DEVICE_VARIANT := 16M
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-usb3 -wpad-basic-wolfssl
-  SUPPORTED_DEVICES += H721-256M-16M dualq,H721-256m-16m
-endef
-TARGET_DEVICES += dualq_H721-16m
-
-define Device/unielec_u7621-06-64m
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 65216k
-  DEVICE_VENDOR := UniElec
-  DEVICE_MODEL := U7621-06
-  DEVICE_VARIANT := 64M
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-usb3 -wpad-basic-wolfssl
-  SUPPORTED_DEVICES += unielec,u7621-06-512m-64m
-endef
-TARGET_DEVICES += unielec_u7621-06-64m
-
-define Device/wavlink_wl-wn531a6
-  $(Device/dsa-migration)
-  DEVICE_VENDOR := Wavlink
-  DEVICE_MODEL := WL-WN531A6
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware kmod-usb3
-  IMAGE_SIZE := 15040k
-endef
-TARGET_DEVICES += wavlink_wl-wn531a6
-
-define Device/wevo_11acnas
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  UIMAGE_NAME := 11AC-NAS-Router(0.0.0)
-  DEVICE_VENDOR := WeVO
-  DEVICE_MODEL := 11AC NAS Router
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3 \
-	kmod-usb-ledtrig-usbport
-  SUPPORTED_DEVICES += 11acnas
-endef
-TARGET_DEVICES += wevo_11acnas
-
-define Device/wevo_w2914ns-v2
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  UIMAGE_NAME := W2914NS-V2(0.0.0)
-  DEVICE_VENDOR := WeVO
-  DEVICE_MODEL := W2914NS
-  DEVICE_VARIANT := v2
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3 \
-	kmod-usb-ledtrig-usbport
-  SUPPORTED_DEVICES += w2914nsv2
-endef
-TARGET_DEVICES += wevo_w2914ns-v2
-
-define Device/wifire_s1500-nbn
-  $(Device/sercomm-s1500-common)
-  DEVICE_VENDOR := WiFire
-  DEVICE_MODEL := S1500.NBN
-  SERCOMM_HWVER := 10000
-  SERCOMM_0x10str := 0001
-  SERCOMM_SWVER := 2015
-  SERCOMM_HWID := BUC
-  IMAGE/factory.img := append-ubi | sercomm-tag-factory-type-AB-nbn | \
-    sercomm-crypto
-  DEVICE_ALT0_VENDOR := Sercomm
-  DEVICE_ALT0_MODEL := S1500 BUC
-endef
-TARGET_DEVICES += wifire_s1500-nbn
-
-define Device/winstars_ws-wn583a6
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 7872k
-  DEVICE_VENDOR := Winstars
-  DEVICE_MODEL := WS-WN583A6
-  DEVICE_ALT0_VENDOR := Gemeita
-  DEVICE_ALT0_MODEL := AC2100
-  KERNEL_INITRAMFS_SUFFIX := -WN583A6$$(KERNEL_SUFFIX)
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware
-endef
-TARGET_DEVICES += winstars_ws-wn583a6
-
-define Device/wifire_s1500-nbn
-  $(Device/sercomm-s1500-common)
-  DEVICE_VENDOR := WiFire
-  DEVICE_MODEL := S1500.NBN
-  SERCOMM_HWVER := 10000
-  SERCOMM_0x10str := 0001
-  SERCOMM_SWVER := 2015
-  SERCOMM_HWID := BUC
-  IMAGE/factory.img := append-ubi | sercomm-tag-factory-type-AB-nbn | \
-    sercomm-crypto
-  DEVICE_ALT0_VENDOR := Sercomm
-  DEVICE_ALT0_MODEL := S1500 BUC
-endef
-TARGET_DEVICES += wifire_s1500-nbn
-
 define Device/xiaomi_nand_separate
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
@@ -1774,90 +1516,6 @@ define Device/youku_yk-l2
 endef
 TARGET_DEVICES += youku_yk-l2
 
-define Device/zbtlink_zbt-wg209-16m
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Zbtlink
-  DEVICE_MODEL := ZBT-WG209
-  DEVICE_VARIANT := 16M
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-mt7603 kmod-mt76x2 \
-	kmod-usb3 kmod-usb-ledtrig-usbport
-  SUPPORTED_DEVICES += zbt-wg209 zbt-wg209-16M
-endef
-TARGET_DEVICES += zbtlink_zbt-wg209-16m
-
-define Device/zbtlink_zbt-wg259-16m
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Zbtlink
-  DEVICE_MODEL := ZBT-WG259
-  DEVICE_VARIANT := 16M
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-mt7603 kmod-mt76x2 \
-	kmod-usb3 kmod-usb-ledtrig-usbport \
-	kmod-mt7615e kmod-mt76 kmod-mt7615-firmware \
-	kmod-mt7663-firmware-ap kmod-mt7663-firmware-sta 
-  SUPPORTED_DEVICES += zbt-wg259 zbt-wg259-16M
-endef
-TARGET_DEVICES += zbtlink_zbt-wg259-16m
-
-define Device/zbtlink_zbt-wg1608-16m
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Zbtlink
-  DEVICE_MODEL := ZBT-WG1608
-  DEVICE_VARIANT := 16M
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-mt7603 kmod-mt76x2 \
-	kmod-usb3 kmod-usb-ledtrig-usbport \
-	kmod-mt7615e kmod-mt76 kmod-mt7615-firmware \
-	kmod-mt7663-firmware-ap kmod-mt7663-firmware-sta 
-  SUPPORTED_DEVICES += zbt-wg1608 zbt-wg1608-16M
-endef
-TARGET_DEVICES += zbtlink_zbt-wg1608-16m
-
-define Device/zbtlink_zbt-wg1608-32m
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 32448k
-  DEVICE_VENDOR := Zbtlink
-  DEVICE_MODEL := ZBT-WG1608
-  DEVICE_VARIANT := 32M
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-mt7603 kmod-mt76x2 \
-	kmod-usb3 kmod-usb-ledtrig-usbport \
-	kmod-mt7615e kmod-mt76 kmod-mt7615-firmware \
-	kmod-mt7663-firmware-ap kmod-mt7663-firmware-sta 
-  SUPPORTED_DEVICES += zbt-wg1608 zbt-wg1608-32M
-endef
-TARGET_DEVICES += zbtlink_zbt-wg1608-32m
-
-define Device/zbtlink_zbt-wg1602-16m
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Zbtlink
-  DEVICE_MODEL := ZBT-WG1602
-  DEVICE_VARIANT := 16M
-  DEVICE_PACKAGES := kmod-sdhci-mt7620 kmod-mt7603 kmod-mt76x2 kmod-usb3 \
-	kmod-usb-ledtrig-usbport
-endef
-TARGET_DEVICES += zbtlink_zbt-wg1602-16m
-
-define Device/mesh_mk01k21
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Mesh
-  DEVICE_MODEL := MK01K21
-  DEVICE_VARIANT := 16M
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-usb3 \
-		kmod-usb-ledtrig-usbport \
-		kmod-mt76 kmod-mt7915e
-  SUPPORTED_DEVICES += mk01k21 mesh,mk01k21
-endef
-TARGET_DEVICES += mesh_mk01k21
-
 define Device/zbtlink_zbt-we1326
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
@@ -1900,27 +1558,10 @@ define Device/zbtlink_zbt-wg3526-16m
   DEVICE_MODEL := ZBT-WG3526
   DEVICE_VARIANT := 16M
   DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-mt7603 kmod-mt76x2 \
-	kmod-usb3 kmod-usb-ledtrig-usbport \
-	kmod-mt7615e kmod-mt76 kmod-mt7615-firmware \
-	kmod-mt7663-firmware-ap kmod-mt7663-firmware-sta 
+	kmod-usb3 kmod-usb-ledtrig-usbport
   SUPPORTED_DEVICES += zbt-wg3526 zbt-wg3526-16M
 endef
 TARGET_DEVICES += zbtlink_zbt-wg3526-16m
-
-define Device/zbtlink_zbt-wg827-16m
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Zbtlink
-  DEVICE_MODEL := ZBT-WG827
-  DEVICE_VARIANT := 16M
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-sdhci-mt7620 kmod-mt7603 kmod-mt76x2 \
-	kmod-usb3 kmod-usb-ledtrig-usbport \
-	kmod-mt7615e kmod-mt76 kmod-mt7615-firmware \
-	kmod-mt7663-firmware-ap kmod-mt7663-firmware-sta 
-  SUPPORTED_DEVICES += zbt-wg827 zbt-wg827-16M
-endef
-TARGET_DEVICES += zbtlink_zbt-wg827-16m
 
 define Device/zbtlink_zbt-wg3526-32m
   $(Device/dsa-migration)
@@ -1952,7 +1593,7 @@ define Device/zyxel_nr7101
   UBINIZE_OPTS := -E 5
   DEVICE_VENDOR := ZyXEL
   DEVICE_MODEL := NR7101
-  DEVICE_PACKAGES := kmod-mt7603 kmod-usb3 uboot-envtools 
+  DEVICE_PACKAGES := kmod-mt7603 kmod-usb3 uboot-envtools kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi
   KERNEL := $(KERNEL_DTB) | uImage lzma | zytrx-header $$(DEVICE_MODEL) $$(VERSION_DIST)-$$(REVISION)
   KERNEL_INITRAMFS := $(KERNEL_DTB) | uImage lzma | zytrx-header $$(DEVICE_MODEL) 9.99(ABUV.9)$$(VERSION_DIST)-recovery
   KERNEL_INITRAMFS_SUFFIX := -recovery.bin

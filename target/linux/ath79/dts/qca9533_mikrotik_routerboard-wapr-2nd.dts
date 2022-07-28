@@ -68,3 +68,4 @@
 &pcie0 {
 	status = "okay";
 };
+

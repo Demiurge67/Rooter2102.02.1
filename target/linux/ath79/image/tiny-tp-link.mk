@@ -274,7 +274,7 @@ endef
 TARGET_DEVICES += tplink_tl-wr740n-v5
 
 define Device/tplink_tl-wr741-v1
-  $(Device/tplink-4m)
+  $(Device/tplink-8m)
   SOC := ar7240
   DEVICE_MODEL := TL-WR741N/ND
   DEVICE_VARIANT := v1/v2
@@ -284,7 +284,7 @@ endef
 TARGET_DEVICES += tplink_tl-wr741-v1
 
 define Device/tplink_tl-wr741nd-v4
-  $(Device/tplink-4mlzma)
+  $(Device/tplink-8mlzma)
   SOC := ar9331
   DEVICE_MODEL := TL-WR741N/ND
   DEVICE_VARIANT := v4
@@ -358,7 +358,7 @@ endef
 TARGET_DEVICES += tplink_tl-wr841-v8
 
 define Device/tplink_tl-wr841-v9
-  $(Device/tplink-4mlzma)
+  $(Device/tplink-8mlzma)
   SOC := qca9533
   DEVICE_MODEL := TL-WR841N/ND
   DEVICE_VARIANT := v9
@@ -464,7 +464,7 @@ define Device/tplink_tl-wr941-v4
   DEVICE_ALT0_MODEL := TL-WR941N
   DEVICE_ALT0_VARIANT := v4
   TPLINK_HWID := 0x09410004
-  SUPPORTED_DEVICES += tl-wr741nd
+  SUPPORTED_DEVICES += tl-wr941nd
 endef
 TARGET_DEVICES += tplink_tl-wr941-v4
 

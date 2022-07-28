@@ -1067,10 +1067,10 @@ TARGET_DEVICES += trendnet_tew-714tru
 
 define Device/unbranded_a5-v11
   SOC := rt5350
-  IMAGE_SIZE := 3776k
+  IMAGE_SIZE := 7872k
   IMAGES += factory.bin
   IMAGE/factory.bin := $$(sysupgrade_bin) | check-size | \
-	poray-header -B A5-V11 -F 4M
+	poray-header -B A5-V11 -F 8M
   DEVICE_VENDOR :=
   DEVICE_MODEL := A5-V11
   DEVICE_PACKAGES := kmod-usb-ohci kmod-usb2
