@@ -63,7 +63,7 @@
 				reset-names = "usb-phy", "usb-suspend-override";
 				resets = <&rst 4>, <&rst 3>;
 
-				status = "disabled";
+				status = "okay";
 			};
 
 			gpio: gpio@18040000 {
@@ -198,7 +198,7 @@
 			phy-names = "usb-phy";
 			phys = <&usb_phy>;
 
-			status = "disabled";
+			status = "okay";
 		};
 
 		spi: spi@1f000000 {
