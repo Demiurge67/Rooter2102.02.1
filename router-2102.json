@@ -716,8 +716,6 @@
 		"ext1": "-upgrade.bin",
 		"ext2": "-factory.bin",
 		"addons": ["readme.pdf"]
-<<<<<<< HEAD
-=======
 	},
 	"EA8100V1": {
 		"details": "Linksys EA8100v1",
@@ -812,6 +810,5 @@
 		"ext1": "-initramfs-uImage",
 		"ext2": "-upgrade.bin",
 		"addons": ["readme.pdf"]
->>>>>>> 4e477f394caa6554ed9a3e8d2e7579834215a393
 	}
 }
