@@ -53,7 +53,7 @@
 			}
 		}
 	},
-	"SMARTBOXGIGASTK": {
+	"SMARTBOXGIGASTOK": {
 		"details": "Beeline SmartBox Giga",
 		"type": "2",
 		"build": "2102",
@@ -71,11 +71,47 @@
 			}
 		}
 	},
-		"SMARTBOXGIGABREED": {
+	"TURBO6220": {
+		"details": "SmartBox Turbo",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_beeline_sbturbo6220",
+		"image1": "openwrt-ramips-mt7621-beeline_smartbox-turbo-squashfs-factory.img",
+		"image2": "openwrt-ramips-mt7621-beeline_smartbox-turbo-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "SmartBox_Turbo",
+		"ext1": "-factory.img",
+		"ext2": "-upgrade.bin",
+		"addons": ["readme_s1500.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartBox Turbo"
+			}
+		}
+	},
+	"TURBO6220SPI": {
+		"details": "SmartBox Turbo",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_beeline_sbturbo6220spi",
+		"image1": "openwrt-ramips-mt7621-beeline_smartbox-turbo-squashfs-factory.img",
+		"image2": "openwrt-ramips-mt7621-beeline_smartbox-turbo-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "SmartBox_Turbo",
+		"ext1": "-factory.img",
+		"ext2": "-upgrade.bin",
+		"addons": ["readme_s1500.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartBox Turbo"
+			}
+		}
+	},
+		"SBGIGABREED6220": {
 		"details": "Beeline SmartBox Giga",
 		"type": "2",
 		"build": "2102",
-		"config": ".config_smartboxgiga",
+		"config": ".config_beeline_sbgiga",
 		"image1": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-sysupgrade.bin",
 		"image2": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-breed.bin",
 		"imagepath": "/ramips/mt7621/",
@@ -86,6 +122,24 @@
 		"custom": {
 			"name": {
 				"model": "SmartBox Giga"
+			}
+		}
+	},
+		"SBGIGABREEDSPI": {
+		"details": "Beeline SmartBox Giga SPI",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_beeline_sbgigaspi",
+		"image1": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-sysupgrade.bin",
+		"image2": "openwrt-ramips-mt7621-beeline_smartbox-giga-squashfs-breed.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "SmartBox_Giga",
+		"ext1": "-upgrade.bin",
+		"ext2": "-for-breed.bin",
+		"addons": ["readme.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartBox Giga SPI"
 			}
 		}
 	},

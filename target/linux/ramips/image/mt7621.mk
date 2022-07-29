@@ -226,6 +226,60 @@ define Device/asus_rt-n56u-b1
 endef
 TARGET_DEVICES += asus_rt-n56u-b1
 
+define Device/beeline_sbtplus
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_MODEL := Beeline Smart Box Turbo+
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 40960k
+  IMAGES += kernel.bin rootfs.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGE/kernel.bin := append-kernel
+  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware\
+	kmod-usb-ledtrig-usbport kmod-usb3
+endef
+TARGET_DEVICES += beeline_sbtplus
+
+define Device/beeline_sbtplusspi
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 16064k
+  DEVICE_MODEL := Beeline Smart Box Turbo+ SPI
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware\
+	kmod-usb-ledtrig-usbport kmod-usb3
+endef
+TARGET_DEVICES += beeline_sbtplusspi
+
+define Device/beeline_sbgiga
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_MODEL := Beeline Smart Box Giga
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 40960k
+  IMAGES += kernel.bin rootfs.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGE/kernel.bin := append-kernel
+  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
+	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
+endef
+TARGET_DEVICES += beeline_sbgiga
+
+define Device/beeline_sbgigaspi
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 16064k
+  DEVICE_MODEL := Beeline Smart Box Giga SPI
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
+	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
+endef
+TARGET_DEVICES += beeline_sbgigaspi
+
 define Device/buffalo_wsr-1166dhp
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
@@ -935,60 +989,6 @@ define Device/mikrotik_routerboard-m33g
   SUPPORTED_DEVICES += mikrotik,rbm33g
 endef
 TARGET_DEVICES += mikrotik_routerboard-m33g
-
-define Device/beeline_sbtplus
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  DEVICE_MODEL := Beeline Smart Box Turbo+
-  BLOCKSIZE := 128k
-  PAGESIZE := 2048
-  KERNEL_SIZE := 4096k
-  IMAGE_SIZE := 40960k
-  IMAGES += kernel.bin rootfs.bin
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  IMAGE/kernel.bin := append-kernel
-  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
-	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
-endef
-TARGET_DEVICES += beeline_sbtplus
-
-define Device/beeline_sbtplusspi
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_MODEL := Beeline Smart Box Turbo+ SPI
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
-	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
-endef
-TARGET_DEVICES += beeline_sbtplusspi
-
-define Device/beeline_sbgiga
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  DEVICE_MODEL := Beeline Smart Box Giga
-  BLOCKSIZE := 128k
-  PAGESIZE := 2048
-  KERNEL_SIZE := 4096k
-  IMAGE_SIZE := 40960k
-  IMAGES += kernel.bin rootfs.bin
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  IMAGE/kernel.bin := append-kernel
-  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
-	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
-endef
-TARGET_DEVICES += beeline_sbgiga
-
-define Device/beeline_sbgigaspi
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_MODEL := Beeline Smart Box Giga SPI
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3\
-	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
-endef
-TARGET_DEVICES += beeline_sbgigaspi
 
 define Device/netgear_ex6150
   $(Device/dsa-migration)
