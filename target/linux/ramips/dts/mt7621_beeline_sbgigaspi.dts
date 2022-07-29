@@ -5,7 +5,7 @@
 
 
 / {
-	compatible = "beeline,sbgiga", "mediatek,mt7621-soc";
+	compatible = "beeline,sbgigaspi", "mediatek,mt7621-soc";
 	model = "Beeline Smart Box Giga SPI";
 };
 

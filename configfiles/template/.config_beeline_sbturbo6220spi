@@ -60,9 +60,9 @@ CONFIG_TARGET_ramips_mt7621=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_asus_rt-ac85p is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_asus_rt-n56u-b1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbtplus is not set
-CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbtplusspi=y
+# CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbtplusspi is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbgiga is not set
-# CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbgigaspi is not set
+CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbgigaspi=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-1166dhp is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-2533dhpl is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_buffalo_wsr-600dhp is not set
@@ -175,7 +175,7 @@ CONFIG_HAS_SUBTARGETS=y
 CONFIG_HAS_DEVICES=y
 CONFIG_TARGET_BOARD="ramips"
 CONFIG_TARGET_SUBTARGET="mt7621"
-CONFIG_TARGET_PROFILE="DEVICE_beeline_sbtplusspi"
+CONFIG_TARGET_PROFILE="DEVICE_beeline_sbgigaspi"
 CONFIG_TARGET_ARCH_PACKAGES="mipsel_24kc"
 CONFIG_DEFAULT_TARGET_OPTIMIZATION="-Os -pipe -mno-branch-likely -mips32r2 -mtune=24kc"
 CONFIG_CPU_TYPE="24kc"
@@ -194,8 +194,8 @@ CONFIG_DEFAULT_kmod-gpio-button-hotplug=y
 CONFIG_DEFAULT_kmod-ipt-offload=y
 CONFIG_DEFAULT_kmod-leds-gpio=y
 CONFIG_DEFAULT_kmod-mt7603=y
-CONFIG_DEFAULT_kmod-mt7615-firmware=y
 CONFIG_DEFAULT_kmod-mt7615e=y
+CONFIG_DEFAULT_kmod-mt7663-firmware-ap=y
 CONFIG_DEFAULT_kmod-usb-ledtrig-usbport=y
 CONFIG_DEFAULT_kmod-usb3=y
 CONFIG_DEFAULT_libc=y
@@ -228,7 +228,6 @@ CONFIG_HAS_MIPS16=y
 CONFIG_NAND_SUPPORT=y
 CONFIG_mipsel=y
 CONFIG_ARCH="mipsel"
-
 #
 # Target Images
 #
@@ -2340,7 +2339,7 @@ CONFIG_PACKAGE_kmod-ipt-raw=y
 # CONFIG_PACKAGE_kmod-ipt-sysrq is not set
 # CONFIG_PACKAGE_kmod-ipt-tarpit is not set
 # CONFIG_PACKAGE_kmod-ipt-tee is not set
-# CONFIG_PACKAGE_kmod-ipt-tproxy is not set
+CONFIG_PACKAGE_kmod-ipt-tproxy=y
 # CONFIG_PACKAGE_kmod-ipt-u32 is not set
 # CONFIG_PACKAGE_kmod-ipt-ulog is not set
 # CONFIG_PACKAGE_kmod-netatop is not set
@@ -2495,7 +2494,7 @@ CONFIG_PACKAGE_kmod-ppp=y
 # CONFIG_PACKAGE_kmod-ppp-synctty is not set
 # CONFIG_PACKAGE_kmod-pppoa is not set
 CONFIG_PACKAGE_kmod-pppoe=y
-CONFIG_PACKAGE_kmod-pppol2tp=y
+# CONFIG_PACKAGE_kmod-pppol2tp is not set
 CONFIG_PACKAGE_kmod-pppox=y
 # CONFIG_PACKAGE_kmod-pptp is not set
 # CONFIG_PACKAGE_kmod-sched is not set
@@ -2553,7 +2552,7 @@ CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
 # CONFIG_PACKAGE_kmod-keys-trusted is not set
 # CONFIG_PACKAGE_kmod-lp is not set
 CONFIG_PACKAGE_kmod-mmc=y
-# CONFIG_PACKAGE_kmod-mtd-rw is not set
+CONFIG_PACKAGE_kmod-mtd-rw=y
 # CONFIG_PACKAGE_kmod-mtdoops is not set
 # CONFIG_PACKAGE_kmod-mtdram is not set
 # CONFIG_PACKAGE_kmod-mtdtests is not set
@@ -2779,9 +2778,10 @@ CONFIG_PACKAGE_kmod-mt7603=y
 CONFIG_PACKAGE_kmod-mt7615-common=y
 CONFIG_PACKAGE_kmod-mt7615-firmware=y
 CONFIG_PACKAGE_kmod-mt7615e=y
-# CONFIG_PACKAGE_kmod-mt7663-firmware-ap is not set
+CONFIG_PACKAGE_kmod-mt7663-firmware-ap=y
 # CONFIG_PACKAGE_kmod-mt7663-firmware-sta is not set
-# CONFIG_PACKAGE_kmod-mt7663s is not set
+CONFIG_PACKAGE_kmod-mt7663-usb-sdio=y
+CONFIG_PACKAGE_kmod-mt7663s=y
 # CONFIG_PACKAGE_kmod-mt7663u is not set
 CONFIG_PACKAGE_kmod-mt76x02-common=y
 # CONFIG_PACKAGE_kmod-mt76x0e is not set
@@ -4093,13 +4093,9 @@ CONFIG_PACKAGE_libnl-tiny=y
 # CONFIG_PACKAGE_libpci is not set
 # CONFIG_PACKAGE_libpciaccess is not set
 CONFIG_PACKAGE_libpcre=y
-# CONFIG_PCRE_JIT_ENABLED is not set
-# CONFIG_PACKAGE_libpcre16 is not set
 # CONFIG_PACKAGE_libpcre2 is not set
 # CONFIG_PACKAGE_libpcre2-16 is not set
 # CONFIG_PACKAGE_libpcre2-32 is not set
-# CONFIG_PACKAGE_libpcre32 is not set
-# CONFIG_PACKAGE_libpcrecpp is not set
 # CONFIG_PACKAGE_libpcsclite is not set
 # CONFIG_PACKAGE_libpfring is not set
 # CONFIG_PACKAGE_libpkcs11-spy is not set
@@ -5112,7 +5108,7 @@ CONFIG_PACKAGE_iptables-mod-ipopt=y
 # CONFIG_PACKAGE_iptables-mod-sysrq is not set
 # CONFIG_PACKAGE_iptables-mod-tarpit is not set
 # CONFIG_PACKAGE_iptables-mod-tee is not set
-# CONFIG_PACKAGE_iptables-mod-tproxy is not set
+CONFIG_PACKAGE_iptables-mod-tproxy=y
 # CONFIG_PACKAGE_iptables-mod-trace is not set
 # CONFIG_PACKAGE_iptables-mod-u32 is not set
 # CONFIG_PACKAGE_iptables-mod-ulog is not set
@@ -5397,7 +5393,7 @@ CONFIG_PACKAGE_ip-tiny=y
 # CONFIG_PACKAGE_lldpd is not set
 # CONFIG_PACKAGE_mcproxy is not set
 # CONFIG_PACKAGE_mrmctl is not set
-CONFIG_PACKAGE_mwan3=y
+# CONFIG_PACKAGE_mwan3 is not set
 # CONFIG_PACKAGE_nstat is not set
 # CONFIG_PACKAGE_olsrd is not set
 # CONFIG_PACKAGE_prince is not set
@@ -5426,8 +5422,8 @@ CONFIG_PACKAGE_tc-tiny=y
 # CONFIG_PACKAGE_openssh-server is not set
 # CONFIG_PACKAGE_openssh-server-pam is not set
 # CONFIG_PACKAGE_openssh-sftp-avahi-service is not set
-# CONFIG_PACKAGE_openssh-sftp-client is not set
-# CONFIG_PACKAGE_openssh-sftp-server is not set
+CONFIG_PACKAGE_openssh-sftp-client=y
+CONFIG_PACKAGE_openssh-sftp-server=y
 # CONFIG_PACKAGE_sshtunnel is not set
 # CONFIG_PACKAGE_tmate is not set
 # end of SSH
@@ -5584,8 +5580,7 @@ CONFIG_PACKAGE_sstp-client=y
 # CONFIG_PACKAGE_vpnc is not set
 # CONFIG_PACKAGE_vpnc-scripts is not set
 CONFIG_PACKAGE_wireguard-tools=y
-CONFIG_PACKAGE_xl2tpd=y
-# CONFIG_PACKAGE_zerotier is not set
+# CONFIG_PACKAGE_xl2tpd is not set
 # end of VPN
 
 #
@@ -5640,8 +5635,8 @@ CONFIG_PACKAGE_cgi-io=y
 # CONFIG_PACKAGE_radicale2-examples is not set
 CONFIG_PACKAGE_shadowsocks-libev-config=y
 # CONFIG_PACKAGE_shadowsocks-libev-ss-local is not set
-# CONFIG_PACKAGE_shadowsocks-libev-ss-redir is not set
-# CONFIG_PACKAGE_shadowsocks-libev-ss-rules is not set
+CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
+CONFIG_PACKAGE_shadowsocks-libev-ss-rules=y
 CONFIG_PACKAGE_shadowsocks-libev-ss-server=y
 CONFIG_PACKAGE_shadowsocks-libev-ss-tunnel=y
 # CONFIG_PACKAGE_sockd is not set
@@ -5899,7 +5894,7 @@ CONFIG_PACKAGE_ppp=y
 # CONFIG_PACKAGE_ppp-mod-passwordfd is not set
 # CONFIG_PACKAGE_ppp-mod-pppoa is not set
 CONFIG_PACKAGE_ppp-mod-pppoe=y
-CONFIG_PACKAGE_ppp-mod-pppol2tp=y
+# CONFIG_PACKAGE_ppp-mod-pppol2tp is not set
 # CONFIG_PACKAGE_ppp-mod-pptp is not set
 # CONFIG_PACKAGE_ppp-mod-radius is not set
 # CONFIG_PACKAGE_ppp-multilink is not set
@@ -5939,6 +5934,15 @@ CONFIG_PACKAGE_ppp-mod-pppol2tp=y
 # CONFIG_PACKAGE_seafile-server-fuse is not set
 # CONFIG_PACKAGE_ser2net is not set
 # CONFIG_PACKAGE_simple-adblock is not set
+CONFIG_PACKAGE_simple-obfs=y
+# CONFIG_PACKAGE_simple-obfs-server is not set
+
+#
+# Simple-obfs Compile Configuration
+#
+# CONFIG_SIMPLE_OBFS_STATIC_LINK is not set
+# end of Simple-obfs Compile Configuration
+
 # CONFIG_PACKAGE_smartdns is not set
 # CONFIG_PACKAGE_smbinfo is not set
 # CONFIG_PACKAGE_snmp-mibs is not set
@@ -6758,4 +6762,4 @@ CONFIG_PACKAGE_watchcat=y
 # end of Font-Utils
 # end of Xorg
 
-CONFIG_OVERRIDE_PKGS="libmbim libqmi luci-theme-material"
+CONFIG_OVERRIDE_PKGS="libmbim libqmi luci-theme-material mbedtls pcre"
