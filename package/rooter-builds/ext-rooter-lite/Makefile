@@ -21,7 +21,7 @@ define Package/ext-rooter-lite
 		+ca-bundle +ca-certificates +libustream-wolfssl \
 		+luci-app-ksmbd +usb-storage \
 		+ext-p910nd +luci-app-sqm +kmod-sched-cake +luci-app-nft-qos \
-		+ext-command +luci-app-shadowsocks-libev \
+		+ext-command +luci-app-shadowsocks-libev simple-obfs \
 		+openvpn-easy-rsa +openvpn-openssl \
 		+ext-extra +luci-app-hotspot +luci-app-wol +luci-app-guestwifi \
 		+mesh-mesh +mesh-wpad +iperf3 +webconsole +socat \
