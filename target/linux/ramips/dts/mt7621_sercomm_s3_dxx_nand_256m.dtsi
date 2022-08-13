@@ -1,35 +1,24 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "mt7621_sercomm_s3.dtsi"
-
+// Sercomm S3 DF3 - Beeline SmartBox TURBO
+// Sercomm S3 DKG - Rostelecom Sercomm RT-SF-1
 / {
-	compatible = "beeline,smartbox-turbo-plus", "mediatek,mt7621-soc";
-	model = "Beeline SmartBox TURBO+"; // Sercomm S3 CQR
-
-	aliases {
-		label-mac-device = &gmac0;
-	};
-
 	ubi-concat {
 		compatible = "mtd-concat";
-		devices = <&ubiconcat0 &ubiconcat1 &ubiconcat2>;
+		devices = <&ubiconcat0 &ubiconcat1 &ubiconcat2 &ubiconcat3>;
 
 		partitions {
 			compatible = "fixed-partitions";
 			#address-cells = <1>;
 			#size-cells = <1>;
 
-			partition@0 { // 81408 KiB = 79,5 MiB
+			partition@0 { // 206848 KiB = 202 MiB
 				label = "ubi";
-				reg = <0x0 0x4f80000>;
+				reg = <0x0 0xca00000>;
 			};
 		};
 	};
-};
-
-&uartlite3 { // ZigBee EFR32 MG1B232GG
-	status = "okay";
-	current-speed = <57600>;
 };
 
 &nand {
@@ -108,14 +97,22 @@
 		};
 
 		ubiconcat2: partition@6400000 {
-			label = "application tmp buffer (Ftool)";
-			reg = <0x6400000 0x1b80000>;
+			label = "Debug (Ftool)";
+			reg = <0x6400000 0x1a00000>;
 			sercomm,scpart-id = <9>;
 		};
 
+		// Empty 0x7e00000-0x8000000 = 2 MiB
+
+		ubiconcat3: partition@8000000 {
+			label = "Container";
+			reg = <0x8000000 0x7c00000>;
+			sercomm,scpart-id = <10>;
+		};
+
 		/*
-		 * 512 KiB Bad Block Table
-		 * 0x8000000-0x7f80000=0x80000
+		 * 4 MiB Bad Block Table
+		 * 0x10000000-0xfc00000=0x400000
 		 */
 	};
 };
@@ -125,17 +122,18 @@
 	nvmem-cell-names = "mac-address";
 };
 
-&gmac1 {
+&wan {
 	nvmem-cells = <&macaddr_factory_21000>;
 	nvmem-cell-names = "mac-address";
-	mac-address-increment = <1>;
 };
 
 &wlan_2g {
 	mediatek,mtd-eeprom = <&factory 0x0>;
+	nvmem-cell-names = "mac-address";
 };
 
 &wlan_5g {
 	mediatek,mtd-eeprom = <&factory 0x8000>;
+	nvmem-cell-names = "mac-address";
 };
 

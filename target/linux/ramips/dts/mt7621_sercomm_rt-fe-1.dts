@@ -3,12 +3,8 @@
 #include "mt7621_sercomm_s3.dtsi"
 
 / {
-	compatible = "beeline,smartbox-turbo-plus", "mediatek,mt7621-soc";
-	model = "Beeline SmartBox TURBO+"; // Sercomm S3 CQR
-
-	aliases {
-		label-mac-device = &gmac0;
-	};
+	compatible = "sercomm,rt-fe-1", "mediatek,mt7621-soc";
+	model = "Sercomm RT-FE-1"; // Rostelecom Sercomm RT-FE-1 (RT-FE-1A) (Sercomm S3 CX4)
 
 	ubi-concat {
 		compatible = "mtd-concat";
@@ -19,17 +15,12 @@
 			#address-cells = <1>;
 			#size-cells = <1>;
 
-			partition@0 { // 81408 KiB = 79,5 MiB
+			partition@0 { // 79872 KiB = 78 MiB
 				label = "ubi";
-				reg = <0x0 0x4f80000>;
+				reg = <0x0 0x4e00000>;
 			};
 		};
 	};
-};
-
-&uartlite3 { // ZigBee EFR32 MG1B232GG
-	status = "okay";
-	current-speed = <57600>;
 };
 
 &nand {
@@ -108,10 +99,12 @@
 		};
 
 		ubiconcat2: partition@6400000 {
-			label = "application tmp buffer (Ftool)";
-			reg = <0x6400000 0x1b80000>;
+			label = "Debug (Ftool)";
+			reg = <0x6400000 0x1a00000>;
 			sercomm,scpart-id = <9>;
 		};
+
+		// Empty 0x7e00000-0x7f80000 = 1.5 MiB
 
 		/*
 		 * 512 KiB Bad Block Table
@@ -125,7 +118,7 @@
 	nvmem-cell-names = "mac-address";
 };
 
-&gmac1 {
+&wan {
 	nvmem-cells = <&macaddr_factory_21000>;
 	nvmem-cell-names = "mac-address";
 	mac-address-increment = <1>;
@@ -139,3 +132,5 @@
 	mediatek,mtd-eeprom = <&factory 0x8000>;
 };
 
+// TODO:
+// ? MACs interfaces

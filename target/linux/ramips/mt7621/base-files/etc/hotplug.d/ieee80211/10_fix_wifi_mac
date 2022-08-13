@@ -13,9 +13,12 @@ case "$board" in
 	beeline,smartbox-flash)
 		hw_mac_addr=$(macaddr_add $(mtd_get_mac_encrypted_arcadyan "board_data") 1)
 		[ "$PHYNBR" = "0" ] && echo -n "$hw_mac_addr" > /sys${DEVPATH}/macaddress
-		hw_mac_addr=$(macaddr_setbyte $hw_mac_addr 7 4)
+		hw_mac_addr=$(macaddr_setbit   $hw_mac_addr 26)
+		hw_mac_addr=$(macaddr_unsetbit $hw_mac_addr 27)
+		hw_mac_addr=$(macaddr_unsetbit $hw_mac_addr 28)
 		[ "$PHYNBR" = "1" ] && macaddr_setbit_la $hw_mac_addr > /sys${DEVPATH}/macaddress
 		;;
+
 	cudy,x6)
 		hw_mac_addr="$(mtd_get_mac_binary factory 0x4)"
 		macaddr_add $hw_mac_addr "$PHYNBR" > /sys${DEVPATH}/macaddress
@@ -77,7 +80,9 @@ case "$board" in
 	mts,wg430223)
 		hw_mac_addr=$(macaddr_add $(mtd_get_mac_encrypted_arcadyan "board_data") 1)
 		[ "$PHYNBR" = "0" ] && echo -n "$hw_mac_addr" > /sys${DEVPATH}/macaddress
-		hw_mac_addr=$(macaddr_setbyte $hw_mac_addr 7 2)
+		hw_mac_addr=$(macaddr_unsetbit $hw_mac_addr 26)
+		hw_mac_addr=$(macaddr_setbit   $hw_mac_addr 27)
+		hw_mac_addr=$(macaddr_unsetbit $hw_mac_addr 28)
 		[ "$PHYNBR" = "1" ] && macaddr_setbit_la $hw_mac_addr > /sys${DEVPATH}/macaddress
 		;;
 	raisecom,msg1500-x-00)

@@ -34,8 +34,9 @@ ampedwireless,ally-r1900k)
 beeline,smartbox-flash|\
 beeline,smartbox-giga|\
 beeline,smartbox-giga|\
-beeline,smartbox-turbo)\
-beeline,smartbox-turbo-plus)
+beeline,smartbox-turbo|\
+beeline,smartbox-turbo-plus|\
+sercomm,s3)
 	ubootenv_add_uci_config "/dev/mtd0" "0x80000" "0x1000" "0x20000"
 	;;
 beeline,smartbox-pro|\

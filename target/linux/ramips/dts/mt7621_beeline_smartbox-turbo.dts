@@ -245,3 +245,4 @@
 &uartlite3 {
 	status = "okay";
 };
+
