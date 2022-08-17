@@ -53,6 +53,24 @@
 			}
 		}
 	},
+	"SmartboxPRO": {
+		"details": "SmartboxPRO",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_smartboxpro",
+		"image1": "openwrt-ramips-mt7621-smartboxpro-squashfs-factory.img",
+		"image2": "openwrt-ramips-mt7621-smartboxpro-squashfs-sysupgrade.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "SmartboxPRO",
+		"ext1": "-factory.img",
+		"ext2": "-upgrade.bin",
+		"addons": ["readme_SmartboxPRO.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartboxPRO"
+			}
+		}
+	},
 	"SMARTBOXGIGASTOK": {
 		"details": "Beeline SmartBox Giga",
 		"type": "2",

@@ -1,0 +1,444 @@
+/dts-v1/;
+
+/ {
+	#address-cells = <0x01>;
+	#size-cells = <0x01>;
+	interrupt-parent = <0x01>;
+	model = "Conel RBv2";
+	compatible = "st,spear320-evb\0st,spear320";
+
+	chosen {
+	};
+
+	aliases {
+	};
+
+	memory {
+		device_type = "memory";
+		reg = <0x00 0x40000000>;
+	};
+
+	cpus {
+		#address-cells = <0x00>;
+		#size-cells = <0x00>;
+
+		cpu {
+			compatible = "arm,arm926ej-s";
+			device_type = "cpu";
+		};
+	};
+
+	ahb {
+		#address-cells = <0x01>;
+		#size-cells = <0x01>;
+		compatible = "simple-bus";
+		ranges = <0x40000000 0x40000000 0x80000000 0xd0000000 0xd0000000 0x30000000>;
+
+		interrupt-controller@f1100000 {
+			compatible = "arm,pl190-vic";
+			interrupt-controller;
+			reg = <0xf1100000 0x1000>;
+			#interrupt-cells = <0x01>;
+			linux,phandle = <0x01>;
+			phandle = <0x01>;
+		};
+
+		dma@fc400000 {
+			compatible = "arm,pl080\0arm,primecell";
+			reg = <0xfc400000 0x1000>;
+			interrupt-parent = <0x01>;
+			interrupts = <0x08>;
+			status = "okay";
+		};
+
+		eth@e0800000 {
+			compatible = "st,spear600-gmac";
+			reg = <0xe0800000 0x8000>;
+			interrupts = <0x17 0x16>;
+			interrupt-names = "macirq\0eth_wake_irq";
+			phy-mode = "mii";
+			status = "okay";
+		};
+
+		flash@fc000000 {
+			compatible = "st,spear600-smi";
+			#address-cells = <0x01>;
+			#size-cells = <0x01>;
+			reg = <0xfc000000 0x1000>;
+			interrupts = <0x09>;
+			status = "okay";
+			clock-rate = <0x2625a00>;
+
+			flash@f8000000 {
+				#address-cells = <0x01>;
+				#size-cells = <0x01>;
+				reg = <0xf8000000 0x1000000>;
+				st,smi-fast-mode;
+
+				partition@0 {
+					label = "XLoader";
+					reg = <0x00 0x10000>;
+				};
+
+				partition@10000 {
+					label = "U-Boot";
+					reg = <0x10000 0x20000>;
+				};
+
+				partition@30000 {
+					label = "Env1";
+					reg = <0x30000 0x10000>;
+				};
+
+				partition@80000 {
+					label = "Backup";
+					reg = <0x80000 0x20000>;
+				};
+
+				partition@100000 {
+					label = "Kernel";
+					reg = <0x100000 0x300000>;
+				};
+
+				partition@400000 {
+					label = "RootFS";
+					reg = <0x400000 0xa00000>;
+				};
+
+				partition@E00000 {
+					label = "UserFS";
+					reg = <0xe00000 0x200000>;
+				};
+			};
+
+			mram@f9000000 {
+				#address-cells = <0x01>;
+				#size-cells = <0x01>;
+				reg = <0xf9000000 0x20000>;
+
+				partition@0 {
+					label = "DataFS";
+					reg = <0x00 0x20000>;
+				};
+			};
+		};
+
+		spi@d0100000 {
+			compatible = "arm,pl022\0arm,primecell";
+			reg = <0xd0100000 0x1000>;
+			interrupts = <0x14>;
+			#address-cells = <0x01>;
+			#size-cells = <0x00>;
+			status = "okay";
+			num-cs = <0x01>;
+
+			rtc-ds1390@0 {
+				status = "okay";
+				compatible = "rtc-ds1390";
+				reg = <0x00>;
+				spi-max-frequency = <0xf4240>;
+				spi-cpha;
+				pl022,hierarchy = <0x00>;
+				pl022,interface = <0x00>;
+				pl022,slave-tx-disable;
+				pl022,com-mode = <0x00>;
+				pl022,rx-level-trig = <0x00>;
+				pl022,tx-level-trig = <0x00>;
+				pl022,ctrl-len = <0x11>;
+				pl022,wait-state = <0x00>;
+				pl022,duplex = <0x00>;
+			};
+		};
+
+		ehci@e1800000 {
+			compatible = "st,spear600-ehci\0usb-ehci";
+			reg = <0xe1800000 0x1000>;
+			interrupts = <0x1a>;
+			status = "okay";
+		};
+
+		ohci@e1900000 {
+			compatible = "st,spear600-ohci\0usb-ohci";
+			reg = <0xe1900000 0x1000>;
+			interrupts = <0x19>;
+			status = "okay";
+		};
+
+		ohci@e2100000 {
+			compatible = "st,spear600-ohci\0usb-ohci";
+			reg = <0xe2100000 0x1000>;
+			interrupts = <0x1b>;
+			status = "okay";
+		};
+
+		apb {
+			#address-cells = <0x01>;
+			#size-cells = <0x01>;
+			compatible = "simple-bus";
+			ranges = <0xa0000000 0xa0000000 0x20000000 0xd0000000 0xd0000000 0x30000000>;
+
+			gpio@fc980000 {
+				compatible = "arm,pl061\0arm,primecell";
+				reg = <0xfc980000 0x1000>;
+				interrupts = <0x0b>;
+				gpio-controller;
+				#gpio-cells = <0x02>;
+				interrupt-controller;
+				#interrupt-cells = <0x02>;
+				status = "okay";
+			};
+
+			i2c@d0180000 {
+				#address-cells = <0x01>;
+				#size-cells = <0x00>;
+				compatible = "snps,designware-i2c";
+				reg = <0xd0180000 0x1000>;
+				interrupts = <0x15>;
+				status = "okay";
+			};
+
+			rtc@fc900000 {
+				compatible = "st,spear600-rtc";
+				reg = <0xfc900000 0x1000>;
+				interrupts = <0x0a>;
+				status = "disabled";
+			};
+
+			serial@d0000000 {
+				compatible = "arm,pl011\0arm,primecell";
+				reg = <0xd0000000 0x1000>;
+				interrupts = <0x13>;
+				status = "okay";
+				pinctrl-names = "default";
+				pinctrl-0;
+			};
+
+			wdt@fc880000 {
+				compatible = "arm,sp805\0arm,primecell";
+				reg = <0xfc880000 0x1000>;
+				interrupts = <0x0c>;
+				status = "disabled";
+			};
+
+			timer@f0000000 {
+				compatible = "st,spear-timer";
+				reg = <0xf0000000 0x400>;
+				interrupts = <0x02>;
+				status = "okay";
+			};
+
+			i2c@a7000000 {
+				#address-cells = <0x01>;
+				#size-cells = <0x00>;
+				compatible = "snps,designware-i2c";
+				reg = <0xa7000000 0x1000>;
+				interrupts = <0x15>;
+				interrupt-parent = <0x02>;
+				status = "disabled";
+			};
+
+			serial@a3000000 {
+				compatible = "arm,pl011\0arm,primecell";
+				reg = <0xa3000000 0x1000>;
+				interrupts = <0x0d>;
+				interrupt-parent = <0x02>;
+				status = "okay";
+				pinctrl-names = "default";
+				pinctrl-0;
+			};
+
+			serial@a4000000 {
+				compatible = "arm,pl011\0arm,primecell";
+				reg = <0xa4000000 0x1000>;
+				interrupts = <0x0e>;
+				interrupt-parent = <0x02>;
+				status = "okay";
+				pinctrl-names = "default";
+				pinctrl-0;
+			};
+
+			gpio@b3000000 {
+				compatible = "st,spear-plgpio";
+				reg = <0xb3000000 0x1000>;
+				#interrupt-cells = <0x01>;
+				interrupt-controller;
+				gpio-controller;
+				#gpio-cells = <0x02>;
+				gpio-ranges = <0x03 0x00 0x00 0x66>;
+				status = "disabled";
+				st-plgpio,ngpio = <0x66>;
+				st-plgpio,enb-reg = <0x24>;
+				st-plgpio,wdata-reg = <0x34>;
+				st-plgpio,dir-reg = <0x44>;
+				st-plgpio,ie-reg = <0x64>;
+				st-plgpio,rdata-reg = <0x54>;
+				st-plgpio,mis-reg = <0x84>;
+				st-plgpio,eit-reg = <0x94>;
+			};
+
+			adc@d0080000 {
+				compatible = "st,spear-adc";
+				reg = <0xd0080000 0x1000>;
+				interrupts = <0x12>;
+				status = "okay";
+			};
+
+			timer@fc800000 {
+				compatible = "st,spear-gpt";
+				reg = <0xfc800000 0x80 0xfc800080 0x80 0xfcb00000 0x80 0xfcb00080 0x80>;
+				interrupts = <0x04 0x05 0x06 0x07>;
+				interrupt-parent = <0x01>;
+				gpt,parent_clk_name = "pll3_clk";
+				status = "okay";
+			};
+		};
+
+		pinmux@b3000000 {
+			compatible = "st,spear320-pinmux";
+			reg = <0xb3000000 0x1000>;
+			#gpio-range-cells = <0x03>;
+			st,pinmux-mode = <0x04>;
+			pinctrl-names = "default";
+			pinctrl-0 = <0x04>;
+			linux,phandle = <0x03>;
+			phandle = <0x03>;
+
+			pinmux {
+				linux,phandle = <0x04>;
+				phandle = <0x04>;
+
+				i2c0 {
+					st,pins = "i2c0_grp";
+					st,function = "i2c0";
+				};
+
+				mii0 {
+					st,pins = "mii0_grp";
+					st,function = "mii0";
+				};
+
+				ssp0 {
+					st,pins = "ssp0_grp";
+					st,function = "ssp0";
+				};
+
+				uart0 {
+					st,pins = "uart0_grp";
+					st,function = "uart0";
+				};
+
+				sdhci {
+					st,pins = "sdhci_cd_51_grp";
+					st,function = "sdhci";
+				};
+
+				i2s {
+					st,pins = "i2s_grp";
+					st,function = "i2s";
+				};
+
+				uart1 {
+					st,pins = "uart1_grp";
+					st,function = "uart1";
+				};
+
+				uart2 {
+					st,pins = "uart2_grp";
+					st,function = "uart2";
+				};
+
+				can0 {
+					st,pins = "can0_grp";
+					st,function = "can0";
+				};
+
+				can1 {
+					st,pins = "can1_grp";
+					st,function = "can1";
+				};
+
+				mii2 {
+					st,pins = "mii2_grp";
+					st,function = "mii2";
+				};
+
+				pwm0_1 {
+					st,pins = "pwm0_1_pin_37_38_grp";
+					st,function = "pwm0_1";
+				};
+			};
+		};
+
+		clcd@90000000 {
+			compatible = "arm,pl110\0arm,primecell";
+			reg = <0x90000000 0x1000>;
+			interrupts = <0x08>;
+			interrupt-parent = <0x02>;
+			status = "disabled";
+		};
+
+		flash@4c000000 {
+			compatible = "st,spear600-fsmc-nand";
+			#address-cells = <0x01>;
+			#size-cells = <0x01>;
+			reg = <0x4c000000 0x1000 0x50000000 0x10 0x50020000 0x10 0x50010000 0x10>;
+			reg-names = "fsmc_regs\0nand_data\0nand_addr\0nand_cmd";
+			status = "okay";
+		};
+
+		sdhci@70000000 {
+			compatible = "st,sdhci-spear";
+			reg = <0x70000000 0x100>;
+			interrupts = <0x0a>;
+			interrupt-parent = <0x02>;
+			status = "disabled";
+		};
+
+		interrupt-controller@0xb3000000 {
+			compatible = "st,spear320-shirq";
+			reg = <0xb3000000 0x1000>;
+			interrupts = <0x1e 0x1c 0x1d 0x01>;
+			#interrupt-cells = <0x01>;
+			interrupt-controller;
+			linux,phandle = <0x02>;
+			phandle = <0x02>;
+		};
+
+		spi@a5000000 {
+			compatible = "arm,pl022\0arm,primecell";
+			reg = <0xa5000000 0x1000>;
+			interrupts = <0x0f>;
+			interrupt-parent = <0x02>;
+			#address-cells = <0x01>;
+			#size-cells = <0x00>;
+			status = "disabled";
+		};
+
+		spi@a6000000 {
+			compatible = "arm,pl022\0arm,primecell";
+			reg = <0xa6000000 0x1000>;
+			interrupts = <0x10>;
+			interrupt-parent = <0x02>;
+			#address-cells = <0x01>;
+			#size-cells = <0x00>;
+			status = "disabled";
+		};
+
+		pwm@a8000000 {
+			compatible = "st,spear-pwm";
+			reg = <0xa8000000 0x1000>;
+			#pwm-cells = <0x02>;
+			status = "disabled";
+		};
+
+		eth@ab000000 {
+			compatible = "st,spear320-macb";
+			reg = <0xab000000 0x2000>;
+			interrupt-parent = <0x02>;
+			interrupts = <0x12 0x14>;
+			interrupt-names = "macb2_irq\0macb2_wakeirq";
+			status = "okay";
+			phy-mode = "rmii";
+		};
+	};
+};

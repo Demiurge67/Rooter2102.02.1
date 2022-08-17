@@ -6,6 +6,10 @@ define Device/default-nand
   MKUBIFS_OPTS := -m $$(PAGESIZE) -e 126KiB -c 2048
 endef
 
+define Device/spi
+  PROFILES = Default
+endef
+
 define Build/at91-sdcard
   $(if $(findstring ext4,$@), \
   rm -f $@.boot
@@ -178,6 +182,20 @@ define Device/egnite_ethernut5
   UBINIZE_OPTS := -E 5
 endef
 TARGET_DEVICES += egnite_ethernut5
+
+define Device/CONEL-LR77v2
+  $(Device/spi)
+  DEVICE_VENDOR := Conel
+  DEVICE_MODEL := LR77v2
+  DEVICE_DTS := conel-LR77v2
+  KERNEL := kernel-bin | append-dtb | gzip | uImage gzip
+  KERNEL_INITRAMFS := kernel-bin | append-dtb | gzip | uImage gzip
+  IMAGES := sysupgrade.bin
+  IMAGE/sysupgrade.bin := append-kernel | pad-to 64k | append-rootfs | pad-rootfs | append-metadata | check-size
+  IMAGE_SIZE := 16064k 
+endef
+TARGET_DEVICES += CONEL-LR77v2
+
 
 define Device/exegin_q5xr5
   $(Device/production-dtb)

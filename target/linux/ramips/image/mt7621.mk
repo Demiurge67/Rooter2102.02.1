@@ -686,6 +686,21 @@ define Device/ubnt_edgerouter_common
   DEVICE_PACKAGES += -wpad-basic-wolfssl
 endef
 
+define Device/wifire_s1500-nbn
+  $(Device/sercomm-s1500-common)
+  DEVICE_VENDOR := WiFire
+  DEVICE_MODEL := S1500.NBN
+  SERCOMM_HWVER := 10000
+  SERCOMM_0x10str := 0001
+  SERCOMM_SWVER := 2015
+  SERCOMM_HWID := BUC
+  IMAGE/factory.img := append-ubi | sercomm-tag-factory-type-AB-nbn | \
+    sercomm-crypto
+  DEVICE_ALT0_VENDOR := Sercomm
+  DEVICE_ALT0_MODEL := S1500 BUC
+endef
+TARGET_DEVICES += wifire_s1500-nbn
+
 define Device/ubnt_edgerouter-x
   $(Device/ubnt_edgerouter_common)
   DEVICE_MODEL := EdgeRouter X
