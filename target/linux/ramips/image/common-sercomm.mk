@@ -224,5 +224,3 @@ define Device/sercomm-s1500-common
   SERCOMM_ROOTFS1_OFFSET := 0x3d00000
   DEVICE_PACKAGES := kmod-mt76x2 kmod-usb3 uboot-envtools
 endef
-
-

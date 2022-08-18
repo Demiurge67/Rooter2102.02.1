@@ -199,6 +199,21 @@ define Device/beeline_smartbox-giga
 endef
 TARGET_DEVICES += beeline_smartbox-giga
 
+define Device/beeline_smartbox-pro
+  $(Device/sercomm_axx)
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := SmartBox PRO
+  SERCOMM_HWID := AWI
+  SERCOMM_HWVER := 10000
+  SERCOMM_SWVER := 2020
+  DEVICE_ALT0_VENDOR := Sercomm
+  DEVICE_ALT0_MODEL := S1500 AWI
+  SERCOMM_ROOTFS2_OFFSET := 0x3d00000
+  IMAGE/factory.img := append-ubi | sercomm-factory-awi
+  DEVICE_PACKAGES := kmod-mt76x2 kmod-usb3 uboot-envtools
+endef
+TARGET_DEVICES += beeline_smartbox-pro
+
 define Device/beeline_smartbox-turbo
   $(Device/sercomm_dxx)
   IMAGE_SIZE := 32768k
@@ -213,8 +228,8 @@ endef
 TARGET_DEVICES += beeline_smartbox-turbo
 
 define Device/beeline_smartbox-turbo-plus
-  $(Device/sercomm_dxx)
-  IMAGE_SIZE := 32m
+  $(Device/sercomm_cxx)
+  IMAGE_SIZE := 32768k
   SERCOMM_HWID := CQR
   SERCOMM_HWVER := 10000
   SERCOMM_SWVER := 2010
@@ -222,21 +237,8 @@ define Device/beeline_smartbox-turbo-plus
   DEVICE_MODEL := SmartBox TURBO+
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
 	kmod-usb3 uboot-envtools
-  IMAGE/factory.img := append-ubi | sercomm-tag-factory-type-B-turbo-plus
 endef
 TARGET_DEVICES += beeline_smartbox-turbo-plus
-
-define Device/beeline_smartbox-pro
-  $(Device/sercomm-s1500-common)
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox PRO
-  SERCOMM_HWID := AWI
-  SERCOMM_HWVER := 10000
-  SERCOMM_SWVER := 2020
-  DEVICE_ALT0_VENDOR := Sercomm
-  DEVICE_ALT0_MODEL := S1500 AWI
-endef
-TARGET_DEVICES += beeline_smartbox-pro
 
 define Device/mediatek_ap-mt7621a-v60
   $(Device/dsa-migration)
@@ -301,6 +303,25 @@ define Device/mikrotik_routerboard-m33g
   SUPPORTED_DEVICES += mikrotik,rbm33g
 endef
 TARGET_DEVICES += mikrotik_routerboard-m33g
+
+define Device/glinet_gl-mt1300
+  $(Device/dsa-migration)
+  IMAGE_SIZE := 32448k
+  DEVICE_VENDOR := GL.iNet
+  DEVICE_MODEL := GL-MT1300
+  DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3
+endef
+TARGET_DEVICES += glinet_gl-mt1300
+
+define Device/hilink_hlk-7621a-evb
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := HiLink
+  DEVICE_MODEL := HLK-7621A evaluation board
+  DEVICE_PACKAGES += kmod-mt76x2 kmod-usb3
+  IMAGE_SIZE := 32448k
+endef
+TARGET_DEVICES += hilink_hlk-7621a-evb
 
 define Device/beeline_sbtplus
   $(Device/dsa-migration)
@@ -371,6 +392,19 @@ define Device/beeline_sbgigaspi
 	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
 endef
 TARGET_DEVICES += beeline_sbgigaspi
+
+
+define Device/mtc_wr1201
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 16000k
+  DEVICE_VENDOR := MTC
+  DEVICE_MODEL := Wireless Router WR1201
+  KERNEL_INITRAMFS := $(KERNEL_DTB) | uImage lzma -n 'WR1201_8_128'
+  DEVICE_PACKAGES := kmod-sdhci-mt7620 kmod-mt76x2 kmod-usb3 \
+	kmod-usb-ledtrig-usbport
+endef
+TARGET_DEVICES += mtc_wr1201
 
 define Device/mts_wg430223
   $(Device/dsa-migration)
@@ -687,17 +721,19 @@ define Device/ubnt_edgerouter_common
 endef
 
 define Device/wifire_s1500-nbn
-  $(Device/sercomm-s1500-common)
+  $(Device/sercomm_axx)
   DEVICE_VENDOR := WiFire
   DEVICE_MODEL := S1500.NBN
   SERCOMM_HWVER := 10000
   SERCOMM_0x10str := 0001
   SERCOMM_SWVER := 2015
   SERCOMM_HWID := BUC
-  IMAGE/factory.img := append-ubi | sercomm-tag-factory-type-AB-nbn | \
-    sercomm-crypto
+  SERCOMM_ROOTFS2_OFFSET := 0x4d00000
   DEVICE_ALT0_VENDOR := Sercomm
   DEVICE_ALT0_MODEL := S1500 BUC
+  IMAGE/factory.img := append-ubi | sercomm-factory-cqr | \
+	sercomm-pid-set0x10 | sercomm-crypto
+  DEVICE_PACKAGES := kmod-mt76x2 kmod-usb3 uboot-envtools
 endef
 TARGET_DEVICES += wifire_s1500-nbn
 
