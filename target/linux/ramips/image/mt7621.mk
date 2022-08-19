@@ -215,7 +215,7 @@ endef
 TARGET_DEVICES += beeline_smartbox-pro
 
 define Device/beeline_smartbox-turbo
-  $(Device/sercomm_dxx)
+  $(Device/sercomm_сxx)
   IMAGE_SIZE := 32768k
   SERCOMM_HWID := DF3
   SERCOMM_HWVER := 10200
@@ -728,6 +728,7 @@ define Device/wifire_s1500-nbn
   SERCOMM_0x10str := 0001
   SERCOMM_SWVER := 2015
   SERCOMM_HWID := BUC
+  IMAGE_SIZE := 32m
   SERCOMM_ROOTFS2_OFFSET := 0x4d00000
   DEVICE_ALT0_VENDOR := Sercomm
   DEVICE_ALT0_MODEL := S1500 BUC
