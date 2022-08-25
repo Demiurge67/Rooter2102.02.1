@@ -216,12 +216,12 @@
 	},
 	"OMNIA": {
 		"details": "Turris Omnia",
-		"type": "4",
+		"type": "1",
 		"build": "2102",
 		"config": ".config_omnia",
-		"image1": "openwrt-mvebu-cortexa9-cznic_turris-omnia-sysupgrade.img.gz",
-		"image2": "openwrt-mvebu-cortexa9-cznic_turris-omnia-sysupgrade.img",
+		"image": "openwrt-mvebu-cortexa9-cznic_turris-omnia-sysupgrade.img.gz",
 		"imagepath": "/mvebu/cortexa9/",
+		"ext": "-upgrade.img.gz",
 		"mod": "Turris-Omnia",
 		"addons": ["readme.pdf", "turris-omnia-initramfs.tar.gz", "turris.txt"]
 	},
@@ -667,7 +667,7 @@
 		"mod": "ZyZEL-NR7101",
 		"ext1": "-recovery.bin",
 		"ext2": "-update.bin",
-		"addons": ["readme.pdf"]
+		"addons": ["readme.pdf", "Zyxel_NR7101_Install_Guide_V2.zip"]
 	},
 	"N14": {
 		"details": "Asus RT-N14U",
@@ -858,6 +858,30 @@
 		"imagepath": "/kirkwood/generic/",
 		"mod": "CheckPoint-L-50",
 		"ext1": "-initramfs-uImage",
+		"ext2": "-upgrade.bin",
+		"addons": ["readme.pdf"]
+	},
+	"RTAC68U": {
+		"details": "Asus RT-AC68U",
+		"type": "1",
+		"build": "2102",
+		"config": ".config_rtac68u",
+		"image": "openwrt-bcm53xx-generic-asus_rt-ac68u-squashfs.trx",
+		"imagepath": "/bcm53xx/generic/",
+		"mod": "Asus-RT-AC68U",
+		"ext": "-upgrade.trx",
+		"addons": ["readme.pdf", "tftp.txt"]
+	},
+	"DOCKSTAR": {
+		"details": "Seagate Dockstar",
+		"type": "2",
+		"build": "2102",
+		"config": ".config_dockstar",
+		"image2": "openwrt-kirkwood-seagate_dockstar-squashfs-sysupgrade.bin",
+		"image1": "openwrt-kirkwood-seagate_dockstar-squashfs-factory.bin",
+		"imagepath": "/kirkwood/generic/",
+		"mod": "Seagate-Dockstar",
+		"ext1": "-factory.bin",
 		"ext2": "-upgrade.bin",
 		"addons": ["readme.pdf"]
 	}

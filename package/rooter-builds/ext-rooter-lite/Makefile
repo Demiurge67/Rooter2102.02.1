@@ -24,14 +24,16 @@ define Package/ext-rooter-lite
 		+kmod-sched-cake +luci-app-nft-qos \
 		+ext-command +luci-app-shadowsocks-libev +simple-obfs \
 		+openvpn-easy-rsa +openvpn-openssl \
-		+ext-extra +luci-app-hotspot +luci-app-wol \
-		+iperf3 +webconsole +socat \
+		+ext-extra +luci-app-hotspot \
+		+luci-app-wol +luci-app-guestwifi \
 		+usbmuxd +libusbmuxd-utils \
 		+libimobiledevice-utils +kmod-usb-net-ipheth \
-		+nano +picocom +wget \
-		+qfirehose +luci-app-vpnbypass 
- TITLE:=ROOter support w/o MWan3 for 16meg and larger routers
- PKGARCH:=all
+		+qlog +luci-ssl +usbutils \
+		+openssl-util +irqbalance +ext-splashconfig \
+		+nano +picocom +wpad \
+		+wget +qfirehose +luci-app-vpnbypass 
+  TITLE:=ROOter support w/o MWan3 for 16meg and larger routers
+  PKGARCH:=all
 endef
 
 define Package/ext-rooter-lite/description

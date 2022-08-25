@@ -634,6 +634,13 @@ uci commit modem.modem$CURRMODEM
 # Huawei NCM
 #
 	"4"|"6"|"7"|"24"|"26"|"27" )
+		if [ "$idV" = "2c7c" -a "$idP" = "0900" ]; then
+			ATCMDD='AT+QCFG="usbnet",2'
+			OX=$($ROOTER/gcom/gcom-locked "/dev/ttyUSB2" "run-at.gcom" "$CURRMODEM" "$ATCMDD")
+			ATCMDD='AT+CFUN=1,1'
+			OX=$($ROOTER/gcom/gcom-locked "/dev/ttyUSB2" "run-at.gcom" "$CURRMODEM" "$ATCMDD")
+			reboot -f
+		fi
 		log "Start NCM Connection"
 		sleep $DELAY
 
@@ -703,8 +710,8 @@ if $QUECTEL; then
 			OX=$($ROOTER/gcom/gcom-locked "/dev/ttyUSB$CPORT" "run-at.gcom" "$CURRMODEM" "$ATCMDD")
 		fi
 		log "Quectel Unsolicited Responses Disabled"
-fi
-
+	fi
+	$ROOTER/connect/bandmask $CURRMODEM 1
 	clck=$(uci -q get custom.bandlock.cenable)
 	if [ $clck = "1" ]; then
 		ear=$(uci -q get custom.bandlock.earfcn)
@@ -732,6 +739,7 @@ fi
 		earcnt=$cnt","$earcnt
 		ATCMDD="at+qnwlock=\"common/4g\""
 		OX=$($ROOTER/gcom/gcom-locked "/dev/ttyUSB$CPORT" "run-at.gcom" "$CURRMODEM" "$ATCMDD")
+		log "$OX"
 		if `echo $OX | grep "ERROR" 1>/dev/null 2>&1`
 		then
 			ATCMDD="at+qnwlock=\"common/lte\",2,$ear,$pc"
@@ -740,9 +748,8 @@ fi
 		fi
 		OX=$($ROOTER/gcom/gcom-locked "/dev/ttyUSB$CPORT" "run-at.gcom" "$CURRMODEM" "$ATCMDD")
 		log "Cell Lock $OX"
+		sleep 10
 	fi
-
-	$ROOTER/connect/bandmask $CURRMODEM 1
 fi
 $ROOTER/luci/celltype.sh $CURRMODEM
 if [ $SIERRAID -eq 1 ]; then

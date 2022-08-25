@@ -212,7 +212,7 @@ case $uVid in
 			fi
 			M2='AT+QNWPREFCFG="lte_band",'$lst
 		fi
-		if [ $uPid = 0800 ]; then
+		if [ $uPid = 0800 -o $uPid = 0900 ]; then
 			if [ ! -z $mask ]; then
 				fibdecode $mask 1 1
 			else
@@ -234,7 +234,11 @@ case $uVid in
 		log "Locking Cmd : $M2"
 		log "Locking Cmd : $M5"
 		log " "
-		ATCMDD="AT"
+		ATCMDD="AT+CFUN=1,1"
+		if [ -z "$2" ]; then
+			ATCMDD="AT"
+		fi
+		
 		NOCFUN=$uVid
 		OX=$($ROOTER/gcom/gcom-locked "$COMMPORT" "run-at.gcom" "$CURRMODEM" "$M2")
 		if [ ! -z $M5 ]; then
@@ -369,6 +373,7 @@ case $uVid in
 esac
 
 if [ $RESTART = "0" ]; then
+	sleep 5
 	/usr/lib/rooter/connect/bandmask $CURRMODEM $MODT
 	exit 0
 fi
