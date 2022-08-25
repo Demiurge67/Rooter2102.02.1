@@ -34,4 +34,4 @@ endef
 define Build/Compile
 endef
 
-$(eval $(call BuildPackage,ext-rbsxtr))
+$(eval $(call BuildPackage,ext-rbsxtr16))

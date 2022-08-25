@@ -28,14 +28,13 @@ define Package/ext-rooterbcm16
 		+ext-extra +luci-app-wol \
 		+usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
 		+nano +picocom +wpad +wget +qfirehose +luci-app-vpnbypass
-  TITLE:=ROOter support for 16meg and larger Broadcom routers w/o Hotspot Manager
+  TITLE:=ROOter support for 16meg+ routers w/o Hotspot Manager
   PKGARCH:=all
 endef
 
 define Package/ext-rooterbcm16/description
   Helper scripts to enable ROOter on 16meg and larger Broadcom routers w/o Hotspot Manager
 endef
-
 
 define Build/Compile
 endef

@@ -28,14 +28,13 @@ define Package/ext-rooter16
 		+ext-extra +luci-app-hotspot +luci-app-wol \
 		+usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
 		+nano +picocom +wpad +wget +qfirehose +luci-app-vpnbypass
-  TITLE:=ROOter support for 16meg and larger routers
-  PKGARCH:=all
+ TITLE:=ROOter support for 16meg and larger routers
+ PKGARCH:=all
 endef
 
 define Package/ext-rooter16/description
   Helper scripts to enable ROOter on 16meg and larger routers
 endef
-
 
 define Build/Compile
 endef

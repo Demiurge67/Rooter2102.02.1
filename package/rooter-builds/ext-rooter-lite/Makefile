@@ -6,35 +6,37 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=ext-rooter-lite
 PKG_VERSION:=1.000
 PKG_RELEASE:=1
-
 PKG_MAINTAINER:=Created by DM/makefile by Cobia@whirlpool
 include $(INCLUDE_DIR)/package.mk
 
 define Package/ext-rooter-lite
-  SECTION:=utils
-  CATEGORY:=ROOter
-  DEPENDS:=+luci +ext-rooter-basic \
+ SECTION:=utils
+ CATEGORY:=ROOter
+ DEPENDS:=+luci +ext-rooter-basic \
 		+luci-app-ddns +ddns-scripts \
 		+luci-app-rootervpn +ext-wireguard \
 		+bwmon +464xlat \
-		+ext-theme +luci-theme-argon +luci-theme-argondark +ext-login \
+		+ext-theme +luci-theme-argon \
+		+luci-theme-argondark +ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \
 		+luci-app-ksmbd +usb-storage kmod-mtd-rw \
-		+ext-p910nd +luci-app-sqm +kmod-sched-cake +luci-app-nft-qos \
+		+ext-p910nd +luci-app-sqm \
+		+kmod-sched-cake +luci-app-nft-qos \
 		+ext-command +luci-app-shadowsocks-libev +simple-obfs \
 		+openvpn-easy-rsa +openvpn-openssl \
 		+ext-extra +luci-app-hotspot +luci-app-wol \
 		+iperf3 +webconsole +socat \
-		+usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
-		+nano +picocom +wget +qfirehose +luci-app-vpnbypass 
-  TITLE:=ROOter support w/o MWan3 for 16meg and larger routers
-  PKGARCH:=all
+		+usbmuxd +libusbmuxd-utils \
+		+libimobiledevice-utils +kmod-usb-net-ipheth \
+		+nano +picocom +wget \
+		+qfirehose +luci-app-vpnbypass 
+ TITLE:=ROOter support w/o MWan3 for 16meg and larger routers
+ PKGARCH:=all
 endef
 
 define Package/ext-rooter-lite/description
   Helper scripts to enable ROOter w/o Mesh & MWan3 on 16meg and larger routers
 endef
-
 
 define Build/Compile
 endef

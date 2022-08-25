@@ -12,7 +12,7 @@ PKG_RELEASE:=1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/SELinuxProject/selinux/releases/download/3.2
 PKG_HASH:=df758ef1d9d4811051dd901ea6b029ae334ffd7c671c128beb16bce1e25ac161
-HOST_BUILD_DEPENDS:=libsepol/host pcre/host
+HOST_BUILD_DEPENDS:=libsepol/host 
 
 PKG_LICENSE:=libselinux-1.0
 PKG_LICENSE_FILES:=LICENSE
