@@ -56,9 +56,10 @@ ramips_setup_interfaces()
 	netgear,wac104)
 		ucidef_set_interface_lan "lan1 lan2 lan3 lan4"
 		;;
+	beeline,smartbox-turbo|\
+	beeline,smartbox-turbo-plus|\
+	beeline,sb-turbo-plus-breed|\
 	beeline,sbtplus)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" "wan"
-		;;
 	beeline,sbtplusspi)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" "wan"
 		;;

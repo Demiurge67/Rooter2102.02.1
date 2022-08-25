@@ -3,40 +3,40 @@
 #Copyright GNU act.
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=ext-rooter-lite
+PKG_NAME:=ext-rooter-lite-mesh
 PKG_VERSION:=1.000
 PKG_RELEASE:=1
 
 PKG_MAINTAINER:=Created by DM/makefile by Cobia@whirlpool
 include $(INCLUDE_DIR)/package.mk
 
-define Package/ext-rooter-lite
+define Package/ext-rooter-lite-mesh
   SECTION:=utils
   CATEGORY:=ROOter
   DEPENDS:=+luci +ext-rooter-basic \
 		+luci-app-ddns +ddns-scripts \
 		+luci-app-rootervpn +ext-wireguard \
-		+bwmon +464xlat \
+		+bwmon +464xlat +webconsole kmod-mtd-rw \
 		+ext-theme +luci-theme-argon +luci-theme-argondark +ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \
-		+luci-app-ksmbd +usb-storage kmod-mtd-rw \
+		+luci-app-ksmbd +usb-storage \
 		+ext-p910nd +luci-app-sqm +kmod-sched-cake +luci-app-nft-qos \
 		+ext-command +luci-app-shadowsocks-libev +simple-obfs \
 		+openvpn-easy-rsa +openvpn-openssl \
-		+ext-extra +luci-app-hotspot +luci-app-wol \
-		+iperf3 +webconsole +socat \
+		+ext-extra +luci-app-hotspot +luci-app-wol +luci-app-guestwifi \
+		+mesh-mesh +mesh-wpad +iperf3 +webconsole +socat \
 		+usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
 		+nano +picocom +wget +qfirehose +luci-app-vpnbypass 
-  TITLE:=ROOter support w/o MWan3 for 16meg and larger routers
+  TITLE:=ROOter support MESH w/o MWan3 for 16meg and larger routers
   PKGARCH:=all
 endef
 
-define Package/ext-rooter-lite/description
-  Helper scripts to enable ROOter w/o Mesh & MWan3 on 16meg and larger routers
+define Package/ext-rooter-lite-mesh/description
+  Helper scripts to enable ROOter with Mesh support w/o MWan3 on 16meg and larger routers
 endef
 
 
 define Build/Compile
 endef
 
-$(eval $(call BuildPackage,ext-rooter-lite))
+$(eval $(call BuildPackage,ext-rooter-lite-mesh))

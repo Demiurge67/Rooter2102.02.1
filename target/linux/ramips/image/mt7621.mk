@@ -240,6 +240,96 @@ define Device/beeline_smartbox-turbo-plus
 endef
 TARGET_DEVICES += beeline_smartbox-turbo-plus
 
+define Device/beeline_sbtplus
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_MODEL := Beeline Smart Box Turbo+
+  UBINIZE_OPTS := -E 5
+  SERCOMM_HWID := CHJ
+  SERCOMM_HWVER := A001
+  SERCOMM_SWVER := 0x0052
+  SERCOMM_HWNAME := SBT
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 40960k
+  IMAGES += kernel.bin rootfs.bin factory.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGE/factory.bin := pad-extra 2048k | append-kernel | pad-to 6144k | \
+	append-ubi | pad-to $$$$(BLOCKSIZE) | sercom-footer | pad-to 128 | \
+	zip $$$$(SERCOMM_HWNAME).bin | sercom-seal
+  IMAGE/kernel.bin := append-kernel
+  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
+endef
+TARGET_DEVICES += beeline_sbtplus
+
+define Device/beeline_sbtplusspi
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 16064k
+  DEVICE_MODEL := Beeline Smart Box Turbo+ SPI
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
+endef
+TARGET_DEVICES += beeline_sbtplusspi
+
+define Device/beeline_sb-turbo-plus-breed
+  $(Device/uimage-lzma-loader)
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 124416k
+  UBINIZE_OPTS := -E 5
+  IMAGES += kernel1.bin rootfs0.bin breed.bin
+  IMAGE/kernel1.bin := append-kernel
+  IMAGE/rootfs0.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  IMAGE/breed.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-kernel | \
+	pad-to $$(KERNEL_SIZE) | append-ubi | check-size $$$$(IMAGE_SIZE)
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  DEVICE_TITLE := Beeline SmartBox TURBO+
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport uboot-envtools wpad-basic
+endef
+TARGET_DEVICES += beeline_sb-turbo-plus-breed
+
+
+define Device/beeline_sbgiga
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_MODEL := Beeline Smart Box Giga
+  UBINIZE_OPTS := -E 5
+  SERCOMM_HWID := CHJ
+  SERCOMM_HWVER := A001
+  SERCOMM_SWVER := 0x0052
+  SERCOMM_HWNAME := SBGIGA
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 40960k
+  IMAGES += kernel.bin rootfs.bin factory.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGE/factory.bin := pad-extra 2048k | append-kernel | pad-to 6144k | \
+	append-ubi | pad-to $$$$(BLOCKSIZE) | sercom-footer | pad-to 128 | \
+	zip $$$$(SERCOMM_HWNAME).bin | sercom-seal
+  IMAGE/kernel.bin := append-kernel
+  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
+endef
+TARGET_DEVICES += beeline_sbgiga
+
+define Device/beeline_sbgigaspi
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  IMAGE_SIZE := 16064k
+  DEVICE_MODEL := Beeline Smart Box Giga SPI
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
+endef
+TARGET_DEVICES += beeline_sbgigaspi
+
 define Device/mediatek_ap-mt7621a-v60
   $(Device/dsa-migration)
   IMAGE_SIZE := 7872k
@@ -322,76 +412,6 @@ define Device/hilink_hlk-7621a-evb
   IMAGE_SIZE := 32448k
 endef
 TARGET_DEVICES += hilink_hlk-7621a-evb
-
-define Device/beeline_sbtplus
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  DEVICE_MODEL := Beeline Smart Box Turbo+
-  UBINIZE_OPTS := -E 5
-  SERCOMM_HWID := CHJ
-  SERCOMM_HWVER := A001
-  SERCOMM_SWVER := 0x0052
-  SERCOMM_HWNAME := SBT
-  BLOCKSIZE := 128k
-  PAGESIZE := 2048
-  KERNEL_SIZE := 4096k
-  IMAGE_SIZE := 40960k
-  IMAGES += kernel.bin rootfs.bin factory.bin
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  IMAGE/factory.bin := pad-extra 2048k | append-kernel | pad-to 6144k | \
-	append-ubi | pad-to $$$$(BLOCKSIZE) | sercom-footer | pad-to 128 | \
-	zip $$$$(SERCOMM_HWNAME).bin | sercom-seal
-  IMAGE/kernel.bin := append-kernel
-  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
-	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
-endef
-TARGET_DEVICES += beeline_sbtplus
-
-define Device/beeline_sbtplusspi
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_MODEL := Beeline Smart Box Turbo+ SPI
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
-	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
-endef
-TARGET_DEVICES += beeline_sbtplusspi
-
-define Device/beeline_sbgiga
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  DEVICE_MODEL := Beeline Smart Box Giga
-  UBINIZE_OPTS := -E 5
-  SERCOMM_HWID := CHJ
-  SERCOMM_HWVER := A001
-  SERCOMM_SWVER := 0x0052
-  SERCOMM_HWNAME := SBGIGA
-  BLOCKSIZE := 128k
-  PAGESIZE := 2048
-  KERNEL_SIZE := 4096k
-  IMAGE_SIZE := 40960k
-  IMAGES += kernel.bin rootfs.bin factory.bin
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  IMAGE/factory.bin := pad-extra 2048k | append-kernel | pad-to 6144k | \
-	append-ubi | pad-to $$$$(BLOCKSIZE) | sercom-footer | pad-to 128 | \
-	zip $$$$(SERCOMM_HWNAME).bin | sercom-seal
-  IMAGE/kernel.bin := append-kernel
-  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
-	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
-endef
-TARGET_DEVICES += beeline_sbgiga
-
-define Device/beeline_sbgigaspi
-  $(Device/dsa-migration)
-  $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
-  DEVICE_MODEL := Beeline Smart Box Giga SPI
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
-	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
-endef
-TARGET_DEVICES += beeline_sbgigaspi
 
 
 define Device/mtc_wr1201

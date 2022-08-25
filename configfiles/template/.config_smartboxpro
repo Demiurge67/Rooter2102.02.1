@@ -54,19 +54,22 @@ CONFIG_TARGET_ramips_mt7621=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_asus_rt-n56u-b1 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-flash is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-giga is not set
+CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-pro=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-turbo is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-turbo-plus is not set
-CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_smartbox-pro=y
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_ap-mt7621a-v60 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mediatek_mt7621-eval-board is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mikrotik_routerboard-750gr3 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mikrotik_routerboard-760igs is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mikrotik_routerboard-m11g is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mikrotik_routerboard-m33g is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_glinet_gl-mt1300 is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_hilink_hlk-7621a-evb is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbtplus is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbtplusspi is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbgiga is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_beeline_sbgigaspi is not set
+# CONFIG_TARGET_ramips_mt7621_DEVICE_mtc_wr1201 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_mts_wg430223 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_ex6150 is not set
 # CONFIG_TARGET_ramips_mt7621_DEVICE_netgear_r6220 is not set
@@ -168,16 +171,8 @@ CONFIG_ARCH="mipsel"
 #
 # Target Images
 #
-CONFIG_TARGET_ROOTFS_INITRAMFS=y
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_NONE is not set
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_GZIP is not set
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_BZIP2 is not set
-CONFIG_TARGET_INITRAMFS_COMPRESSION_LZMA=y
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_LZO is not set
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_LZ4 is not set
-# CONFIG_TARGET_INITRAMFS_COMPRESSION_XZ is not set
+# CONFIG_TARGET_ROOTFS_INITRAMFS is not set
 CONFIG_EXTERNAL_CPIO=""
-# CONFIG_TARGET_INITRAMFS_FORCE is not set
 
 #
 # Root filesystem archives
@@ -5594,7 +5589,7 @@ CONFIG_PACKAGE_uhttpd-mod-ubus=y
 # CONFIG_PACKAGE_eapol-test is not set
 # CONFIG_PACKAGE_eapol-test-openssl is not set
 # CONFIG_PACKAGE_eapol-test-wolfssl is not set
-# CONFIG_PACKAGE_hostapd is not set
+CONFIG_PACKAGE_hostapd=y
 # CONFIG_PACKAGE_hostapd-basic is not set
 # CONFIG_PACKAGE_hostapd-basic-openssl is not set
 # CONFIG_PACKAGE_hostapd-basic-wolfssl is not set
@@ -5607,10 +5602,10 @@ CONFIG_PACKAGE_hostapd-common=y
 # CONFIG_PACKAGE_hs20-common is not set
 # CONFIG_PACKAGE_hs20-server is not set
 # CONFIG_PACKAGE_wpa-cli is not set
-# CONFIG_PACKAGE_wpa-supplicant is not set
+CONFIG_PACKAGE_wpa-supplicant=y
 # CONFIG_WPA_RFKILL_SUPPORT is not set
 CONFIG_WPA_MSG_MIN_PRIORITY=3
-CONFIG_WPA_WOLFSSL=y
+# CONFIG_WPA_WOLFSSL is not set
 # CONFIG_DRIVER_WEXT_SUPPORT is not set
 CONFIG_DRIVER_11N_SUPPORT=y
 CONFIG_DRIVER_11AC_SUPPORT=y
@@ -5626,8 +5621,8 @@ CONFIG_DRIVER_11AC_SUPPORT=y
 # CONFIG_PACKAGE_wpad is not set
 # CONFIG_PACKAGE_wpad-basic is not set
 # CONFIG_PACKAGE_wpad-basic-openssl is not set
-CONFIG_PACKAGE_wpad-basic-wolfssl=m
-CONFIG_PACKAGE_wpad-mesh-openssl=y
+# CONFIG_PACKAGE_wpad-basic-wolfssl is not set
+# CONFIG_PACKAGE_wpad-mesh-openssl is not set
 # CONFIG_PACKAGE_wpad-mesh-wolfssl is not set
 # CONFIG_PACKAGE_wpad-mini is not set
 # CONFIG_PACKAGE_wpad-openssl is not set
@@ -5925,7 +5920,7 @@ CONFIG_PACKAGE_wwan=y
 CONFIG_PACKAGE_ext-command=y
 CONFIG_PACKAGE_ext-extra=y
 CONFIG_PACKAGE_ext-p910nd=y
-CONFIG_PACKAGE_luci-app-guestwifi=y
+# CONFIG_PACKAGE_luci-app-guestwifi is not set
 CONFIG_PACKAGE_usb-storage=y
 # end of Basic Applications
 
@@ -5947,8 +5942,8 @@ CONFIG_PACKAGE_rqmi=y
 #
 # Mesh Support
 #
-CONFIG_PACKAGE_mesh-mesh=y
-CONFIG_PACKAGE_mesh-wpad=y
+# CONFIG_PACKAGE_mesh-mesh is not set
+# CONFIG_PACKAGE_mesh-wpad is not set
 # end of Mesh Support
 
 #
@@ -6038,6 +6033,7 @@ CONFIG_PACKAGE_luci-theme-materialgrey=y
 
 # CONFIG_PACKAGE_ext-rbsxtr is not set
 CONFIG_PACKAGE_ext-rooter-lite=y
+# CONFIG_PACKAGE_ext-rooter-lite-mesh is not set
 # CONFIG_PACKAGE_ext-rooter16 is not set
 # CONFIG_PACKAGE_ext-rooter4 is not set
 # CONFIG_PACKAGE_ext-rooter8-vpn is not set

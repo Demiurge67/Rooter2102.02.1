@@ -121,14 +121,12 @@
 };
 
 &gmac0 {
-	nvmem-cells = <&macaddr_factory_21000>;
-	nvmem-cell-names = "mac-address";
+		mtd-mac-address = <&factory 0x21000>;
 };
 
 &gmac1 {
-	nvmem-cells = <&macaddr_factory_21000>;
-	nvmem-cell-names = "mac-address";
-	mac-address-increment = <1>;
+		mtd-mac-address = <&factory 0x21000>;
+		mtd-mac-address-increment = <1>;
 };
 
 &wlan_2g {

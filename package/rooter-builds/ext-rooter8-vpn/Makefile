@@ -20,7 +20,7 @@ define Package/ext-rooter8-vpn
 endef
 
 define Package/ext-rooter8-vpn/description
-  basic ROOter support for 8meg routers
+  basic ROOter support for 8meg with VPN routers
 endef
 
 

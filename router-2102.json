@@ -107,6 +107,24 @@
 			}
 		}
 	},
+	"TURBOMODPLUS": {
+		"details": "Beeline SmartBox Turbo Plus with USB mod",
+		"type": "2",
+		"build": "1907",
+		"config": ".config_turbomodplus",
+		"image1": "openwrt-ramips-mt7621-beeline_smartbox-turbo-plus-squashfs-sysupgrade.bin",
+		"image2": "openwrt-ramips-mt7621-beeline_smartbox-turbo-plus-squashfs-breed.bin",
+		"imagepath": "/ramips/mt7621/",
+		"mod": "Beeline-SmartBox_TurboModPlus",
+		"ext1": "-upgrade.bin",
+		"ext2": "-for-breed.bin",
+		"addons": ["readme.pdf"],
+		"custom": {
+			"name": {
+				"model": "SmartBox Turbo Mod Plus"
+			}
+		}
+	},
 	"TURBO6220SPI": {
 		"details": "SmartBox Turbo",
 		"type": "2",
