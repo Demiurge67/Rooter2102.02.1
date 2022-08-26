@@ -215,13 +215,13 @@ endef
 TARGET_DEVICES += beeline_smartbox-pro
 
 define Device/beeline_smartbox-turbo
-  $(Device/sercomm_сxx)
+  $(Device/sercomm_dxx)
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := SmartBox TURBO
   IMAGE_SIZE := 32768k
   SERCOMM_HWID := DF3
   SERCOMM_HWVER := 10200
   SERCOMM_SWVER := 1004
-  DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox TURBO
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
 	kmod-usb3 uboot-envtools
 endef
@@ -229,12 +229,13 @@ TARGET_DEVICES += beeline_smartbox-turbo
 
 define Device/beeline_smartbox-turbo-plus
   $(Device/sercomm_cxx)
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := SmartBox TURBO+
   IMAGE_SIZE := 32768k
   SERCOMM_HWID := CQR
   SERCOMM_HWVER := 10000
   SERCOMM_SWVER := 2010
   DEVICE_VENDOR := Beeline
-  DEVICE_MODEL := SmartBox TURBO+
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
 	kmod-usb3 uboot-envtools
 endef
@@ -243,6 +244,7 @@ TARGET_DEVICES += beeline_smartbox-turbo-plus
 define Device/beeline_sbtplus
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := Beeline
   DEVICE_MODEL := Beeline Smart Box Turbo+(6220)
   UBINIZE_OPTS := -E 5
   SERCOMM_HWID := CHJ
@@ -268,8 +270,8 @@ TARGET_DEVICES += beeline_sbtplus
 define Device/beeline_sbtplusspi
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 16064k
   DEVICE_MODEL := Beeline Smart Box Turbo+ SPI
+  IMAGE_SIZE := 16064k
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
 	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
 endef
@@ -277,6 +279,8 @@ TARGET_DEVICES += beeline_sbtplusspi
 
 define Device/beeline_sb-turbo-plus-breed
   $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := Beeline SmartBox TURBO+ Breed
   BLOCKSIZE := 128k
   PAGESIZE := 2048
   KERNEL_SIZE := 4096k
@@ -288,7 +292,7 @@ define Device/beeline_sb-turbo-plus-breed
   IMAGE/breed.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-kernel | \
 	pad-to $$(KERNEL_SIZE) | append-ubi | check-size $$$$(IMAGE_SIZE)
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_TITLE := Beeline SmartBox TURBO+ Breed
+
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
 	kmod-usb-ledtrig-usbport uboot-envtools wpad-basic
 endef
@@ -298,6 +302,7 @@ TARGET_DEVICES += beeline_sb-turbo-plus-breed
 define Device/beeline_sbgiga
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := Beeline
   DEVICE_MODEL := Beeline Smart Box Giga
   UBINIZE_OPTS := -E 5
   SERCOMM_HWID := CHJ
@@ -323,6 +328,7 @@ TARGET_DEVICES += beeline_sbgiga
 define Device/beeline_sbgigaspi
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := Beeline
   IMAGE_SIZE := 16064k
   DEVICE_MODEL := Beeline Smart Box Giga SPI
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
@@ -740,24 +746,6 @@ define Device/ubnt_edgerouter_common
   DEVICE_PACKAGES += -wpad-basic-wolfssl
 endef
 
-define Device/wifire_s1500-nbn
-  $(Device/sercomm_axx)
-  DEVICE_VENDOR := WiFire
-  DEVICE_MODEL := S1500.NBN
-  SERCOMM_HWVER := 10000
-  SERCOMM_0x10str := 0001
-  SERCOMM_SWVER := 2015
-  SERCOMM_HWID := BUC
-  IMAGE_SIZE := 32m
-  SERCOMM_ROOTFS2_OFFSET := 0x4d00000
-  DEVICE_ALT0_VENDOR := Sercomm
-  DEVICE_ALT0_MODEL := S1500 BUC
-  IMAGE/factory.img := append-ubi | sercomm-factory-cqr | \
-	sercomm-pid-set0x10 | sercomm-crypto
-  DEVICE_PACKAGES := kmod-mt76x2 kmod-usb3 uboot-envtools
-endef
-TARGET_DEVICES += wifire_s1500-nbn
-
 define Device/ubnt_edgerouter-x
   $(Device/ubnt_edgerouter_common)
   DEVICE_MODEL := EdgeRouter X
@@ -814,6 +802,24 @@ define Device/unielec_u7621-06-16m
   SUPPORTED_DEVICES += u7621-06-256M-16M unielec,u7621-06-256m-16m
 endef
 TARGET_DEVICES += unielec_u7621-06-16m
+
+define Device/wifire_s1500-nbn
+  $(Device/sercomm_axx)
+  DEVICE_VENDOR := WiFire
+  DEVICE_MODEL := S1500.NBN
+  SERCOMM_HWVER := 10000
+  SERCOMM_0x10str := 0001
+  SERCOMM_SWVER := 2015
+  SERCOMM_HWID := BUC
+  IMAGE_SIZE := 47104k
+  SERCOMM_ROOTFS2_OFFSET := 0x4d00000
+  DEVICE_ALT0_VENDOR := Sercomm
+  DEVICE_ALT0_MODEL := S1500 BUC
+  IMAGE/factory.img := append-ubi | sercomm-factory-cqr | \
+	sercomm-pid-set0x10 | sercomm-crypto
+  DEVICE_PACKAGES := kmod-mt76x2 kmod-usb3 uboot-envtools
+endef
+TARGET_DEVICES += wifire_s1500-nbn
 
 define Device/xiaomi_nand_separate
   $(Device/dsa-migration)
