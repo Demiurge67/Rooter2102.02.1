@@ -16,7 +16,7 @@ define Package/ext-rooter-lite-mesh
   DEPENDS:=+luci +ext-rooter-basic \
 		+luci-app-ddns +ddns-scripts \
 		+luci-app-rootervpn +ext-wireguard \
-		+bwmon +464xlat +webconsole kmod-mtd-rw \
+		+bwmon +464xlat +webconsole +kmod-mtd-rw \
 		+ext-theme +luci-theme-argon \
 		+luci-theme-argondark +ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \

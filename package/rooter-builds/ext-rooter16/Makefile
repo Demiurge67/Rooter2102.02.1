@@ -13,22 +13,14 @@ include $(INCLUDE_DIR)/package.mk
 define Package/ext-rooter16
   SECTION:=utils
   CATEGORY:=ROOter
-  DEPENDS:=+luci +ext-rooter-basic \
-		+luci-app-mwan3 +luci-app-dnsmasq-ipset \
-		+luci-app-ddns +ddns-scripts \
-		+luci-app-rootervpn +ext-wireguard \
-		+bwmon +464xlat +webconsole \
-		+ext-theme +luci-theme-argon +luci-theme-argondark \
-		+luci-theme-tomato +ext-login \
-		+ca-bundle +ca-certificates +libustream-wolfssl \
-		+luci-app-ksmbd +usb-storage \
-		+ext-p910nd +luci-app-sqm +kmod-sched-cake +luci-app-nft-qos \
-		+ext-command +ext-speedtest +luci-app-guestwifi \
-		+openvpn-easy-rsa +openvpn-openssl \
-		+ext-extra +luci-app-hotspot +luci-app-wol \
-		+usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
-		+qlog +luci-ssl +usbutils +openssl-util +irqbalance +ext-splashconfig \
-		+nano +picocom +wpad +wget +qfirehose +luci-app-vpnbypass
+  DEPENDS:=+luci +ext-rooter-basic +ext-extra +luci-app-ddns +ddns-scripts +kmod-sched-cake \
+		+luci-app-rootervpn +ext-wireguard +bwmon +464xlat +kmod-mtd-rw +luci-app-ksmbd \
+		+ext-theme +ext-login +ca-bundle +ca-certificates +libustream-wolfssl \
+		+usb-storage +ext-p910nd +luci-app-sqm \
+		+luci-app-nft-qos +ext-command +luci-app-shadowsocks-libev +simple-obfs \
+		+luci-app-wol +luci-app-hotspot +mesh-mesh +mesh-wpad +iperf3 \
+		+webconsole +socat +usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
+		+nano +picocom +wget +qfirehose +luci-app-vpnbypass 
  TITLE:=ROOter support for 16meg and larger routers
  PKGARCH:=all
 endef

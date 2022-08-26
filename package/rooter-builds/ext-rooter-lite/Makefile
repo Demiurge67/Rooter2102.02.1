@@ -19,11 +19,10 @@ define Package/ext-rooter-lite
 		+ext-theme +luci-theme-argon \
 		+luci-theme-argondark +ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \
-		+luci-app-ksmbd +usb-storage kmod-mtd-rw \
+		+luci-app-ksmbd +usb-storage +kmod-mtd-rw \
 		+ext-p910nd +luci-app-sqm \
 		+kmod-sched-cake +luci-app-nft-qos \
 		+ext-command +luci-app-shadowsocks-libev +simple-obfs \
-		+openvpn-easy-rsa +openvpn-openssl \
 		+ext-extra +luci-app-hotspot \
 		+luci-app-wol +luci-app-guestwifi \
 		+usbmuxd +libusbmuxd-utils \

@@ -243,12 +243,12 @@ TARGET_DEVICES += beeline_smartbox-turbo-plus
 define Device/beeline_sbtplus
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
-  DEVICE_MODEL := Beeline Smart Box Turbo+
+  DEVICE_MODEL := Beeline Smart Box Turbo+(6220)
   UBINIZE_OPTS := -E 5
   SERCOMM_HWID := CHJ
   SERCOMM_HWVER := A001
   SERCOMM_SWVER := 0x0052
-  SERCOMM_HWNAME := SBT
+  SERCOMM_HWNAME := SBT+
   BLOCKSIZE := 128k
   PAGESIZE := 2048
   KERNEL_SIZE := 4096k
@@ -288,7 +288,7 @@ define Device/beeline_sb-turbo-plus-breed
   IMAGE/breed.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-kernel | \
 	pad-to $$(KERNEL_SIZE) | append-ubi | check-size $$$$(IMAGE_SIZE)
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_TITLE := Beeline SmartBox TURBO+
+  DEVICE_TITLE := Beeline SmartBox TURBO+ Breed
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
 	kmod-usb-ledtrig-usbport uboot-envtools wpad-basic
 endef

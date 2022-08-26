@@ -121,12 +121,14 @@
 };
 
 &gmac0 {
-		mtd-mac-address = <&factory 0x21000>;
+	nvmem-cells = <&macaddr_factory_21000>;
+	nvmem-cell-names = "mac-address";
 };
 
 &gmac1 {
-		mtd-mac-address = <&factory 0x21000>;
-		mtd-mac-address-increment = <1>;
+	nvmem-cells = <&macaddr_factory_21000>;
+	nvmem-cell-names = "mac-address";
+	mac-address-increment = <1>;
 };
 
 &wlan_2g {
@@ -136,4 +138,3 @@
 &wlan_5g {
 	mediatek,mtd-eeprom = <&factory 0x8000>;
 };
-
