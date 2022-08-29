@@ -12,7 +12,6 @@
 
 	aliases {
 		label-mac-device = &gmac0;
-
 		led-boot = &led_status_green;
 		led-failsafe = &led_status_red;
 		led-running = &led_status_green;
@@ -167,55 +166,43 @@
 	};
 };
 
+&gmac0 {
+		mtd-mac-address = <&factory 0x21000>;
+};
+
 &pcie {
 	status = "okay";
 };
 
 &pcie0 {
 	wifi@0,0 {
-		compatible = "mediatek,mt76";
+		compatible = "pci14c3,7615";
 		reg = <0x0000 0 0 0 0>;
 		mediatek,mtd-eeprom = <&factory 0x8000>;
-		ieee80211-freq-limit = <5000000 6000000>;
-
 		mtd-mac-address = <&factory 0x21000>;
 		mtd-mac-address-increment = <5>;
+		ieee80211-freq-limit = <5000000 6000000>;
 	};
 };
 
 &pcie1 {
 	wifi@0,0 {
-		compatible = "mediatek,mt76";
+		compatible = "pci14c3,7603";
 		reg = <0x0000 0 0 0 0>;
 		mediatek,mtd-eeprom = <&factory 0x0>;
-		ieee80211-freq-limit = <2400000 2500000>;
-
 		mtd-mac-address = <&factory 0x21000>;
 		mtd-mac-address-increment = <4>;
-	};
-};
-
-&gmac0 {
-		mtd-mac-address = <&factory 0x21000>;
-};
-
-
-&gmac1 {
-	status = "okay";
-	label = "wan";
-	phy-handle = <&ethphy0>;
-		mtd-mac-address = <&factory 0x21000>;
-		mtd-mac-address-increment = <1>;
-};
-
-&mdio {
-	ethphy0: ethernet-phy@0 {
-		reg = <0>;
+		ieee80211-freq-limit = <2400000 2500000>;
 	};
 };
 
 &switch0 {
-	ports {
+	ports { port@0 {
+			status = "okay";
+			label = "wan";
+			mtd-mac-address = <&factory 0x21000>;
+			mtd-mac-address-increment = <1>;
+		};
 		port@1 {
 			status = "okay";
 			label = "lan1";
@@ -238,7 +225,10 @@
 	};
 };
 
-&uartlite3 {
+
+
+&uartlite3 { // ZigBee EFR32 MG1B232GG
 	status = "okay";
+	current-speed = <57600>;
 };
 
