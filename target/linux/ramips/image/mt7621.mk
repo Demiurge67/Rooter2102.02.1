@@ -10,6 +10,12 @@ DEFAULT_SOC := mt7621
 KERNEL_DTB += -d21
 DEVICE_VARS += ELECOM_HWNAME LINKSYS_HWNAME
 
+define Build/h3c-blank-header
+	dd if=/dev/zero of=$@.blank bs=160 count=1
+	cat $@ >> $@.blank
+	mv $@.blank $@
+endef
+
 define Build/arcadyan-trx
 	echo -ne "hsqs" > $@.hsqs
 	$(eval trx_magic=$(word 1,$(1)))
@@ -109,6 +115,22 @@ define Device/dsa-migration
   DEVICE_COMPAT_MESSAGE := Config cannot be migrated from swconfig to DSA
 endef
 
+define Device/asus_rp-ac56
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := ASUS
+  DEVICE_MODEL := RP-AC56
+  IMAGE_SIZE := 16000k
+  BLOCKSIZE := 64k
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 \
+	kmod-i2c-ralink kmod-sound-mt7620
+  IMAGES += factory.bin
+  IMAGE/factory.bin := append-kernel | append-rootfs | pad-rootfs | check-size
+  IMAGE/sysupgrade.bin := append-kernel | append-rootfs | pad-rootfs | \
+        check-size | append-metadata
+endef
+TARGET_DEVICES += asus_rp-ac56
+
 define Device/asus_rt-ac57u
   $(Device/dsa-migration)
   DEVICE_VENDOR := ASUS
@@ -201,6 +223,7 @@ TARGET_DEVICES += beeline_smartbox-giga
 
 define Device/beeline_smartbox-pro
   $(Device/sercomm_axx)
+  IMAGE_SIZE := 30720k
   DEVICE_VENDOR := Beeline
   DEVICE_MODEL := SmartBox PRO
   SERCOMM_HWID := AWI
@@ -413,7 +436,7 @@ define Device/hilink_hlk-7621a-evb
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
   DEVICE_VENDOR := HiLink
-  DEVICE_MODEL := HLK-7621A evaluation board
+  DEVICE_MODEL := HLK-7621A
   DEVICE_PACKAGES += kmod-mt76x2 kmod-usb3
   IMAGE_SIZE := 32448k
 endef
@@ -806,12 +829,12 @@ TARGET_DEVICES += unielec_u7621-06-16m
 define Device/wifire_s1500-nbn
   $(Device/sercomm_axx)
   DEVICE_VENDOR := WiFire
+  IMAGE_SIZE := 47104k
   DEVICE_MODEL := S1500.NBN
   SERCOMM_HWVER := 10000
   SERCOMM_0x10str := 0001
   SERCOMM_SWVER := 2015
   SERCOMM_HWID := BUC
-  IMAGE_SIZE := 47104k
   SERCOMM_ROOTFS2_OFFSET := 0x4d00000
   DEVICE_ALT0_VENDOR := Sercomm
   DEVICE_ALT0_MODEL := S1500 BUC

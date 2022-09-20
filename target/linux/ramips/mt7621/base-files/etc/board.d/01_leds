@@ -13,6 +13,7 @@ asus,rt-n56u-b1)
 	;;
 beeline,smartbox-flash|\
 beeline,smartbox-giga|\
+beeline,smartbox-turbo-plus|\
 beeline,smartbox-turbo)
 	ucidef_set_led_netdev "wan" "wan" "blue:wan" "wan"
 	;;

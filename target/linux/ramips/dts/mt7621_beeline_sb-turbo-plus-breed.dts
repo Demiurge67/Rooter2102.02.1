@@ -12,7 +12,7 @@
 
 	aliases {
 		label-mac-device = &gmac0;
-		
+		label-mac-device = &gmac1;
 		led-boot = &led_status_blue;
 		led-failsafe = &led_status_red;
 		led-running = &led_status_green;
@@ -27,24 +27,20 @@
 
 	leds {
 		compatible = "gpio-leds";
-
-		led_status_red: status_red {
-			gpios = <&gpio 16 GPIO_ACTIVE_HIGH>;
-			label = "smartbox-turbo-plus:red:status";
+		led_status_blue: status_blue {
+			label = "blue:wan";
+			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
 		};
 
 		led_status_green: status_green {
+			label = "green:status";
 			gpios = <&gpio 15 GPIO_ACTIVE_HIGH>;
-			label = "smartbox-turbo-plus:green:status";
 		};
 
-		led_status_blue: status_blue {
-			gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
-			trigger-sources = <&xhci_ehci_port1>, <&ehci_port2>;
-			linux,default-trigger = "usbport";
-			label = "smartbox-turbo-plus:blue:status";
+		led_status_red: status_red {
+			label = "red:status";
+			gpios = <&gpio 16 GPIO_ACTIVE_HIGH>;
 		};
-
 	};
 
 	keys {

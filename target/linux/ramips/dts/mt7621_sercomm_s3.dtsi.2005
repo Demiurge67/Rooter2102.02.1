@@ -63,18 +63,36 @@
 &pcie0 {
 	wlan_5g: wifi@0,0 {
 		compatible = "mediatek,mt76";
-		mediatek,mtd-eeprom = <0x0e 0x8000>;
 		reg = <0x0 0 0 0 0>;
 		ieee80211-freq-limit = <5000000 6000000>;
+
+		nvmem-cells = <&macaddr_factory_21000>;
+		nvmem-cell-names = "mac-address";
+		mac-address-increment = <(5)>;
 	};
 };
 
 &pcie1 {
 	wlan_2g: wifi@0,0 {
 		compatible = "mediatek,mt76";
-		mediatek,mtd-eeprom = <0x0e 0x0000>;
 		reg = <0x0 0 0 0 0>;
 		ieee80211-freq-limit = <2400000 2500000>;
+
+		nvmem-cells = <&macaddr_factory_21000>;
+		nvmem-cell-names = "mac-address";
+		mac-address-increment = <(4)>;
+	};
+};
+
+&gmac1 {
+	status = "okay";
+	label = "wan";
+	phy-handle = <&ethphy0>;
+};
+
+&mdio {
+	ethphy0: ethernet-phy@0 {
+		reg = <0>;
 	};
 };
 
@@ -83,8 +101,6 @@
 		wan: port@0 {
 			status = "okay";
 			label = "wan";
-			mtd-mac-address = <0x0e 0x21000>;
-			mtd-mac-address-increment = <0x01>;
 		};
 
 		port@1 {
@@ -106,12 +122,5 @@
 			status = "okay";
 			label = "lan4";
 		};
-	};
-};
-
-&state_default {
-	gpio {
-		groups = "jtag", "uart2";
-		function = "gpio";
 	};
 };

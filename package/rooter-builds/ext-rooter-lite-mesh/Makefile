@@ -16,7 +16,7 @@ define Package/ext-rooter-lite-mesh
   DEPENDS:=+luci +ext-rooter-basic \
 		+luci-app-ddns +ddns-scripts \
 		+luci-app-rootervpn +ext-wireguard \
-		+bwmon +464xlat +webconsole +kmod-mtd-rw \
+		+bwmon +464xlat \
 		+ext-theme +luci-theme-argon \
 		+luci-theme-argondark +ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \
@@ -30,7 +30,7 @@ define Package/ext-rooter-lite-mesh
 		+mesh-mesh +mesh-wpad +iperf3 +webconsole +socat \
 		+usbmuxd +libusbmuxd-utils \
 		+libimobiledevice-utils +kmod-usb-net-ipheth \
-		+nano +picocom +wget \
+		+nano +picocom +wget +kmod-mtd-rw \
 		+qfirehose +luci-app-vpnbypass 
   TITLE:=ROOter support MESH w/o MWan3 for 16meg and larger routers
   PKGARCH:=all

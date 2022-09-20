@@ -15,17 +15,14 @@ define Package/ext-rooterbcm16
   CATEGORY:=ROOter
   DEPENDS:=+luci +ext-rooter-basic \
 		+luci-app-mwan3 +luci-app-dnsmasq-ipset \
-		+luci-app-ddns +ddns-scripts \
-		+luci-app-rootervpn +ext-wireguard \
+		+luci-app-ddns +ddns-scripts +luci-app-rootervpn +ext-wireguard \
 		+webconsole +bwmon +464xlat \
-		+ext-theme +luci-theme-argon +luci-theme-argondark \
-		+luci-theme-tomato +ext-login \
+		+ext-theme +luci-theme-argon +luci-theme-argondark +ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \
 		+luci-app-ksmbd +usb-storage \
 		+ext-p910nd +luci-app-sqm +kmod-sched-cake +luci-app-nft-qos \
 		+ext-command +ext-speedtest +luci-app-guestwifi \
-		+openvpn-easy-rsa +openvpn-openssl \
-		+ext-extra +luci-app-wol \
+		+openvpn-easy-rsa +openvpn-openssl +ext-extra +luci-app-wol \
 		+usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
 		+qlog +luci-ssl +usbutils +openssl-util +irqbalance +ext-splashconfig \
 		+nano +picocom +wpad +wget +qfirehose +luci-app-vpnbypass

@@ -136,4 +136,3 @@
 	mediatek,mtd-eeprom = <&factory 0x8000>;
 	nvmem-cell-names = "mac-address";
 };
-

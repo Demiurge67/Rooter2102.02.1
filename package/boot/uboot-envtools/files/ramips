@@ -31,12 +31,9 @@ ampedwireless,ally-00x19k|\
 ampedwireless,ally-r1900k)
 	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x1000" "0x20000" "4"
 	;;
-beeline,smartbox-flash|\
-beeline,smartbox-giga|\
 beeline,smartbox-giga|\
 beeline,smartbox-turbo|\
-beeline,smartbox-turbo-plus|\
-sercomm,s3)
+beeline,smartbox-turbo-plus)
 	ubootenv_add_uci_config "/dev/mtd0" "0x80000" "0x1000" "0x20000"
 	;;
 beeline,smartbox-pro|\
@@ -67,6 +64,7 @@ ravpower,rp-wd03)
 jcg,q20)
 	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x20000" "0x20000"
 	;;
+beeline,smartbox-flash|\
 linksys,ea6350-v4|\
 linksys,ea7300-v1|\
 linksys,ea7300-v2|\

@@ -140,9 +140,9 @@
 };
 
 &gmac0 {
-	nvmem-cells = <&macaddr_factory_1000>;
-	nvmem-cell-names = "mac-address";
+	mtd-mac-address = <&factory 0x1000>;
 };
+
 
 &pcie {
 	status = "okay";
@@ -154,10 +154,9 @@
 		reg = <0x0000 0 0 0 0>;
 		ieee80211-freq-limit = <5000000 6000000>;
 		mediatek,mtd-eeprom = <&factory 0x8000>;
-
-		nvmem-cells = <&macaddr_factory_1000>;
-		nvmem-cell-names = "mac-address";
-	};
+		mtd-mac-address = <&factory 0x1000>;
+		mtd-mac-address-increment = <4>;
+			};
 };
 
 &pcie1 { // mt7602en
@@ -166,9 +165,8 @@
 		reg = <0x0000 0 0 0 0>;
 		ieee80211-freq-limit = <2400000 2500000>;
 		mediatek,mtd-eeprom = <&factory 0x0>;
-
-		nvmem-cells = <&macaddr_factory_1000>;
-		nvmem-cell-names = "mac-address";
+		mtd-mac-address = <&factory 0x1000>;
+		mtd-mac-address-increment = <5>;
 	};
 };
 
@@ -205,8 +203,8 @@
 			status = "okay";
 			label = "wan";
 
-			nvmem-cells = <&macaddr_factory_1000>;
-			nvmem-cell-names = "mac-address";
+			mtd-mac-address = <&factory 0x1000>;
+			mtd-mac-address-increment = <1>;
 		};
 	};
 };

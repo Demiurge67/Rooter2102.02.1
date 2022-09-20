@@ -5,7 +5,7 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/image.mk
 
-KERNEL_LOADADDR := 0x20008000
+KERNEL_LOADADDR := 0x8000
 
 define Build/at91-install-zImage
 	$(CP) $(KDIR)/zImage $@
