@@ -44,6 +44,7 @@ def create_output(args):
 
 	print("AES 256 CBC Key:", binascii.hexlify(bytearray(key)))
 
+
 def main():
 	global args
 
