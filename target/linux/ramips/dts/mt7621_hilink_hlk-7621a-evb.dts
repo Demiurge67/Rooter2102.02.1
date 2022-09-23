@@ -10,7 +10,7 @@
 	compatible = "hilink,hlk-7621a", "mediatek,mt7621-soc";
 	model = "HiLink HLK-7621A";
 	
-		aliases {
+	aliases {
 
 		label-mac-device = &gmac0;
 	};

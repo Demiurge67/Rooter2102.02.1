@@ -1,21 +1,25 @@
 From ffe387740bbe88dd88bbe04d6375902708003d6e Mon Sep 17 00:00:00 2001
 From: Felix Fietkau <nbd@nbd.name>
 Date: Fri, 7 Jul 2017 17:25:00 +0200
-Subject: net: add packet mangeling patch
+Subject: net: add packet mangeling
+
+ar8216 switches have a hardware bug, which renders normal 802.1q support
+unusable. Packet mangling is required to fix up the vlan for incoming
+packets.
 
 Signed-off-by: Felix Fietkau <nbd@nbd.name>
 ---
  include/linux/netdevice.h | 11 +++++++++++
  include/linux/skbuff.h    | 14 ++++----------
  net/Kconfig               |  6 ++++++
- net/core/dev.c            | 18 ++++++++++++++----
+ net/core/dev.c            | 20 +++++++++++++++-----
  net/core/skbuff.c         | 17 +++++++++++++++++
  net/ethernet/eth.c        |  6 ++++++
- 6 files changed, 58 insertions(+), 14 deletions(-)
+ 6 files changed, 59 insertions(+), 15 deletions(-)
 
 --- a/include/linux/netdevice.h
 +++ b/include/linux/netdevice.h
-@@ -1549,6 +1549,7 @@ enum netdev_priv_flags {
+@@ -1625,6 +1625,7 @@ enum netdev_priv_flags {
  	IFF_FAILOVER_SLAVE		= 1<<28,
  	IFF_L3MDEV_RX_HANDLER		= 1<<29,
  	IFF_LIVE_RENAME_OK		= 1<<30,
@@ -23,7 +27,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  };
  
  #define IFF_802_1Q_VLAN			IFF_802_1Q_VLAN
-@@ -1581,6 +1582,7 @@ enum netdev_priv_flags {
+@@ -1657,6 +1658,7 @@ enum netdev_priv_flags {
  #define IFF_FAILOVER_SLAVE		IFF_FAILOVER_SLAVE
  #define IFF_L3MDEV_RX_HANDLER		IFF_L3MDEV_RX_HANDLER
  #define IFF_LIVE_RENAME_OK		IFF_LIVE_RENAME_OK
@@ -31,7 +35,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  /* Specifies the type of the struct net_device::ml_priv pointer */
  enum netdev_ml_priv_type {
-@@ -1889,6 +1891,11 @@ struct net_device {
+@@ -1997,6 +1999,11 @@ struct net_device {
  	const struct tlsdev_ops *tlsdev_ops;
  #endif
  
@@ -43,7 +47,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	const struct header_ops *header_ops;
  
  	unsigned int		flags;
-@@ -1971,6 +1978,10 @@ struct net_device {
+@@ -2087,6 +2094,10 @@ struct net_device {
  	struct mpls_dev __rcu	*mpls_ptr;
  #endif
  
@@ -56,7 +60,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
   */
 --- a/include/linux/skbuff.h
 +++ b/include/linux/skbuff.h
-@@ -2684,6 +2684,10 @@ static inline int pskb_trim(struct sk_bu
+@@ -2710,6 +2710,10 @@ static inline int pskb_trim(struct sk_bu
  	return (len < skb->len) ? __pskb_trim(skb, len) : 0;
  }
  
@@ -67,7 +71,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  /**
   *	pskb_trim_unique - remove end from a paged unique (not cloned) buffer
   *	@skb: buffer to alter
-@@ -2815,16 +2819,6 @@ static inline struct sk_buff *dev_alloc_
+@@ -2841,16 +2845,6 @@ static inline struct sk_buff *dev_alloc_
  }
  
  
@@ -101,31 +105,18 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	help
 --- a/net/core/dev.c
 +++ b/net/core/dev.c
-@@ -3198,10 +3198,20 @@ static int xmit_one(struct sk_buff *skb,
+@@ -3654,6 +3654,11 @@ static int xmit_one(struct sk_buff *skb,
  	if (dev_nit_active(dev))
  		dev_queue_xmit_nit(skb, dev);
  
--	len = skb->len;
--	trace_net_dev_start_xmit(skb, dev);
--	rc = netdev_start_xmit(skb, dev, txq, more);
--	trace_net_dev_xmit(skb, rc, dev, len);
 +#ifdef CONFIG_ETHERNET_PACKET_MANGLE
-+	if (!dev->eth_mangle_tx ||
-+	    (skb = dev->eth_mangle_tx(dev, skb)) != NULL)
-+#else
-+	if (1)
++	if (dev->eth_mangle_tx && !(skb = dev->eth_mangle_tx(dev, skb)))
++		return NETDEV_TX_OK;
 +#endif
-+	{
-+		len = skb->len;
-+		trace_net_dev_start_xmit(skb, dev);
-+		rc = netdev_start_xmit(skb, dev, txq, more);
-+		trace_net_dev_xmit(skb, rc, dev, len);
-+	} else {
-+		rc = NETDEV_TX_OK;
-+	}
- 
- 	return rc;
- }
++
+ 	len = skb->len;
+ 	PRANDOM_ADD_NOISE(skb, dev, txq, len + jiffies);
+ 	trace_net_dev_start_xmit(skb, dev);
 --- a/net/core/skbuff.c
 +++ b/net/core/skbuff.c
 @@ -60,6 +60,7 @@
@@ -136,7 +127,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
  #include <net/protocol.h>
  #include <net/dst.h>
-@@ -549,6 +550,22 @@ skb_fail:
+@@ -553,6 +554,22 @@ skb_fail:
  }
  EXPORT_SYMBOL(__napi_alloc_skb);
  

@@ -18,6 +18,10 @@
 		led-running = &led_status_green;
 		led-upgrade = &led_status_red;
 	};
+	
+		chosen {
+		bootargs = "console=ttyS0,115200n8";
+	};
 
 	leds {
 		compatible = "gpio-leds";
@@ -52,6 +56,17 @@
 			gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_RESTART>;
 		};
+		
+	gpio_export {
+		compatible = "gpio-export";
+		#size-cells = <0>;
+
+		power_usb {
+			gpio-export,name = "power_usb";
+			gpio-export,output = <1>;
+			gpios = <&gpio 16 GPIO_ACTIVE_HIGH>;
+		};
+	};
 	};
 
 	ubi-concat {
@@ -83,85 +98,78 @@
 		partition@0 {
 			label = "u-boot";
 			reg = <0x0 0x100000>;
-			sercomm,scpart-id = <0>;
+			scpart-id = <0>;
 			read-only;
 		};
 
 		partition@100000 {
 			label = "dynamic partition map";
 			reg = <0x100000 0x100000>;
-			sercomm,scpart-id = <1>;
+			scpart-id = <1>;
 		};
 
 		factory: partition@200000 {
-			label = "Factory";
+			label = "factory";
 			reg = <0x200000 0x100000>;
-			sercomm,scpart-id = <2>;
+			scpart-id = <2>;
 			read-only;
-
-			compatible = "nvmem-cells";
-			#address-cells = <1>;
-			#size-cells = <1>;
-
-			macaddr_factory_21000: macaddr@21000 {
-				reg = <0x21000 0x6>;
-			};
 		};
 
 		partition@300000 {
-			label = "Boot Flag";
+			label = "boot Flag";
 			reg = <0x300000 0x100000>;
-			sercomm,scpart-id = <3>;
+			scpart-id = <3>;
 		};
 
 		partition@400000 {
-			label = "kernel";
+			label = "kernel_1";
 			reg = <0x400000 0x600000>;
-			sercomm,scpart-id = <4>;
+			scpart-id = <4>;
+			read-only;
 		};
 
 		partition@a00000 {
-			label = "Kernel 2";
+			label = "kernel_2";
 			reg = <0xa00000 0x600000>;
-			sercomm,scpart-id = <5>;
+			scpart-id = <5>;
 			read-only;
 		};
 
 		ubiconcat0: partition@1000000 {
-			label = "File System 1";
+			label = "FileSystem_1";
 			reg = <0x1000000 0x1800000>;
-			sercomm,scpart-id = <6>;
+			scpart-id = <6>;
 		};
 
 		partition@2800000 {
-			label = "File System 2";
+			label = "FileSystem_2";
 			reg = <0x2800000 0x1800000>;
-			sercomm,scpart-id = <7>;
+			scpart-id = <7>;
 			read-only;
 		};
 
 		ubiconcat1: partition@4000000 {
 			label = "Configuration/log";
 			reg = <0x4000000 0x800000>;
-			sercomm,scpart-id = <8>;
+			scpart-id = <8>;
 		};
 
 		ubiconcat2: partition@4800000 {
 			label = "application tmp buffer (Ftool)";
 			reg = <0x4800000 0xc00000>;
-			sercomm,scpart-id = <9>;
+			scpart-id = <9>;
 		};
 
 		ubiconcat3: partition@5400000 {
 			label = "container";
 			reg = <0x5400000 0x2800000>;
-			sercomm,scpart-id = <10>;
+			scpart-id = <10>;
 		};
 
 		partition@7c00000 {
 			label = "bad block reserved";
 			reg = <0x7c00000 0x380000>;
-			sercomm,scpart-id = <11>;
+			scpart-id = <11>;
 			read-only;
 		};
 	};
@@ -176,10 +184,9 @@
 		compatible = "mediatek,mt76";
 		reg = <0x0000 0 0 0 0>;
 		mediatek,mtd-eeprom = <&factory 0x8000>;
-		ieee80211-freq-limit = <5000000 6000000>;
-
 		mtd-mac-address = <&factory 0x21000>;
 		mtd-mac-address-increment = <5>;
+		ieee80211-freq-limit = <5000000 6000000>;
 	};
 };
 
@@ -187,37 +194,27 @@
 	wifi@0,0 {
 		compatible = "mediatek,mt76";
 		reg = <0x0000 0 0 0 0>;
-		mediatek,mtd-eeprom = <&factory 0x0>;
-		ieee80211-freq-limit = <2400000 2500000>;
-
+		mediatek,mtd-eeprom = <&factory 0x0000>;
 		mtd-mac-address = <&factory 0x21000>;
 		mtd-mac-address-increment = <4>;
+		ieee80211-freq-limit = <2400000 2500000>;
 	};
 };
 
 &gmac0 {
 		mtd-mac-address = <&factory 0x21000>;
-		mtd-mac-address-increment = <2>;
-};
-
-&gmac1 {
-	status = "okay";
-	label = "wan";
-	phy-handle = <&ethphy0>;
-
-
-		mtd-mac-address = <&factory 0x21000>;
-		mtd-mac-address-increment = <1>;
-};
-
-&mdio {
-	ethphy0: ethernet-phy@0 {
-		reg = <0>;
 	};
-};
+
 
 &switch0 {
 	ports {
+		port@0 {
+			status = "okay";
+			label = "wan";
+			mtd-mac-address = <&factory 0x21000>;
+			mtd-mac-address-increment = <1>;
+		};
+
 		port@1 {
 			status = "okay";
 			label = "lan1";
@@ -227,6 +224,13 @@
 			status = "okay";
 			label = "lan2";
 		};
+	};
+};
+
+&state_default {
+	gpio {
+		groups = "jtag", "uart2", "uart3", "wdt";
+		function = "gpio";
 	};
 };
 

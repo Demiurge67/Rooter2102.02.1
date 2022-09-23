@@ -257,7 +257,7 @@ define Device/beeline_smartbox-turbo-plus
   IMAGE_SIZE := 32768k
   SERCOMM_HWID := CQR
   SERCOMM_HWVER := 10000
-  SERCOMM_SWVER := 2010
+  SERCOMM_SWVER := 2009
   DEVICE_VENDOR := Beeline
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
 	kmod-usb3 uboot-envtools

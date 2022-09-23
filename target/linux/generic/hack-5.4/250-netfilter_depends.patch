@@ -17,11 +17,11 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	depends on NETFILTER_ADVANCED
  	help
  	  H.323 is a VoIP signalling protocol from ITU-T. As one of the most
-@@ -1088,7 +1087,6 @@ config NETFILTER_XT_TARGET_SECMARK
+@@ -1072,7 +1071,6 @@ config NETFILTER_XT_TARGET_SECMARK
  
  config NETFILTER_XT_TARGET_TCPMSS
  	tristate '"TCPMSS" target support'
 -	depends on IPV6 || IPV6=n
  	default m if NETFILTER_ADVANCED=n
- 	---help---
+ 	help
  	  This option adds a `TCPMSS' target, which allows you to alter the

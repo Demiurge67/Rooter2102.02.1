@@ -29,7 +29,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
 --- a/fs/locks.c
 +++ b/fs/locks.c
-@@ -2989,6 +2989,8 @@ static const struct seq_operations locks
+@@ -2993,6 +2993,8 @@ static const struct seq_operations locks
  
  static int __init proc_locks_init(void)
  {
@@ -100,7 +100,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	proc_mkdir("tty/ldisc", NULL);	/* Preserved: it's userspace visible */
 --- a/include/net/snmp.h
 +++ b/include/net/snmp.h
-@@ -118,6 +118,21 @@ struct linux_xfrm_mib {
+@@ -124,6 +124,21 @@ struct linux_tls_mib {
  #define DECLARE_SNMP_STAT(type, name)	\
  	extern __typeof__(type) __percpu *name
  
@@ -122,7 +122,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  #define __SNMP_INC_STATS(mib, field)	\
  			__this_cpu_inc(mib->mibs[field])
  
-@@ -148,8 +163,9 @@ struct linux_xfrm_mib {
+@@ -154,8 +169,9 @@ struct linux_tls_mib {
  		__this_cpu_add(ptr[basefield##OCTETS], addend);	\
  	} while (0)
  
@@ -135,7 +135,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	do {								\
 --- a/ipc/msg.c
 +++ b/ipc/msg.c
-@@ -1317,6 +1317,9 @@ void __init msg_init(void)
+@@ -1350,6 +1350,9 @@ void __init msg_init(void)
  {
  	msg_init_ns(&init_ipc_ns);
  
@@ -147,7 +147,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  				IPC_MSG_IDS, sysvipc_msg_proc_show);
 --- a/ipc/sem.c
 +++ b/ipc/sem.c
-@@ -243,6 +243,8 @@ void sem_exit_ns(struct ipc_namespace *n
+@@ -266,6 +266,8 @@ void sem_exit_ns(struct ipc_namespace *n
  void __init sem_init(void)
  {
  	sem_init_ns(&init_ipc_ns);
@@ -158,7 +158,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  				IPC_SEM_IDS, sysvipc_sem_proc_show);
 --- a/ipc/shm.c
 +++ b/ipc/shm.c
-@@ -144,6 +144,8 @@ pure_initcall(ipc_ns_init);
+@@ -154,6 +154,8 @@ pure_initcall(ipc_ns_init);
  
  void __init shm_init(void)
  {
@@ -235,7 +235,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (!pe)
 --- a/mm/vmalloc.c
 +++ b/mm/vmalloc.c
-@@ -3564,6 +3564,8 @@ static const struct seq_operations vmall
+@@ -3572,6 +3572,8 @@ static const struct seq_operations vmall
  
  static int __init proc_vmalloc_init(void)
  {
@@ -246,7 +246,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  				&vmalloc_op,
 --- a/mm/vmstat.c
 +++ b/mm/vmstat.c
-@@ -1988,10 +1988,12 @@ void __init init_mm_internals(void)
+@@ -2040,10 +2040,12 @@ void __init init_mm_internals(void)
  	start_shepherd_timer();
  #endif
  #ifdef CONFIG_PROC_FS
@@ -286,7 +286,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  		goto err;
 --- a/net/core/net-procfs.c
 +++ b/net/core/net-procfs.c
-@@ -279,10 +279,12 @@ static int __net_init dev_proc_net_init(
+@@ -320,10 +320,12 @@ static int __net_init dev_proc_net_init(
  	if (!proc_create_net("dev", 0444, net->proc_net, &dev_seq_ops,
  			sizeof(struct seq_net_private)))
  		goto out;
@@ -301,7 +301,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  			sizeof(struct seq_net_private)))
  		goto out_softnet;
  
-@@ -292,9 +294,11 @@ static int __net_init dev_proc_net_init(
+@@ -333,9 +335,11 @@ static int __net_init dev_proc_net_init(
  out:
  	return rc;
  out_ptype:
@@ -315,7 +315,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  out_dev:
  	remove_proc_entry("dev", net->proc_net);
  	goto out;
-@@ -304,8 +308,10 @@ static void __net_exit dev_proc_net_exit
+@@ -345,8 +349,10 @@ static void __net_exit dev_proc_net_exit
  {
  	wext_proc_exit(net);
  
@@ -330,7 +330,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/net/core/sock.c
 +++ b/net/core/sock.c
-@@ -3643,6 +3643,8 @@ static __net_initdata struct pernet_oper
+@@ -3699,6 +3699,8 @@ static __net_initdata struct pernet_oper
  
  static int __init proto_init(void)
  {
@@ -341,7 +341,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/net/ipv4/fib_trie.c
 +++ b/net/ipv4/fib_trie.c
-@@ -2848,11 +2848,13 @@ static const struct seq_operations fib_r
+@@ -2986,11 +2986,13 @@ static const struct seq_operations fib_r
  
  int __net_init fib_proc_init(struct net *net)
  {
@@ -357,7 +357,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  			fib_triestat_seq_show, NULL))
  		goto out2;
  
-@@ -2863,17 +2865,21 @@ int __net_init fib_proc_init(struct net
+@@ -3001,17 +3003,21 @@ int __net_init fib_proc_init(struct net
  	return 0;
  
  out3:
@@ -385,7 +385,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/net/ipv4/proc.c
 +++ b/net/ipv4/proc.c
-@@ -522,5 +522,8 @@ static __net_initdata struct pernet_oper
+@@ -528,5 +528,8 @@ static __net_initdata struct pernet_oper
  
  int __init ip_misc_proc_init(void)
  {
