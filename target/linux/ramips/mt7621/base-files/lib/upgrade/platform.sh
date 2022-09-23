@@ -54,9 +54,11 @@ platform_do_upgrade() {
 	asus,rt-ac65p|\
 	asus,rt-ac85p|\
 	asus,rt-ax53u|\
-	beeline,smartbox-flash|\
-	beeline,smartbox-turbo-plus|\
+	bbeeline,smartbox-flash|\
+	beeline,smartbox-giga|\
+	beeline,smartbox-pro|\
 	beeline,smartbox-turbo|\
+	beeline,smartbox-turbo-plus|\
 	sercomm,s3|\
 	sercomm,rt-fe-1|\
 	sercomm,rt-sf-1|\
@@ -92,6 +94,7 @@ platform_do_upgrade() {
 	netgear,wac124|\
 	netis,wf2881|\
 	sercomm,na502|\
+	wifire,s1500-nbn|\
 	xiaomi,mi-router-3g|\
 	xiaomi,mi-router-3-pro|\
 	xiaomi,mi-router-4|\
