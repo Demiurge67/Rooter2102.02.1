@@ -27,7 +27,7 @@ define Build/sercomm-factory-awi
 	$(call Build/sercomm-write-pid,$@ $$((0x80)) $@.hdrfactory)
 	$(call Build/sercomm-footer,$@.footer)
 	$(call Build/sercomm-write-pid,$@.footer $$((0x90)) $@.hdrfactory)
-	cat $(IMAGE_KERNEL).data $@ $@.footer | $(MKHASH) md5 | \
+	cat $(IMAGE_KERNEL).data $@ $@.footer | $(MKHASH) md5sum | \
 		awk '{print $$1}' | tr -d '\n' | dd seek=$$((0x1e0)) \
 		of=$@.hdrfactory bs=1 conv=notrunc 2>/dev/null
 	$(call Build/sercomm-kernel-factory,$(IMAGE_KERNEL).data \
@@ -45,7 +45,7 @@ define Build/sercomm-factory-cqr
 	$(call Build/sercomm-write-pid,$(IMAGE_KERNEL).data $$((0x70)) \
 		$@.hdrfactory)
 	$(call Build/sercomm-write-pid,$@ $$((0x80)) $@.hdrfactory)
-	cat $(IMAGE_KERNEL).data $@ | $(MKHASH) md5 | \
+	cat $(IMAGE_KERNEL).data $@ | $(MKHASH) md5sum | \
 		awk '{print $$1}' | tr -d '\n' | \
 		dd seek=$$((0x1e0)) of=$@.hdrfactory bs=1 \
 		conv=notrunc 2>/dev/null

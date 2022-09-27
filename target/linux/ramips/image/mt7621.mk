@@ -210,6 +210,7 @@ TARGET_DEVICES += beeline_smartbox-flash
 
 define Device/beeline_smartbox-giga
   $(Device/sercomm_dxx)
+  $(Device/dsa-migration)
   IMAGE_SIZE := 24576k
   SERCOMM_HWID := DBE
   SERCOMM_HWVER := 10100
@@ -223,6 +224,7 @@ TARGET_DEVICES += beeline_smartbox-giga
 
 define Device/beeline_smartbox-pro
   $(Device/sercomm_axx)
+  $(Device/dsa-migration)
   IMAGE_SIZE := 30720k
   DEVICE_VENDOR := Beeline
   DEVICE_MODEL := SmartBox PRO
@@ -239,6 +241,7 @@ TARGET_DEVICES += beeline_smartbox-pro
 
 define Device/beeline_smartbox-turbo
   $(Device/sercomm_dxx)
+  $(Device/dsa-migration)
   DEVICE_VENDOR := Beeline
   DEVICE_MODEL := SmartBox TURBO
   IMAGE_SIZE := 32768k
@@ -252,6 +255,7 @@ TARGET_DEVICES += beeline_smartbox-turbo
 
 define Device/beeline_smartbox-turbo-plus
   $(Device/sercomm_cxx)
+  $(Device/dsa-migration)
   DEVICE_VENDOR := Beeline
   DEVICE_MODEL := SmartBox TURBO+
   IMAGE_SIZE := 32768k
@@ -302,6 +306,7 @@ TARGET_DEVICES += beeline_sbtplusspi
 
 define Device/beeline_sb-turbo-plus-breed
   $(Device/uimage-lzma-loader)
+  $(Device/dsa-migration)
   DEVICE_VENDOR := Beeline
   DEVICE_MODEL := Beeline SmartBox TURBO+ Breed
   BLOCKSIZE := 128k
@@ -828,6 +833,7 @@ TARGET_DEVICES += unielec_u7621-06-16m
 
 define Device/wifire_s1500-nbn
   $(Device/sercomm_axx)
+  $(Device/dsa-migration)
   DEVICE_VENDOR := WiFire
   IMAGE_SIZE := 47104k
   DEVICE_MODEL := S1500.NBN

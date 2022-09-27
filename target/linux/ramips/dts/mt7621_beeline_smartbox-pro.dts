@@ -1,15 +1,35 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "mt7621_sercomm_s1500.dtsi"
+#include "mt7621.dtsi"
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/leds/common.h>
 
 / {
 	compatible = "beeline,smartbox-pro", "mediatek,mt7621-soc";
 	model = "Beeline SmartBox PRO";
 
 	aliases {
+		led-boot = &led_status;
+		led-running = &led_status;
+		led-upgrade = &led_wps;
+		led-failsafe = &led_wps;
 		label-mac-device = &gmac0;
 	};
 
+
+	gpio_export {
+		compatible = "gpio-export";
+		#size-cells = <0>;
+
+		power_usb {
+			gpio-export,name = "power_usb";
+			gpio-export,output = <1>;
+			gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
+		};
+	};
+	
 	keys {
 		switch_bt { // "LOW<->HIGH" Switch Button
 			label = "ROUT<->REP Switch_bt";
@@ -17,6 +37,99 @@
 			linux,input-type = <EV_SW>;
 			linux,code = <KEY_RFKILL>;
 			debounce-interval = <60>;
+		};
+	};
+	
+	
+	leds {
+		compatible = "gpio-leds";
+
+		led_wps: wps {
+			label = "blue:wps";
+			color = <LED_COLOR_ID_BLUE>;
+			function = LED_FUNCTION_WPS;
+			gpios = <&gpio 29 GPIO_ACTIVE_LOW>;
+		};
+
+		led_status: status {
+			label = "white:status";
+			color = <LED_COLOR_ID_WHITE>;
+			function = LED_FUNCTION_STATUS;
+			gpios = <&gpio 30 GPIO_ACTIVE_LOW>;
+		};
+
+		wlan2g {
+			label = "white:wlan2g";
+			color = <LED_COLOR_ID_WHITE>;
+			// function = LED_FUNCTION_WLAN0;
+			gpios = <&gpio 28 GPIO_ACTIVE_LOW>;
+		};
+
+		wlan5g {
+			label = "white:wlan5g";
+			color = <LED_COLOR_ID_WHITE>;
+			// function = LED_FUNCTION_WLAN1;
+			gpios = <&gpio 32 GPIO_ACTIVE_LOW>;
+		};
+
+		wan_speed {
+			label = "amber:wan";
+			color = <LED_COLOR_ID_AMBER>;
+			gpios = <&gpio 24 GPIO_ACTIVE_LOW>;
+		};
+
+		wan_link_act {
+			label = "green:wan";
+			color = <LED_COLOR_ID_GREEN>;
+			gpios = <&gpio 25 GPIO_ACTIVE_LOW>;
+		};
+
+		lan1_speed {
+			label = "amber:lan1";
+			color = <LED_COLOR_ID_AMBER>;
+			gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
+		};
+
+		lan1_link_act {
+			label = "green:lan1";
+			color = <LED_COLOR_ID_GREEN>;
+			gpios = <&gpio 23 GPIO_ACTIVE_LOW>;
+		};
+
+		lan2_speed {
+			label = "amber:lan2";
+			color = <LED_COLOR_ID_AMBER>;
+			gpios = <&gpio 14 GPIO_ACTIVE_LOW>;
+		};
+
+		lan2_link_act {
+			label = "green:lan2";
+			color = <LED_COLOR_ID_GREEN>;
+			gpios = <&gpio 26 GPIO_ACTIVE_LOW>;
+		};
+
+		lan3_speed {
+			label = "amber:lan3";
+			color = <LED_COLOR_ID_AMBER>;
+			gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
+		};
+
+		lan3_link_act {
+			label = "green:lan3";
+			color = <LED_COLOR_ID_GREEN>;
+			gpios = <&gpio 12 GPIO_ACTIVE_LOW>;
+		};
+
+		lan4_speed {
+			label = "amber:lan4";
+			color = <LED_COLOR_ID_AMBER>;
+			gpios = <&gpio 3 GPIO_ACTIVE_LOW>;
+		};
+
+		lan4_link_act {
+			label = "green:lan4";
+			color = <LED_COLOR_ID_GREEN>;
+			gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
 		};
 	};
 
@@ -153,10 +266,72 @@
 	};
 };
 
-&wan {
-	mac-address-increment = <1>;
+
+&ethernet {
+	pinctrl-0 = <&mdio_pins>, <&rgmii1_pins>;
 };
 
-&wlan_5g {
-	mac-address-increment = <2>;
+&gmac0 {
+	mediatek,mtd-eeprom = <&factory 0x1000>;
+};
+
+&pcie {
+	status = "okay";
+};
+
+&pcie0 { // mt7612en
+	wlan_5g: wifi@0,0 {
+		compatible = "mediatek,mt76";
+		reg = <0x0000 0 0 0 0>;
+		ieee80211-freq-limit = <5000000 6000000>;
+		mediatek,mtd-eeprom = <&factory 0x8000>;
+		mac-address-increment = <2>;
+	};
+};
+
+&pcie1 { // mt7602en
+	wlan_2g: wifi@0,0 {
+		compatible = "mediatek,mt76";
+		reg = <0x0000 0 0 0 0>;
+		ieee80211-freq-limit = <2400000 2500000>;
+		mediatek,mtd-eeprom = <&factory 0x0>;
+		mac-address-increment = <1>;
+	};
+};
+
+&state_default {
+	gpio {
+		groups = "wdt", "uart3", "jtag", "uart2", "i2c", "rgmii2";
+		function = "gpio";
+	};
+};
+
+&switch0 {
+	ports {
+		port@0 {
+			status = "okay";
+			label = "lan4";
+		};
+
+		port@1 {
+			status = "okay";
+			label = "lan3";
+		};
+
+		port@2 {
+			status = "okay";
+			label = "lan2";
+		};
+
+		port@3 {
+			status = "okay";
+			label = "lan1";
+		};
+
+		wan: port@4 {
+			status = "okay";
+			label = "wan";
+			mediatek,mtd-eeprom = <&factory 0x1000>;
+		};
+	};
 };
