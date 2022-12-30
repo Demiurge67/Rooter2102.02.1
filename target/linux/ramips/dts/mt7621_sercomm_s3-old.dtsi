@@ -63,6 +63,7 @@
 &pcie0 {
 	wlan_5g: wifi@0,0 {
 		compatible = "mediatek,mt76";
+		mediatek,mtd-eeprom = <0x0e 0x8000>;
 		reg = <0x0 0 0 0 0>;
 		ieee80211-freq-limit = <5000000 6000000>;
 	};
@@ -71,6 +72,7 @@
 &pcie1 {
 	wlan_2g: wifi@0,0 {
 		compatible = "mediatek,mt76";
+		mediatek,mtd-eeprom = <0x0e 0x0000>;
 		reg = <0x0 0 0 0 0>;
 		ieee80211-freq-limit = <2400000 2500000>;
 	};
@@ -81,6 +83,8 @@
 		wan: port@0 {
 			status = "okay";
 			label = "wan";
+			mtd-mac-address = <0x0e 0x21000>;
+			mtd-mac-address-increment = <0x04>;
 		};
 
 		port@1 {

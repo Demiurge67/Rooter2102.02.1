@@ -26,7 +26,7 @@ define Package/ext-rooter16
 endef
 
 define Package/ext-rooter16/description
-  Helper scripts to enable ROOter on 16meg and larger routers
+  Helper scripts to enable ROOter on 16+MB routers
 endef
 
 define Build/Compile

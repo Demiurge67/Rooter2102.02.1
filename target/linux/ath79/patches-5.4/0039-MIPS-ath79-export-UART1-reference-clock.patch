@@ -16,7 +16,7 @@
 +		ath79_set_clk(ATH79_CLK_UART1, 100 * 1000 * 1000);
 +
  	iounmap(dpll_base);
- }
+ };
  
 @@ -649,6 +653,9 @@ static void __init ath79_clocks_init_dt(
  	if (!clks[ATH79_CLK_MDIO])

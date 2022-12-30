@@ -69,6 +69,14 @@
 			reg = <0x200000 0x100000>;
 			scpart-id = <2>;
 			read-only;
+			
+			compatible = "nvmem-cells";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			macaddr_factory_21000: macaddr@21000 {
+			reg = <0x21000 0x6>;
+			};
 		};
 
 		partition@300000 {
@@ -118,20 +126,33 @@
 	};
 };
 
+&factory {
+	compatible = "nvmem-cells";
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	macaddr_factory_21000: macaddr@21000 {
+		reg = <0x21000 0x6>;
+	};
+};
+
 &gmac0 {
-	mtd-mac-address = <0x0e 0x21000>;
+	mtd-mac-address = <&factory 0x21000>;
 };
 
 &wan {
-	mtd-mac-address = <0x0e 0x21000>;
-	mac-address-increment = <1>;
+	mtd-mac-address = <&factory 0x21000>;
 };
 
 &wlan_2g {
 	mediatek,mtd-eeprom = <&factory 0x0>;
+		mtd-mac-address = <&factory 0x8000>;
+		mtd-mac-address-increment = <1>;
 };
 
 &wlan_5g {
 	mediatek,mtd-eeprom = <&factory 0x8000>;
+		mtd-mac-address = <&factory 0x8000>;
+		mtd-mac-address-increment = <2>;
 };
 

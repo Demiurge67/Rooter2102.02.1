@@ -6,6 +6,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=ext-rooter-lite
 PKG_VERSION:=1.000
 PKG_RELEASE:=1
+
 PKG_MAINTAINER:=Created by DM/makefile by Cobia@whirlpool
 include $(INCLUDE_DIR)/package.mk
 
@@ -29,14 +30,14 @@ define Package/ext-rooter-lite
 		+libimobiledevice-utils +kmod-usb-net-ipheth \
 		+qlog +luci-ssl +usbutils \
 		+openssl-util +irqbalance +ext-splashconfig \
-		+nano +picocom +wpad +webconsole +iperf \
+		+nano +picocom +webconsole +iperf \
 		+wget +qfirehose +luci-app-vpnbypass 
-  TITLE:=ROOter support w/o MWan3 for 16meg and larger routers
+  TITLE:=ROOter support w/o MWan3 for 16+MB routers
   PKGARCH:=all
 endef
 
 define Package/ext-rooter-lite/description
-  Helper scripts to enable ROOter w/o Mesh & MWan3 on 16meg and larger routers
+  Helper scripts to enable ROOter support w/o MWan3 for 16+MB routers
 endef
 
 define Build/Compile

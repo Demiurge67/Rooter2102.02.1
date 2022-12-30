@@ -1,31 +1,17 @@
 /dts-v1/;
 
+/#include "spear3xx.dtsi"/;
 / {
-	#address-cells = <0x01>;
-	#size-cells = <0x01>;
-	interrupt-parent = <0x01>;
 	model = "Conel RBv2";
 	compatible = "st,spear320-evb\0st,spear320";
 
-	chosen {
+	chosen {bootargs = "console=ttyS0,115200
 	};
 
 	aliases {
 	};
 
-	memory {
-		device_type = "memory";
-		reg = <0x00 0x40000000>;
-	};
 
-	cpus {
-		#address-cells = <0x00>;
-		#size-cells = <0x00>;
-
-		cpu {
-			compatible = "arm,arm926ej-s";
-			device_type = "cpu";
-		};
 	};
 
 	ahb {

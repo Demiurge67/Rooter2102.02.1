@@ -16,20 +16,17 @@ define Package/ext-rooter-lite-mesh
   DEPENDS:=+luci +ext-rooter-basic \
 		+luci-app-ddns +ddns-scripts \
 		+luci-app-rootervpn +ext-wireguard \
-		+bwmon +464xlat \
-		+ext-theme +luci-theme-argon \
-		+luci-theme-argondark +ext-login \
+		+bwmon +464xlat +webconsole \
+		+ext-theme +luci-theme-argon +luci-theme-argondark +luci-theme-materialgray +ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \
 		+luci-app-ksmbd +usb-storage \
 		+ext-p910nd +luci-app-sqm \
 		+kmod-sched-cake +luci-app-nft-qos \
 		+ext-command +luci-app-shadowsocks-libev +simple-obfs \
 		+openvpn-easy-rsa +openvpn-openssl \
-		+ext-extra +luci-app-hotspot \
-		+luci-app-wol +luci-app-guestwifi \
-		+mesh-mesh +mesh-wpad +iperf3 +webconsole +socat \
-		+usbmuxd +libusbmuxd-utils \
-		+libimobiledevice-utils +kmod-usb-net-ipheth \
+		+ext-extra +luci-app-wol +luci-app-guestwifi \
+		+mesh-mesh +mesh-wpad +iperf3 +socat \
+		+usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
 		+nano +picocom +wget +kmod-mtd-rw \
 		+qfirehose +luci-app-vpnbypass 
   TITLE:=ROOter support MESH w/o MWan3 for 16meg and larger routers
@@ -37,7 +34,7 @@ define Package/ext-rooter-lite-mesh
 endef
 
 define Package/ext-rooter-lite-mesh/description
-  Helper scripts to enable ROOter with Mesh support w/o MWan3 on 16meg and larger routers
+  Helper scripts to enable ROOter support MESH w/o MWan3 for 16meg and larger routers
 endef
 
 define Build/Compile

@@ -17,7 +17,7 @@ define Package/ext-rooter4
 		+ca-bundle +ca-certificates \
 		+luci-app-sqm +kmod-sched-cake \
 		+luci-app-ddns +ddns-scripts \
-		+ext-command +ext-p910nd +luci-app-guestwifi \
+		+ext-command +ext-p910nd \
 		+luci-app-hotspot +ext-extra \
 		+picocom +wget +nano +464xlat 
   TITLE:=install basic ROOter routers

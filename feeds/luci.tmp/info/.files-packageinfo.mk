@@ -66,6 +66,8 @@ $(eval $(call PackageDir,applications_luci-app-shairplay,applications/luci-app-s
 $(eval $(call PackageDir,applications_luci-app-siitwizard,applications/luci-app-siitwizard,))
 $(eval $(call PackageDir,applications_luci-app-simple-adblock,applications/luci-app-simple-adblock,))
 $(eval $(call PackageDir,applications_luci-app-smartdns,applications/luci-app-smartdns,))
+$(eval $(call PackageDir,applications_luci-app-sms-tool_luci-app-sms-tool,applications/luci-app-sms-tool/luci-app-sms-tool,))
+$(eval $(call PackageDir,applications_luci-app-sms-tool_sms-tool,applications/luci-app-sms-tool/sms-tool,))
 $(eval $(call PackageDir,applications_luci-app-snmpd,applications/luci-app-snmpd,))
 $(eval $(call PackageDir,applications_luci-app-softether,applications/luci-app-softether,))
 $(eval $(call PackageDir,applications_luci-app-splash,applications/luci-app-splash,))

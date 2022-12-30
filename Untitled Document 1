@@ -1,0 +1,67 @@
+&switch0 {
+	ports {
+		wan: port@0 {
+			status = "okay";
+			label = "wan";
+			
+Result - 22:1B:76:1F:97:E3
+
+
+&switch0 {
+	ports {
+		wan: port@0 {
+			status = "okay";
+			label = "wan";
+			mtd-mac-address = <0x0e 0x21000>;
+			
+Result - 1A:65:47:FA:A5:9D
+
+&switch0 {
+	ports {
+		wan: port@0 {
+			status = "okay";
+			label = "wan";
+			mtd-mac-address = <&factory 0x21000>;
+			
+Result - 4A:65:CD:F3:50:C5
+
+&switch0 {
+	ports {
+		wan: port@0 {
+			status = "okay";
+			label = "wan";
+			mediatek,mtd-eeprom = <&factory 0x21000>;
+Result - 	8A:8F:BB:AB:99:F2
+
+
+***************************************  End of DTSI
+
+&gmac0 {
+	mtd-mac-address = <&factory 0x21000>;
+	};
+
+&wan {
+	mtd-mac-address = <&factory 0x21000>;	
+	};
+	
+Result - AE:03:61:79:50:B8
+
+&gmac0 {
+	mtd-mac-address = <0x00 0x21000>;
+	};
+
+&wan {
+	mtd-mac-address = <0x00 0x21000>;	
+	};
+	
+Result - 12:65:C3:0F:08:64
+
+
+&gmac0 {
+	mtd-mac-address = <0x0e 0x21000>;
+	};
+
+&wan {
+	mtd-mac-address = <0x0e 0x21000>;	
+	};0E:F2:C2:07:52:1E
+	

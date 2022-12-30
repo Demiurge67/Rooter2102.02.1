@@ -5,6 +5,10 @@
 / {
 	compatible = "beeline,smartbox-turbo", "mediatek,mt7621-soc";
 	model = "Beeline SmartBox TURBO"; // Sercomm S3 DF3
+	
+	aliases {
+		label-mac-device = &gmac0;
+	};
 };
 
 &wan {

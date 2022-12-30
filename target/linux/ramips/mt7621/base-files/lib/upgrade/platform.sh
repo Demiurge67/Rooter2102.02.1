@@ -59,6 +59,14 @@ platform_do_upgrade() {
 	beeline,smartbox-pro|\
 	beeline,smartbox-turbo|\
 	beeline,smartbox-turbo-plus|\
+	beeline,sbtplus|\
+	beeline,sbgiga)
+		nand_do_upgrade "$1"
+		;;
+	beeline,sbtplusspi|\
+	beeline,sbgigaspi)
+		default_do_upgrade "$1"
+		;;
 	sercomm,s3|\
 	sercomm,rt-fe-1|\
 	sercomm,rt-sf-1|\
@@ -74,18 +82,8 @@ platform_do_upgrade() {
 	linksys,ea8100-v1|\
 	netgear,r6220|\
 	netgear,r6260|\
-	netgear,r6350|\
-	beeline,sbtplus)
+	netgear,r6350)
 		nand_do_upgrade "$1"
-		;;
-	beeline,sbtplusspi)
-		default_do_upgrade "$1"
-		;;
-	beeline,sbgiga)
-		nand_do_upgrade "$1"
-		;;
-	beeline,sbgigaspi)
-		default_do_upgrade "$1"
 		;;
 	netgear,r6700-v2|\
 	netgear,r6800|\

@@ -437,15 +437,15 @@ define Device/glinet_gl-mt1300
 endef
 TARGET_DEVICES += glinet_gl-mt1300
 
-define Device/hilink_hlk-7621a-evb
+define Device/hilink_hlk-7621a
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
   DEVICE_VENDOR := HiLink
   DEVICE_MODEL := HLK-7621A
-  DEVICE_PACKAGES += kmod-mt76x2 kmod-usb3
+  DEVICE_PACKAGES += kmod-usb3 kmod-usb-ledtrig-usbport
   IMAGE_SIZE := 32448k
 endef
-TARGET_DEVICES += hilink_hlk-7621a-evb
+TARGET_DEVICES += hilink_hlk-7621a
 
 
 define Device/mtc_wr1201

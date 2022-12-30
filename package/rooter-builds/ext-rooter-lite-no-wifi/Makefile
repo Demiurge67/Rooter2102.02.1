@@ -26,7 +26,7 @@ define Package/ext-rooter-lite-no-wifi
 		+usbmuxd +libusbmuxd-utils \
 		+libimobiledevice-utils +kmod-usb-net-ipheth \
 		+qlog +luci-ssl +usbutils \
-		+openssl-util +irqbalance +ext-splashconfig \
+		+openssl-util \
 		+nano +picocom +webconsole \
 		+wget +qfirehose +luci-app-vpnbypass 
   TITLE:=ROOter support w/o WiFi routers
