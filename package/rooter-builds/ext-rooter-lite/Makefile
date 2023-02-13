@@ -18,18 +18,18 @@ define Package/ext-rooter-lite
 		+luci-app-rootervpn +ext-wireguard \
 		+bwmon +464xlat \
 		+ext-theme +luci-theme-argon \
-		+luci-theme-argondark +ext-login \
+		+ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \
 		+luci-app-ksmbd +usb-storage +kmod-mtd-rw \
-		+ext-p910nd +luci-app-sqm \
+		+luci-app-sqm \
 		+kmod-sched-cake +luci-app-nft-qos \
 		+ext-command +luci-app-shadowsocks-libev +simple-obfs \
 		+ext-extra +luci-app-hotspot \
-		+luci-app-wol +luci-app-guestwifi \
+		+luci-app-wol \
 		+usbmuxd +libusbmuxd-utils \
 		+libimobiledevice-utils +kmod-usb-net-ipheth \
 		+qlog +luci-ssl +usbutils \
-		+openssl-util +irqbalance +ext-splashconfig \
+		+openssl-util +irqbalance \
 		+nano +picocom +webconsole +iperf \
 		+wget +qfirehose +luci-app-vpnbypass 
   TITLE:=ROOter support w/o MWan3 for 16+MB routers

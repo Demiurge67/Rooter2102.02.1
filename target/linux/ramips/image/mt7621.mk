@@ -298,7 +298,7 @@ define Device/beeline_sbtplusspi
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
   DEVICE_MODEL := Beeline Smart Box Turbo+ SPI
-  IMAGE_SIZE := 16064k
+  IMAGE_SIZE := 16565k
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
 	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
 endef
@@ -363,6 +363,16 @@ define Device/beeline_sbgigaspi
 	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
 endef
 TARGET_DEVICES += beeline_sbgigaspi
+
+
+define Device/dlink_dir-853-r1
+  DEVICE_MODEL := DIR-853
+  DEVICE_VARIANT := R1
+  IMAGE_SIZE := 16064k
+  DEVICE_PACKAGES += kmod-mt7615e kmod-usb3 kmod-usb-ledtrig-usbport
+endef
+TARGET_DEVICES += dlink_dir-853-r1
+
 
 define Device/mediatek_ap-mt7621a-v60
   $(Device/dsa-migration)
