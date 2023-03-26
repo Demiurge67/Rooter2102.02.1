@@ -1,7 +1,7 @@
 Source-Makefile: feeds/packages/libs/msgpack-c/Makefile
 
 Package: msgpack-c
-Version: 4.0.0-0
+Version: 5.0.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -11,7 +11,7 @@ Category: Libraries
 Repository: base
 Title: MessagePack implementation for C
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: msgpack-c-4.0.0.tar.gz
+Source: msgpack-c-5.0.0.tar.gz
 License: BSL-1.0
 LicenseFiles: COPYING LICENSE_1_0.txt
 Type: ipkg

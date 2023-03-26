@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+
+#include "mt7621_sercomm_s3_dxx_nand_256m.dtsi"
+
+/ {
+	compatible = "beeline,smartbox-turbo", "mediatek,mt7621-soc";
+	model = "Beeline SmartBox TURBO"; // Sercomm S3 DF3
+	
+	aliases {
+		label-mac-device = &gmac0;
+	};
+};
+
+&wan {
+	mac-address-increment = <1>;
+};
+
+&wlan_2g {
+	mac-address-increment = <4>;
+};
+
+&wlan_5g {
+	mac-address-increment = <5>;
+};

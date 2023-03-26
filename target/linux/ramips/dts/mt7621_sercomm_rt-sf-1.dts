@@ -1,0 +1,29 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
+
+#include "mt7621_sercomm_s3_dxx_nand_256m.dtsi"
+
+/ {
+	compatible = "sercomm,rt-sf-1", "mediatek,mt7621-soc";
+	model = "Sercomm RT-SF-1"; // Rostelecom Sercomm RT-SF-1 (Sercomm S3 DKG)
+};
+
+&uartlite3 { // ZigBee EFR32 MG1B232GG
+	status = "okay";
+	current-speed = <57600>;
+};
+
+&wan {
+	mac-address-increment = <1>;
+};
+
+&wlan_2g {
+	mac-address-increment = <2>;
+};
+
+&wlan_5g {
+	mac-address-increment = <3>;
+};
+
+// TODO:
+// ? MACs interfaces
+// LED 2.4 GHz & 5 GHz

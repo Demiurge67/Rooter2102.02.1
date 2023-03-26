@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/https-dns-proxy/Makefile
 
 Package: https-dns-proxy
-Version: 2022-10-15-10
+Version: 2022-10-15-11
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libcares +libcurl +libev +ca-bundle +jsonfilter
 Conflicts: https_dns_proxy
 Menu-Depends: 

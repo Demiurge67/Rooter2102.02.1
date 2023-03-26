@@ -13,27 +13,26 @@ include $(INCLUDE_DIR)/package.mk
 define Package/ext-rooter-lite
   SECTION:=utils
   CATEGORY:=ROOter
-  DEPENDS:=+luci +ext-rooter-basic +ext-logo \
-		+luci-app-ddns +ddns-scripts \
-		+luci-app-rootervpn +ext-wireguard \
+  DEPENDS:=+luci +ext-rooter-basic \
+		+luci-app-ddns +ddns-scripts +pingtest \
+		+luci-app-openvpn +luci-app-wireguard +luci-app-vpnbypass \
 		+bwmon +464xlat +webconsole \
-		+ext-theme +luci-theme-argon +luci-theme-argondark +ext-login \
-		+luci-theme-tomato \
+		+ext-theme +luci-theme-materialgrey +ext-login \
 		+ca-bundle +ca-certificates +libustream-wolfssl \
-		+luci-app-ksmbd +usb-storage \
-		+ext-p910nd +luci-app-sqm +kmod-sched-cake +luci-app-nft-qos \
-		+ext-command +ext-speedtest \
-		+openvpn-easy-rsa +openvpn-openssl \
-		+ext-extra +luci-app-hotspot +luci-app-wol +luci-app-guestwifi \
+		+luci-app-ksmbd +usb-storage +ext-p910nd \
+		+luci-app-sqm +kmod-sched-cake +luci-app-nft-qos \
+		+ext-command +openvpn-easy-rsa +openvpn-openssl \
+		+ext-extra +luci-app-wol +luci-app-shadowsocks-libev +simple-obfs \
+		+iperf3 +socat \
 		+usbmuxd +libusbmuxd-utils +libimobiledevice-utils +kmod-usb-net-ipheth \
 		+qlog +luci-ssl +usbutils +openssl-util +irqbalance +ext-splashconfig \
-		+nano +picocom +wpad +wget +qfirehose +luci-app-vpnbypass 
-  TITLE:=ROOter support w/o MWan3 for 16meg and larger routers
+		+nano +picocom +wpad-openssl +wget +qfirehose +kmod-mtd-rw +ext-simplegps
+  TITLE:=ROOter for 16+Meg routers  w/o MESH MWan3 
   PKGARCH:=all
 endef
 
 define Package/ext-rooter-lite/description
-  Helper scripts to enable ROOter w/o MWan3 on 16meg and larger routers
+  Helper scripts to enable ROOter for 16+Meg routers w/o MESH MWan3
 endef
 
 

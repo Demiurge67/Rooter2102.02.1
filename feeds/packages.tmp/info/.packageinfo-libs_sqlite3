@@ -2,7 +2,7 @@ Source-Makefile: feeds/packages/libs/sqlite3/Makefile
 
 Package: libsqlite3
 Submenu: Database
-Version: 3400000-0
+Version: 3410100-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -12,7 +12,7 @@ Category: Libraries
 Repository: base
 Title: SQLite (v3.x) database engine (library)
 Maintainer: 
-Source: sqlite-autoconf-3400000.tar.gz
+Source: sqlite-autoconf-3410100.tar.gz
 License: PUBLICDOMAIN
 Type: ipkg
 Description:  SQLite is a small C library that implements a self-contained, embeddable,
@@ -28,7 +28,7 @@ Config:
 
 Package: sqlite3-cli
 Submenu: Database
-Version: 3400000-0
+Version: 3410100-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libsqlite3 +SQLITE3_LIBEDIT:libedit +SQLITE3_READLINE:libreadline +SQLITE3_READLINE:libncursesw
 Conflicts: 
 Menu-Depends: 
@@ -38,7 +38,7 @@ Category: Utilities
 Repository: base
 Title: SQLite (v3.x) database engine (cli)
 Maintainer: 
-Source: sqlite-autoconf-3400000.tar.gz
+Source: sqlite-autoconf-3410100.tar.gz
 License: PUBLICDOMAIN
 Type: ipkg
 Description:  SQLite is a small C library that implements a self-contained, embeddable,

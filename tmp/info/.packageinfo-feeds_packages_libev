@@ -1,7 +1,7 @@
 Source-Makefile: package/feeds/packages/libev/Makefile
 
 Package: libev
-Version: 4.33-0
+Version: 4.33-2
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 

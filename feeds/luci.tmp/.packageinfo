@@ -4732,7 +4732,7 @@ Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:lu
 Package: luci-app-banip
 Submenu: 3. Applications
 Version: x
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +banip +luci-lib-jsonc @BROKEN
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +banip +luci-lib-jsonc
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -31358,11 +31358,11 @@ Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:lu
 
 Package: luci-app-pbr
 Submenu: 3. Applications
-Version: 1.0.1-10
+Version: 1.1.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +luci-base +jsonfilter +pbr
 Conflicts: 
 Menu-Depends: 
-Provides: 
+Provides: luci-app-vpnbypass luci-app-vpn-policy-routing
 Section: luci
 Category: LuCI
 Repository: base
@@ -51471,6 +51471,30 @@ Description:     Translation for luci-app-wol - 繁體中文 (Chinese Traditiona
 @@
 
 
+Source-Makefile: feeds/luci/applications/luci-app-xfrpc/Makefile
+Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
+
+Package: luci-app-xfrpc
+Submenu: 3. Applications
+Version: x
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +xfrpc
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: luci
+Category: LuCI
+Repository: base
+Title: LuCI Support for xfrpc
+Maintainer: OpenWrt LuCI community
+Source: 
+License: Apache-2.0
+Type: ipkg
+Description: LuCI Support for xfrpc
+https://github.com/openwrt/luci
+OpenWrt LuCI community
+@@
+
+
 Source-Makefile: feeds/luci/applications/luci-app-xinetd/Makefile
 Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:luasrcdiet/host 
 
@@ -52862,7 +52886,7 @@ Config:
 	   tristate "Japanese (ja)" 
 
      config LUCI_LANG_ko
-	   tristate "Korean (ko)" 
+	   tristate "한국어 (Korean) (ko)" 
 
      config LUCI_LANG_mr
 	   tristate "Marathi (mr)" 

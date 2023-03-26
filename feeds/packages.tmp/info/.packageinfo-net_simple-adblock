@@ -1,7 +1,7 @@
 Source-Makefile: feeds/packages/net/simple-adblock/Makefile
 
 Package: simple-adblock
-Version: 1.9.4-3
+Version: 1.9.4-4
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +jshn +wget
 Conflicts: 
 Menu-Depends: 

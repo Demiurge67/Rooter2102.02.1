@@ -1,8 +1,9 @@
 Source-Makefile: package/feeds/packages/libsodium/Makefile
+Build-Depends: libtool libiconv
 
 Package: libsodium
-Version: 1.0.18-4
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Version: 1.0.18-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -10,10 +11,9 @@ Section: libs
 Category: Libraries
 Repository: packages
 Title: P(ortable|ackageable) NaCl-based crypto library
-Maintainer: Damiano Renfer <x9w2n7xnu@relay.firefox.com>
+Maintainer: Damiano Renfer <damiano.renfer@gmail.com>
 Source: libsodium-1.0.18.tar.gz
 License: ISC
-LicenseFiles: LICENSE
 Type: ipkg
 Description:   NaCl (pronounced "salt") is a new easy-to-use high-speed software library for network communication, encryption, decryption, signatures, etc.
   NaCl's goal is to provide all of the core operations needed to build higher-level cryptographic tools.
@@ -22,7 +22,7 @@ Description:   NaCl (pronounced "salt") is a new easy-to-use high-speed software
   The same cannot be said of NIST curves, where the specific origins of certain constants are not described by the standards.
   And despite the emphasis on higher security, primitives are faster across-the-board than most implementations of the NIST standards.
 https://github.com/jedisct1/libsodium
-Damiano Renfer <x9w2n7xnu@relay.firefox.com>
+Damiano Renfer <damiano.renfer@gmail.com>
 @@
 Config:
 menu "Configuration"

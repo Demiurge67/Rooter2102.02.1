@@ -1,7 +1,7 @@
 module("luci.controller.dawn", package.seeall)
 
 function index()
-    local e = entry({ "admin", "dawn" }, firstchild(), "Dawn", 60)
+    local e = entry({ "admin", "dawn" }, firstchild(), "DAWN", 60)
     e.dependent = false
     e.acl_depends = { "luci-app-dawn" }
 

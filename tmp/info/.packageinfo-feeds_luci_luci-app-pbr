@@ -3,11 +3,11 @@ Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:lu
 
 Package: luci-app-pbr
 Submenu: 3. Applications
-Version: 1.0.1-10
+Version: 1.1.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +luci-base +jsonfilter +pbr
 Conflicts: 
 Menu-Depends: 
-Provides: 
+Provides: luci-app-vpnbypass luci-app-vpn-policy-routing
 Section: luci
 Category: LuCI
 Repository: luci

@@ -2,7 +2,7 @@ Source-Makefile: package/feeds/packages/sed/Makefile
 
 Package: sed
 Version: 4.8-3
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcre
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
 Provides: 

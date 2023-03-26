@@ -60,13 +60,5 @@
 		"depends": {
 			"fs": { "/usr/share/fw3/helpers.conf": "file" }
 		}
-	},
-	"admin/network/firewall/customttl": {
-		"title": "Custom TTL Settings",
-		"order": 55,
-		"action": {
-			"type": "cbi",
-			"path": "firewall/ttlx"
-		}
 	}
 }

@@ -89,6 +89,7 @@ $(eval $(call PackageDir,applications_luci-app-watchcat,applications/luci-app-wa
 $(eval $(call PackageDir,applications_luci-app-wifischedule,applications/luci-app-wifischedule,))
 $(eval $(call PackageDir,applications_luci-app-wireguard,applications/luci-app-wireguard,))
 $(eval $(call PackageDir,applications_luci-app-wol,applications/luci-app-wol,))
+$(eval $(call PackageDir,applications_luci-app-xfrpc,applications/luci-app-xfrpc,))
 $(eval $(call PackageDir,applications_luci-app-xinetd,applications/luci-app-xinetd,))
 $(eval $(call PackageDir,applications_luci-app-yggdrasil,applications/luci-app-yggdrasil,))
 $(eval $(call PackageDir,collections_luci,collections/luci,))

@@ -2,8 +2,8 @@ Source-Makefile: package/feeds/packages/crowdsec-firewall-bouncer/Makefile
 Build-Depends: golang/host
 
 Package: crowdsec-firewall-bouncer
-Version: 0.0.21-0
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(PACKAGE_iptables||PACKAGE_nftables) @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
+Version: 0.0.25-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -12,7 +12,7 @@ Category: Network
 Repository: packages
 Title: Firewall bouncer for Crowdsec
 Maintainer: Gerald Kerma <gandalf@gk2.net>
-Source: crowdsec-firewall-bouncer-0.0.21.tar.gz
+Source: crowdsec-firewall-bouncer-0.0.25.tar.gz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg
@@ -21,7 +21,7 @@ Description:   Crowdsec bouncer written in golang for firewalls.
   crowdsec-firewall-bouncer will fetch new and old decisions
   from a CrowdSec API to add them in a blocklist used by supported firewalls.
 
-  You must install iptables+ipset or nftables.
+  You must install nftables.
 
   This package contains the main program.
 https://github.com/crowdsecurity/cs-firewall-bouncer/

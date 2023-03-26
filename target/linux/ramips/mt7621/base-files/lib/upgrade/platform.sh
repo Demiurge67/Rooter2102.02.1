@@ -56,39 +56,44 @@ platform_do_upgrade() {
 	asus,rt-ac85p|\
 	asus,rt-ax53u|\
 	beeline,smartbox-flash|\
+	beeline,smartbox-giga|\
+	beeline,smartbox-pro|\
+	beeline,smartbox-turbo|\
+	beeline,smartbox-turbo-plus|\
+	beeline,sbtplus|\
+	beeline,sbgiga)
+		nand_do_upgrade "$1"
+		;;
+	beeline,sbtplusspi|\
+	beeline,sbgigaspi)
+		default_do_upgrade "$1"
+		;;
+	sercomm,s3|\
+	sercomm,rt-fe-1|\
+	sercomm,rt-sf-1|\
 	dlink,dir-1960-a1|\
 	dlink,dir-2640-a1|\
 	dlink,dir-2660-a1|\
-	dlink,dir-853-a3|\
 	hiwifi,hc5962|\
-	iptime,a3004t|\
-	iptime,ax2004m|\
-	iptime,t5004|\
 	jcg,q20|\
 	linksys,e5600|\
-	linksys,ea6350-v4|\
 	linksys,ea7300-v1|\
 	linksys,ea7300-v2|\
 	linksys,ea7500-v2|\
 	linksys,ea8100-v1|\
-	linksys,ea8100-v2|\
-	mts,wg430223|\
 	netgear,r6220|\
 	netgear,r6260|\
-	netgear,r6350|\
+	netgear,r6350)
+		nand_do_upgrade "$1"
+		;;
 	netgear,r6700-v2|\
 	netgear,r6800|\
 	netgear,r6850|\
-	netgear,r6900-v2|\
-	netgear,r7200|\
-	netgear,r7450|\
 	netgear,wac104|\
 	netgear,wac124|\
-	netgear,wax202|\
 	netis,wf2881|\
-	raisecom,msg1500-x-00|\
 	sercomm,na502|\
-	sercomm,na502s|\
+	wifire,s1500-nbn|\
 	xiaomi,mi-router-3g|\
 	xiaomi,mi-router-3-pro|\
 	xiaomi,mi-router-4|\

@@ -2,12 +2,19 @@
 # MT7621 Profiles
 #
 
+include ./common-sercomm.mk
 include ./common-tp-link.mk
 
 DEFAULT_SOC := mt7621
 
 KERNEL_DTB += -d21
 DEVICE_VARS += ELECOM_HWNAME LINKSYS_HWNAME
+
+define Build/h3c-blank-header
+	dd if=/dev/zero of=$@.blank bs=160 count=1
+	cat $@ >> $@.blank
+	mv $@.blank $@
+endef
 
 define Build/arcadyan-trx
 	echo -ne "hsqs" > $@.hsqs
@@ -20,6 +27,19 @@ define Build/arcadyan-trx
 		conv=notrunc 2>/dev/null
 	dd if=$@.tail >> $@ 2>/dev/null
 	rm $@.hsqs $@.tail
+endef
+
+define Build/elecom-wrc-gs-factory
+	$(eval product=$(word 1,$(1)))
+	$(eval version=$(word 2,$(1)))
+	$(eval hash_opt=$(word 3,$(1)))
+	$(STAGING_DIR_HOST)/bin/mkhash md5 $(hash_opt) $@ >> $@
+	( \
+		echo -n "ELECOM $(product) v$(version)" | \
+			dd bs=32 count=1 conv=sync; \
+		dd if=$@; \
+	) > $@.new
+	mv $@.new $@
 endef
 
 define Build/gemtek-trailer
@@ -252,6 +272,7 @@ define Device/asus_rt-ax53u
 endef
 TARGET_DEVICES += asus_rt-ax53u
 
+
 define Device/beeline_smartbox-flash
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
@@ -269,10 +290,161 @@ define Device/beeline_smartbox-flash
   IMAGES += factory.trx
   IMAGE/factory.trx := append-kernel | append-ubi | check-size
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-  DEVICE_PACKAGES := kmod-usb3 kmod-mt7615e kmod-mt7615-firmware \
-	uboot-envtools uencrypt
+  DEVICE_PACKAGES := kmod-usb3 kmod-mt7615e kmod-mt7615-firmware uencrypt-mbedtls
 endef
 TARGET_DEVICES += beeline_smartbox-flash
+
+define Device/beeline_smartbox-giga
+  $(Device/sercomm_dxx)
+  IMAGE_SIZE := 24576k
+  SERCOMM_HWID := DBE
+  SERCOMM_HWVER := 10100
+  SERCOMM_SWVER := 1001
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := SmartBox GIGA
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7663-firmware-ap \
+	kmod-usb3
+endef
+TARGET_DEVICES += beeline_smartbox-giga
+
+define Device/beeline_smartbox-pro
+  $(Device/sercomm_axx)
+  IMAGE_SIZE := 30720k
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := SmartBox PRO
+  SERCOMM_HWID := AWI
+  SERCOMM_HWVER := 10000
+  SERCOMM_SWVER := 2020
+  DEVICE_ALT0_VENDOR := Sercomm
+  DEVICE_ALT0_MODEL := S1500 AWI
+  SERCOMM_ROOTFS2_OFFSET := 0x3d00000
+  IMAGE/factory.img := append-ubi | sercomm-factory-awi
+  DEVICE_PACKAGES := kmod-mt76x2 kmod-usb3 uboot-envtools
+endef
+TARGET_DEVICES += beeline_smartbox-pro
+
+define Device/beeline_smartbox-turbo
+  $(Device/sercomm_dxx)
+  IMAGE_SIZE := 32768k
+  SERCOMM_HWID := DF3
+  SERCOMM_HWVER := 10200
+  SERCOMM_SWVER := 1004
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := SmartBox TURBO
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
+  	kmod-usb3 uboot-envtools
+endef
+TARGET_DEVICES += beeline_smartbox-turbo
+
+define Device/beeline_smartbox-turbo-plus
+  $(Device/sercomm_cxx)
+  IMAGE_SIZE := 32768k
+  SERCOMM_HWID := CQR
+  SERCOMM_HWVER := 10000
+  SERCOMM_SWVER := 2010
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := SmartBox TURBO+
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7615-firmware \
+	kmod-usb3 uboot-envtools
+endef
+TARGET_DEVICES += beeline_smartbox-turbo-plus
+
+define Device/beeline_sbtplus
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := Beeline Smart Box Turbo+(6220)
+  UBINIZE_OPTS := -E 5
+  SERCOMM_HWID := CHJ
+  SERCOMM_HWVER := A001
+  SERCOMM_SWVER := 0x0052
+  SERCOMM_HWNAME := SBT+
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 40960k
+  IMAGES += kernel.bin rootfs.bin factory.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGE/factory.bin := pad-extra 2048k | append-kernel | pad-to 6144k | \
+	append-ubi | pad-to $$$$(BLOCKSIZE) | sercom-footer | pad-to 128 | \
+	zip $$$$(SERCOMM_HWNAME).bin | sercom-seal
+  IMAGE/kernel.bin := append-kernel
+  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
+endef
+TARGET_DEVICES += beeline_sbtplus
+
+define Device/beeline_sbtplusspi
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_MODEL := Beeline Smart Box Turbo+ SPI
+  IMAGE_SIZE := 16064k
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport kmod-mt7615-firmware
+endef
+TARGET_DEVICES += beeline_sbtplusspi
+
+define Device/beeline_sb-turbo-plus-breed
+  $(Device/uimage-lzma-loader)
+  $(Device/dsa-migration)
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := Beeline SmartBox TURBO+ Breed
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 124416k
+  UBINIZE_OPTS := -E 5
+  IMAGES += kernel1.bin rootfs0.bin breed.bin
+  IMAGE/kernel1.bin := append-kernel
+  IMAGE/rootfs0.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  IMAGE/breed.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-kernel | \
+	pad-to $$(KERNEL_SIZE) | append-ubi | check-size $$$$(IMAGE_SIZE)
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport uboot-envtools wpad-basic
+endef
+TARGET_DEVICES += beeline_sb-turbo-plus-breed
+
+
+define Device/beeline_sbgiga
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := Beeline
+  DEVICE_MODEL := Beeline SB Giga Breed
+  UBINIZE_OPTS := -E 5
+  SERCOMM_HWID := CHJ
+  SERCOMM_HWVER := A001
+  SERCOMM_SWVER := 0x0052
+  SERCOMM_HWNAME := SBGIGA
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  KERNEL_SIZE := 4096k
+  IMAGE_SIZE := 40960k
+  IMAGES += kernel.bin rootfs.bin factory.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGE/factory.bin := pad-extra 2048k | append-kernel | pad-to 6144k | \
+	append-ubi | pad-to $$$$(BLOCKSIZE) | sercom-footer | pad-to 128 | \
+	zip $$$$(SERCOMM_HWNAME).bin | sercom-seal
+  IMAGE/kernel.bin := append-kernel
+  IMAGE/rootfs.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
+endef
+TARGET_DEVICES += beeline_sbgiga
+
+define Device/beeline_sbgigaspi
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := Beeline
+  IMAGE_SIZE := 16064k
+  DEVICE_MODEL := Beeline SB Giga SPI
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-usb3 \
+	kmod-usb-ledtrig-usbport kmod-mt7663-firmware-ap
+endef
+TARGET_DEVICES += beeline_sbgigaspi
+
 
 define Device/buffalo_wsr-1166dhp
   $(Device/dsa-migration)
@@ -728,7 +900,7 @@ define Device/hilink_hlk-7621a-evb
   DEVICE_VENDOR := HiLink
   DEVICE_MODEL := HLK-7621A evaluation board
   DEVICE_PACKAGES += kmod-mt76x2 kmod-usb3
-  IMAGE_SIZE := 32448k
+  IMAGE_SIZE := 16064k
 endef
 TARGET_DEVICES += hilink_hlk-7621a-evb
 
@@ -767,6 +939,16 @@ define Device/humax_e10
   DEVICE_PACKAGES := kmod-mt7615e kmod-mt7615-firmware kmod-usb3
 endef
 TARGET_DEVICES += humax_e10
+
+define Device/hilink_hlk-7621a
+  $(Device/dsa-migration)
+  $(Device/uimage-lzma-loader)
+  DEVICE_VENDOR := HiLink
+  DEVICE_MODEL := HLK-7621A
+  DEVICE_PACKAGES += kmod-usb3 kmod-usb-ledtrig-usbport
+  IMAGE_SIZE := 15936k
+endef
+TARGET_DEVICES += hilink_hlk-7621a
 
 define Device/iodata_wn-ax1167gr
   $(Device/dsa-migration)
@@ -1877,6 +2059,24 @@ define Device/wavlink_wl-wn533a8
 endef
 TARGET_DEVICES += wavlink_wl-wn533a8
 
+
+define Device/wavlink_ws-wn572hp3-4g
+  $(Device/dsa-migration)
+  BLOCKSIZE := 64k
+  DEVICE_VENDOR := Wavlink
+  DEVICE_MODEL := WS-WN572HP3
+  DEVICE_VARIANT := 4G
+  IMAGE_SIZE := 15040k
+  KERNEL_LOADADDR := 0x82000000
+  KERNEL := kernel-bin | relocate-kernel 0x80001000 | lzma | \
+	fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+  IMAGE/sysupgrade.bin := append-kernel | pad-to $$$$(BLOCKSIZE) | \
+	append-rootfs | pad-rootfs | check-size | append-metadata
+  DEVICE_PACKAGES := kmod-mt7603 kmod-mt7615e kmod-mt7663-firmware-ap \
+	kmod-usb3 kmod-usb-net-rndis comgt-ncm -uboot-envtools
+endef
+TARGET_DEVICES += wavlink_ws-wn572hp3-4g
+
 define Device/wevo_11acnas
   $(Device/dsa-migration)
   $(Device/uimage-lzma-loader)
@@ -1903,6 +2103,25 @@ define Device/wevo_w2914ns-v2
   SUPPORTED_DEVICES += w2914nsv2
 endef
 TARGET_DEVICES += wevo_w2914ns-v2
+
+
+define Device/wifire_s1500-nbn
+  $(Device/sercomm_axx)
+  DEVICE_VENDOR := WiFire
+  IMAGE_SIZE := 47104k
+  DEVICE_MODEL := S1500.NBN
+  SERCOMM_HWVER := 10000
+  SERCOMM_0x10str := 0001
+  SERCOMM_SWVER := 2015
+  SERCOMM_HWID := BUC
+  SERCOMM_ROOTFS2_OFFSET := 0x4d00000
+  DEVICE_ALT0_VENDOR := Sercomm
+  DEVICE_ALT0_MODEL := S1500 BUC
+  IMAGE/factory.img := append-ubi | sercomm-factory-cqr | \
+	sercomm-pid-set0x10 | sercomm-crypto
+  DEVICE_PACKAGES := kmod-mt76x2 kmod-usb3 uboot-envtools
+endef
+TARGET_DEVICES += wifire_s1500-nbn
 
 define Device/winstars_ws-wn583a6
   $(Device/dsa-migration)

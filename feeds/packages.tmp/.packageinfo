@@ -2764,7 +2764,7 @@ Build-Types: host
 
 Package: golang
 Submenu: Go
-Version: 1.19.5-1
+Version: 1.19.7-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) +golang-src
 Conflicts: 
 Menu-Depends: 
@@ -2774,7 +2774,7 @@ Category: Languages
 Repository: base
 Title: Go programming language (compiler)
 Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: go1.19.5.src.tar.gz
+Source: go1.19.7.src.tar.gz
 License: BSD-3-Clause
 LicenseFiles: LICENSE
 Type: ipkg
@@ -2800,7 +2800,7 @@ Config:
 
 Package: golang-doc
 Submenu: Go
-Version: 1.19.5-1
+Version: 1.19.7-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
 Conflicts: 
 Menu-Depends: 
@@ -2810,7 +2810,7 @@ Category: Languages
 Repository: base
 Title: Go programming language (documentation)
 Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: go1.19.5.src.tar.gz
+Source: go1.19.7.src.tar.gz
 License: BSD-3-Clause
 LicenseFiles: LICENSE
 Type: ipkg
@@ -2832,7 +2832,7 @@ Jeffery To <jeffery.to@gmail.com>
 
 Package: golang-src
 Submenu: Go
-Version: 1.19.5-1
+Version: 1.19.7-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
 Conflicts: 
 Menu-Depends: 
@@ -2842,7 +2842,7 @@ Category: Languages
 Repository: base
 Title: Go programming language (source files)
 Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: go1.19.5.src.tar.gz
+Source: go1.19.7.src.tar.gz
 License: BSD-3-Clause
 LicenseFiles: LICENSE
 Type: ipkg
@@ -4004,7 +4004,7 @@ Build-Types: host
 
 Package: node
 Submenu: Node.js
-Version: v16.19.0-1
+Version: v16.19.1-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @HAS_FPU @(i386||x86_64||arm||aarch64||mipsel) +libstdcpp +libopenssl +zlib +libnghttp2 +libuv +libcares +libatomic +NODEJS_ICU_SYSTEM:icu +NODEJS_ICU_SYSTEM:icu-full-data
 Conflicts: 
 Menu-Depends: 
@@ -4014,7 +4014,7 @@ Category: Languages
 Repository: base
 Title: Node.js is a platform built on Chrome's JavaScript runtime
 Maintainer: Hirokazu MORIKAWA <morikw2@gmail.com>, Adrian Panella <ianchi74@outlook.com>
-Source: node-v16.19.0.tar.xz
+Source: node-v16.19.1.tar.xz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg
@@ -4052,7 +4052,7 @@ Config:
 
 Package: node-npm
 Submenu: Node.js
-Version: v16.19.0-1
+Version: v16.19.1-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +node
 Conflicts: 
 Menu-Depends: 
@@ -4062,7 +4062,7 @@ Category: Languages
 Repository: base
 Title: NPM stands for Node Package Manager
 Maintainer: Hirokazu MORIKAWA <morikw2@gmail.com>, Adrian Panella <ianchi74@outlook.com>
-Source: node-v16.19.0.tar.xz
+Source: node-v16.19.1.tar.xz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg
@@ -6839,7 +6839,7 @@ Marcel Denia <naoir@gmx.net>, Philip Prindeville <philipp@redfish-solutions.com>
 Source-Makefile: feeds/packages/lang/perl-ack/Makefile
 
 Package: ack
-Version: 3.6.0+perl5.28-0
+Version: 3.7.0+perl5.28-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +perl +perl-ack
 Conflicts: 
 Menu-Depends: 
@@ -6849,7 +6849,7 @@ Category: Utilities
 Repository: base
 Title: A grep-like source code search tool
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: ack-v3.6.0.tar.gz
+Source: ack-v3.7.0.tar.gz
 License: Artistic-2.0
 Type: ipkg
 Description: A grep-like source code search tool
@@ -6859,7 +6859,7 @@ Tianling Shen <cnsztl@immortalwrt.org>
 
 Package: perl-ack
 Submenu: Perl
-Version: 3.6.0+perl5.28-0
+Version: 3.7.0+perl5.28-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread perl +perl-file-next +perlbase-filetest +perlbase-if +perlbase-list +perlbase-pod +perlbase-test +perlbase-text +perlbase-term
 Conflicts: 
 Menu-Depends: 
@@ -6869,7 +6869,7 @@ Category: Languages
 Repository: base
 Title: grep-like text finder
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: ack-v3.6.0.tar.gz
+Source: ack-v3.7.0.tar.gz
 License: Artistic-2.0
 Type: ipkg
 Description: grep-like text finder
@@ -8029,7 +8029,7 @@ Build-Depends: !BUILD_NLS:libiconv
 
 Package: php8
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcre2 +zlib +PHP8_LIBXML:libxml2 +PHP8_SYSTEMTZDATA:zoneinfo-core
 Conflicts: php7
 Menu-Depends: 
@@ -8039,7 +8039,7 @@ Category: Languages
 Repository: base
 Title: PHP8 Hypertext preprocessor
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8070,7 +8070,7 @@ Config:
 
 Package: php8-cgi
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-intl:libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -8080,7 +8080,7 @@ Category: Languages
 Repository: base
 Title: PHP8 Hypertext preprocessor (CGI & FastCGI)
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8093,7 +8093,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-cli
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-intl:libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -8103,7 +8103,7 @@ Category: Languages
 Repository: base
 Title: PHP8 Hypertext preprocessor (CLI)
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8116,7 +8116,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-fastcgi
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +php8-cgi
 Conflicts: 
 Menu-Depends: 
@@ -8126,7 +8126,7 @@ Category: Languages
 Repository: base
 Title: FastCGI startup script
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8138,7 +8138,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-fpm
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-intl:libstdcpp
 Conflicts: 
 Menu-Depends: 
@@ -8148,7 +8148,7 @@ Category: Languages
 Repository: base
 Title: PHP8 Hypertext preprocessor (FPM)
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8161,7 +8161,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: apache-mod-php8
 Submenu: Web Servers/Proxies
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 PACKAGE_apache-mod-php8:apache +PACKAGE_php8-mod-intl:libstdcpp +libpcre2 +zlib
 Conflicts: 
 Menu-Depends: 
@@ -8171,7 +8171,7 @@ Category: Network
 Repository: base
 Title: PHP8 module for Apache Web Server
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8184,7 +8184,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-bcmath
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8194,7 +8194,7 @@ Category: Languages
 Repository: base
 Title: Bcmath shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8205,7 +8205,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-calendar
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8215,7 +8215,7 @@ Category: Languages
 Repository: base
 Title: Calendar shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8226,7 +8226,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-ctype
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8236,7 +8236,7 @@ Category: Languages
 Repository: base
 Title: Ctype shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8247,7 +8247,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-curl
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-curl:libcurl
 Conflicts: 
 Menu-Depends: 
@@ -8257,7 +8257,7 @@ Category: Languages
 Repository: base
 Title: cURL shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8268,7 +8268,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-dom
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +@PHP8_LIBXML +PACKAGE_php8-mod-dom:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -8278,7 +8278,7 @@ Category: Languages
 Repository: base
 Title: DOM shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8289,7 +8289,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-exif
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8299,7 +8299,7 @@ Category: Languages
 Repository: base
 Title: EXIF shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8310,7 +8310,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-fileinfo
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8320,7 +8320,7 @@ Category: Languages
 Repository: base
 Title: Fileinfo shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8331,7 +8331,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-filter
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8341,7 +8341,7 @@ Category: Languages
 Repository: base
 Title: Filter shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8352,7 +8352,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-ftp
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-ftp:libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -8362,7 +8362,7 @@ Category: Languages
 Repository: base
 Title: FTP shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8373,7 +8373,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-gd
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-gd:libgd-full
 Conflicts: 
 Menu-Depends: 
@@ -8383,7 +8383,7 @@ Category: Languages
 Repository: base
 Title: GD graphics shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8394,7 +8394,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-gettext
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-gettext:libintl-full
 Conflicts: 
 Menu-Depends: 
@@ -8404,7 +8404,7 @@ Category: Languages
 Repository: base
 Title: Gettext shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8415,7 +8415,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-gmp
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-gmp:libgmp
 Conflicts: 
 Menu-Depends: 
@@ -8425,7 +8425,7 @@ Category: Languages
 Repository: base
 Title: GMP shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8436,7 +8436,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-iconv
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +BUILD_NLS:libiconv-full
 Conflicts: 
 Menu-Depends: 
@@ -8446,7 +8446,7 @@ Category: Languages
 Repository: base
 Title: iConv shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8457,7 +8457,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-imap
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-imap:libopenssl +PACKAGE_libpam:libpam +PACKAGE_php8-mod-imap:uw-imap
 Conflicts: 
 Menu-Depends: 
@@ -8467,7 +8467,7 @@ Category: Languages
 Repository: base
 Title: IMAP shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8478,7 +8478,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-intl
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-intl:icu +PHP8_FULLICUDATA:icu-full-data
 Conflicts: 
 Menu-Depends: 
@@ -8488,7 +8488,7 @@ Category: Languages
 Repository: base
 Title: Internationalization Functions shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8510,7 +8510,7 @@ Config:
 
 Package: php8-mod-ldap
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-ldap:libopenldap +PACKAGE_php8-mod-ldap:libsasl2
 Conflicts: 
 Menu-Depends: 
@@ -8520,7 +8520,7 @@ Category: Languages
 Repository: base
 Title: LDAP shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8531,7 +8531,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-mbstring
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-mbstring:oniguruma
 Conflicts: 
 Menu-Depends: 
@@ -8541,7 +8541,7 @@ Category: Languages
 Repository: base
 Title: MBString shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8552,7 +8552,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-mysqli
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-mysqli:php8-mod-mysqlnd
 Conflicts: 
 Menu-Depends: 
@@ -8562,7 +8562,7 @@ Category: Languages
 Repository: base
 Title: MySQL Improved Extension shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8573,7 +8573,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-mysqlnd
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-openssl:php8-mod-openssl
 Conflicts: 
 Menu-Depends: 
@@ -8583,7 +8583,7 @@ Category: Languages
 Repository: base
 Title: MySQL Native Driver shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8594,7 +8594,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-opcache
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8604,7 +8604,7 @@ Category: Languages
 Repository: base
 Title: OPcache shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8615,7 +8615,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-openssl
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-openssl:libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -8625,7 +8625,7 @@ Category: Languages
 Repository: base
 Title: OpenSSL shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8636,7 +8636,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-pcntl
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8646,7 +8646,7 @@ Category: Languages
 Repository: base
 Title: PCNTL shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8657,7 +8657,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-pdo
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8667,7 +8667,7 @@ Category: Languages
 Repository: base
 Title: PHP Data Objects shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8678,7 +8678,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-pdo-mysql
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +php8-mod-pdo +PACKAGE_php8-mod-pdo-mysql:php8-mod-mysqlnd
 Conflicts: 
 Menu-Depends: 
@@ -8688,7 +8688,7 @@ Category: Languages
 Repository: base
 Title: PDO driver for MySQL shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8699,7 +8699,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-pdo-pgsql
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +php8-mod-pdo +PACKAGE_php8-mod-pdo-pgsql:libpq
 Conflicts: 
 Menu-Depends: 
@@ -8709,7 +8709,7 @@ Category: Languages
 Repository: base
 Title: PDO driver for PostgreSQL shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8720,7 +8720,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-pdo-sqlite
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +php8-mod-pdo +PACKAGE_php8-mod-pdo-sqlite:libsqlite3 +PACKAGE_php8-mod-pdo-sqlite:librt
 Conflicts: 
 Menu-Depends: 
@@ -8730,7 +8730,7 @@ Category: Languages
 Repository: base
 Title: PDO driver for SQLite 3.x shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8741,7 +8741,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-pgsql
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-pgsql:libpq
 Conflicts: 
 Menu-Depends: 
@@ -8751,7 +8751,7 @@ Category: Languages
 Repository: base
 Title: PostgreSQL shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8762,7 +8762,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-phar
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8772,7 +8772,7 @@ Category: Languages
 Repository: base
 Title: Phar Archives shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8783,7 +8783,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-session
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8793,7 +8793,7 @@ Category: Languages
 Repository: base
 Title: Session shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8804,7 +8804,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-shmop
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8814,7 +8814,7 @@ Category: Languages
 Repository: base
 Title: Shared Memory shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8825,7 +8825,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-simplexml
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +@PHP8_LIBXML +PACKAGE_php8-mod-simplexml:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -8835,7 +8835,7 @@ Category: Languages
 Repository: base
 Title: SimpleXML shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8846,7 +8846,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-snmp
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-snmp:libnetsnmp +PACKAGE_php8-mod-snmp:libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -8856,7 +8856,7 @@ Category: Languages
 Repository: base
 Title: SNMP shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8867,7 +8867,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-soap
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +@PHP8_LIBXML +PACKAGE_php8-mod-soap:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -8877,7 +8877,7 @@ Category: Languages
 Repository: base
 Title: SOAP shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8888,7 +8888,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-sockets
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8898,7 +8898,7 @@ Category: Languages
 Repository: base
 Title: Sockets shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8909,7 +8909,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-sqlite3
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-sqlite3:libsqlite3
 Conflicts: 
 Menu-Depends: 
@@ -8919,7 +8919,7 @@ Category: Languages
 Repository: base
 Title: SQLite3 shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8930,7 +8930,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-sysvmsg
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8940,7 +8940,7 @@ Category: Languages
 Repository: base
 Title: System V messages shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8951,7 +8951,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-sysvsem
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8961,7 +8961,7 @@ Category: Languages
 Repository: base
 Title: System V shared memory shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8972,7 +8972,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-sysvshm
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -8982,7 +8982,7 @@ Category: Languages
 Repository: base
 Title: System V semaphore shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -8993,7 +8993,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-tokenizer
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8
 Conflicts: 
 Menu-Depends: 
@@ -9003,7 +9003,7 @@ Category: Languages
 Repository: base
 Title: Tokenizer shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -9014,7 +9014,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-xml
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PHP8_LIBXML:libxml2 +!PHP8_LIBXML:libexpat
 Conflicts: 
 Menu-Depends: 
@@ -9024,7 +9024,7 @@ Category: Languages
 Repository: base
 Title: XML shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -9035,7 +9035,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-xmlreader
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +@PHP8_LIBXML +PACKAGE_php8-mod-dom:php8-mod-dom +PACKAGE_php8-mod-xmlreader:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -9045,7 +9045,7 @@ Category: Languages
 Repository: base
 Title: XMLReader shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -9056,7 +9056,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-xmlwriter
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +@PHP8_LIBXML +PACKAGE_php8-mod-xmlwriter:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -9066,7 +9066,7 @@ Category: Languages
 Repository: base
 Title: XMLWriter shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -9077,7 +9077,7 @@ Michael Heimpold <mhei@heimpold.de>
 
 Package: php8-mod-zip
 Submenu: PHP8
-Version: 8.1.15-1
+Version: 8.1.16-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread php8 +PACKAGE_php8-mod-zip:libzip
 Conflicts: 
 Menu-Depends: 
@@ -9087,7 +9087,7 @@ Category: Languages
 Repository: base
 Title: ZIP shared module
 Maintainer: Michael Heimpold <mhei@heimpold.de>
-Source: php-8.1.15.tar.xz
+Source: php-8.1.16.tar.xz
 License: PHP-3.01
 LicenseFiles: LICENSE
 Type: ipkg
@@ -17308,7 +17308,7 @@ Build-Depends: bluez python3/host
 Build-Depends/host: bzip2/host libffi/host
 Build-Types: host
 
-Package: python3-unittest
+Package: python3-asyncio
 Submenu: Python
 Version: 3.10.9-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
@@ -17318,18 +17318,18 @@ Provides:
 Section: lang
 Category: Languages
 Repository: base
-Title: Python 3.10 unittest module
+Title: Python 3.10 asyncio module
 Maintainer: Jeffery To <jeffery.to@gmail.com>
 Source: Python-3.10.9.tar.xz
 License: PSF-2.0
 LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
 Type: ipkg
-Description: Python 3.10 unittest module
+Description: Python 3.10 asyncio module
 https://www.python.org/
 Jeffery To <jeffery.to@gmail.com>
 @@
 
-Package: python3-unittest-src
+Package: python3-asyncio-src
 Submenu: Python
 Version: 3.10.9-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
@@ -17339,866 +17339,20 @@ Provides:
 Section: lang
 Category: Languages
 Repository: base
-Title: Python 3.10 unittest module (sources)
+Title: Python 3.10 asyncio module (sources)
 Maintainer: Jeffery To <jeffery.to@gmail.com>
 Source: Python-3.10.9.tar.xz
 License: PSF-2.0
 LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
 Type: ipkg
-Description:     	Python 3.10 unittest module
+Description:     	Python 3.10 asyncio module
 
-    This package contains the Python source files for python3-unittest.
+    This package contains the Python source files for python3-asyncio.
 https://www.python.org/
 Jeffery To <jeffery.to@gmail.com>
 @@
 Config:
-    depends on PACKAGE_python3-unittest
-@@
-
-Package: python3-lib2to3
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 lib2to3 module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 lib2to3 module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-lib2to3-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 lib2to3 module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 lib2to3 module
-
-    This package contains the Python source files for python3-lib2to3.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-lib2to3
-@@
-
-Package: python3-ncurses
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libncursesw
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 ncurses module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 ncurses module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-ncurses-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 ncurses module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 ncurses module
-
-    This package contains the Python source files for python3-ncurses.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-ncurses
-@@
-
-Package: python3-ctypes
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 ctypes module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 ctypes module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-ctypes-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 ctypes module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 ctypes module
-
-    This package contains the Python source files for python3-ctypes.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-ctypes
-@@
-
-Package: python3-pydoc
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 pydoc module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 pydoc module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-pydoc-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 pydoc module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 pydoc module
-
-    This package contains the Python source files for python3-pydoc.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-pydoc
-@@
-
-Package: python3-decimal
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 decimal module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 decimal module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-decimal-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 decimal module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 decimal module
-
-    This package contains the Python source files for python3-decimal.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-decimal
-@@
-
-Package: python3-multiprocessing
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 multiprocessing
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 multiprocessing
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-multiprocessing-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 multiprocessing (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 multiprocessing
-
-    This package contains the Python source files for python3-multiprocessing.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-multiprocessing
-@@
-
-Package: python3-urllib
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-email
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 URL library module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 URL library module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-urllib-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 URL library module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 URL library module
-
-    This package contains the Python source files for python3-urllib.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-urllib
-@@
-
-Package: python3-pip
-Submenu: Python
-Version: 22.3.1-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3 +python3-setuptools +python-pip-conf
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 pip module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: MIT
-LicenseFiles: LICENSE.txt
-Type: ipkg
-Description: Python 3.10 pip module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-pip-src
-Submenu: Python
-Version: 22.3.1-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 pip module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: MIT
-LicenseFiles: LICENSE.txt
-Type: ipkg
-Description:     	Python 3.10 pip module
-
-    This package contains the Python source files for python3-pip.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-pip
-@@
-
-Package: python3-pkg-resources
-Submenu: Python
-Version: 65.5.0-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 pkg_resources module (part of setuptools)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: MIT
-LicenseFiles: LICENSE
-Type: ipkg
-Description: Python 3.10 pkg_resources module (part of setuptools)
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-pkg-resources-src
-Submenu: Python
-Version: 65.5.0-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 pkg_resources module (part of setuptools) (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: MIT
-LicenseFiles: LICENSE
-Type: ipkg
-Description:     	Python 3.10 pkg_resources module (part of setuptools)
-
-    This package contains the Python source files for python3-pkg-resources.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-pkg-resources
-@@
-
-Package: python3-dev
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3 +python3-lib2to3
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 development files
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 development files
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-dev-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 development files (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 development files
-
-    This package contains the Python source files for python3-dev.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-dev
-@@
-
-Package: python3-readline
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libreadline +libncursesw
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 readline module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 readline module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-readline-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 readline module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 readline module
-
-    This package contains the Python source files for python3-readline.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-readline
-@@
-
-Package: python3-xml
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-urllib
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 xml libs
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 xml libs
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-xml-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 xml libs (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 xml libs
-
-    This package contains the Python source files for python3-xml.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-xml
-@@
-
-Package: python3-sqlite3
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libsqlite3
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 sqlite3 module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 sqlite3 module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-sqlite3-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 sqlite3 module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 sqlite3 module
-
-    This package contains the Python source files for python3-sqlite3.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-sqlite3
-@@
-
-Package: python3-logging
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 logging module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 logging module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-logging-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 logging module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 logging module
-
-    This package contains the Python source files for python3-logging.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-logging
-@@
-
-Package: python3-distutils
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-email
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 distutils module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 distutils module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-distutils-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 distutils module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 distutils module
-
-    This package contains the Python source files for python3-distutils.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-distutils
-@@
-
-Package: python3-email
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 email module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 email module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-email-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 email module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 email module
-
-    This package contains the Python source files for python3-email.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-email
-@@
-
-Package: python3-openssl
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libopenssl +ca-certs
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 SSL module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description: Python 3.10 SSL module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-openssl-src
-Submenu: Python
-Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 SSL module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: PSF-2.0
-LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
-Type: ipkg
-Description:     	Python 3.10 SSL module
-
-    This package contains the Python source files for python3-openssl.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-openssl
-@@
-
-Package: python3-setuptools
-Submenu: Python
-Version: 65.5.0-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3 +python3-pkg-resources
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 setuptools module
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: MIT
-LicenseFiles: LICENSE
-Type: ipkg
-Description: Python 3.10 setuptools module
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-
-Package: python3-setuptools-src
-Submenu: Python
-Version: 65.5.0-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
-Conflicts: 
-Menu-Depends: 
-Provides: 
-Section: lang
-Category: Languages
-Repository: base
-Title: Python 3.10 setuptools module (sources)
-Maintainer: Jeffery To <jeffery.to@gmail.com>
-Source: Python-3.10.9.tar.xz
-License: MIT
-LicenseFiles: LICENSE
-Type: ipkg
-Description:     	Python 3.10 setuptools module
-
-    This package contains the Python source files for python3-setuptools.
-https://www.python.org/
-Jeffery To <jeffery.to@gmail.com>
-@@
-Config:
-    depends on PACKAGE_python3-setuptools
+    depends on PACKAGE_python3-asyncio
 @@
 
 Package: python3-cgi
@@ -18295,6 +17449,100 @@ Config:
     depends on PACKAGE_python3-cgitb
 @@
 
+Package: python3-codecs
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 codecs + unicode support
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 codecs + unicode support
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-codecs-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 codecs + unicode support (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 codecs + unicode support
+
+    This package contains the Python source files for python3-codecs.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-codecs
+@@
+
+Package: python3-ctypes
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 ctypes module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 ctypes module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-ctypes-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 ctypes module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 ctypes module
+
+    This package contains the Python source files for python3-ctypes.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-ctypes
+@@
+
 Package: python3-dbm
 Submenu: Python
 Version: 3.10.9-1
@@ -18342,7 +17590,7 @@ Config:
     depends on PACKAGE_python3-dbm
 @@
 
-Package: python3-codecs
+Package: python3-decimal
 Submenu: Python
 Version: 3.10.9-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
@@ -18352,18 +17600,18 @@ Provides:
 Section: lang
 Category: Languages
 Repository: base
-Title: Python 3.10 codecs + unicode support
+Title: Python 3.10 decimal module
 Maintainer: Jeffery To <jeffery.to@gmail.com>
 Source: Python-3.10.9.tar.xz
 License: PSF-2.0
 LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
 Type: ipkg
-Description: Python 3.10 codecs + unicode support
+Description: Python 3.10 decimal module
 https://www.python.org/
 Jeffery To <jeffery.to@gmail.com>
 @@
 
-Package: python3-codecs-src
+Package: python3-decimal-src
 Submenu: Python
 Version: 3.10.9-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
@@ -18373,20 +17621,255 @@ Provides:
 Section: lang
 Category: Languages
 Repository: base
-Title: Python 3.10 codecs + unicode support (sources)
+Title: Python 3.10 decimal module (sources)
 Maintainer: Jeffery To <jeffery.to@gmail.com>
 Source: Python-3.10.9.tar.xz
 License: PSF-2.0
 LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
 Type: ipkg
-Description:     	Python 3.10 codecs + unicode support
+Description:     	Python 3.10 decimal module
 
-    This package contains the Python source files for python3-codecs.
+    This package contains the Python source files for python3-decimal.
 https://www.python.org/
 Jeffery To <jeffery.to@gmail.com>
 @@
 Config:
-    depends on PACKAGE_python3-codecs
+    depends on PACKAGE_python3-decimal
+@@
+
+Package: python3-dev
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3 +python3-lib2to3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 development files
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 development files
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-dev-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 development files (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 development files
+
+    This package contains the Python source files for python3-dev.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-dev
+@@
+
+Package: python3-distutils
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-email
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 distutils module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 distutils module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-distutils-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 distutils module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 distutils module
+
+    This package contains the Python source files for python3-distutils.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-distutils
+@@
+
+Package: python3-email
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 email module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 email module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-email-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 email module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 email module
+
+    This package contains the Python source files for python3-email.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-email
+@@
+
+Package: python3-lib2to3
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 lib2to3 module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 lib2to3 module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-lib2to3-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 lib2to3 module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 lib2to3 module
+
+    This package contains the Python source files for python3-lib2to3.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-lib2to3
+@@
+
+Package: python3-logging
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 logging module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 logging module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-logging-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 logging module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 logging module
+
+    This package contains the Python source files for python3-logging.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-logging
 @@
 
 Package: python3-lzma
@@ -18436,7 +17919,7 @@ Config:
     depends on PACKAGE_python3-lzma
 @@
 
-Package: python3-asyncio
+Package: python3-multiprocessing
 Submenu: Python
 Version: 3.10.9-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
@@ -18446,18 +17929,18 @@ Provides:
 Section: lang
 Category: Languages
 Repository: base
-Title: Python 3.10 asyncio module
+Title: Python 3.10 multiprocessing
 Maintainer: Jeffery To <jeffery.to@gmail.com>
 Source: Python-3.10.9.tar.xz
 License: PSF-2.0
 LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
 Type: ipkg
-Description: Python 3.10 asyncio module
+Description: Python 3.10 multiprocessing
 https://www.python.org/
 Jeffery To <jeffery.to@gmail.com>
 @@
 
-Package: python3-asyncio-src
+Package: python3-multiprocessing-src
 Submenu: Python
 Version: 3.10.9-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
@@ -18467,20 +17950,490 @@ Provides:
 Section: lang
 Category: Languages
 Repository: base
-Title: Python 3.10 asyncio module (sources)
+Title: Python 3.10 multiprocessing (sources)
 Maintainer: Jeffery To <jeffery.to@gmail.com>
 Source: Python-3.10.9.tar.xz
 License: PSF-2.0
 LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
 Type: ipkg
-Description:     	Python 3.10 asyncio module
+Description:     	Python 3.10 multiprocessing
 
-    This package contains the Python source files for python3-asyncio.
+    This package contains the Python source files for python3-multiprocessing.
 https://www.python.org/
 Jeffery To <jeffery.to@gmail.com>
 @@
 Config:
-    depends on PACKAGE_python3-asyncio
+    depends on PACKAGE_python3-multiprocessing
+@@
+
+Package: python3-ncurses
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libncursesw
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 ncurses module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 ncurses module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-ncurses-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 ncurses module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 ncurses module
+
+    This package contains the Python source files for python3-ncurses.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-ncurses
+@@
+
+Package: python3-openssl
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libopenssl +ca-certs
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 SSL module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 SSL module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-openssl-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 SSL module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 SSL module
+
+    This package contains the Python source files for python3-openssl.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-openssl
+@@
+
+Package: python3-pip
+Submenu: Python
+Version: 22.3.1-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3 +python3-setuptools +python-pip-conf
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 pip module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: MIT
+LicenseFiles: LICENSE.txt
+Type: ipkg
+Description: Python 3.10 pip module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-pip-src
+Submenu: Python
+Version: 22.3.1-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 pip module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: MIT
+LicenseFiles: LICENSE.txt
+Type: ipkg
+Description:     	Python 3.10 pip module
+
+    This package contains the Python source files for python3-pip.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-pip
+@@
+
+Package: python3-pkg-resources
+Submenu: Python
+Version: 65.5.0-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 pkg_resources module (part of setuptools)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description: Python 3.10 pkg_resources module (part of setuptools)
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-pkg-resources-src
+Submenu: Python
+Version: 65.5.0-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 pkg_resources module (part of setuptools) (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     	Python 3.10 pkg_resources module (part of setuptools)
+
+    This package contains the Python source files for python3-pkg-resources.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-pkg-resources
+@@
+
+Package: python3-pydoc
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 pydoc module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 pydoc module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-pydoc-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 pydoc module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 pydoc module
+
+    This package contains the Python source files for python3-pydoc.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-pydoc
+@@
+
+Package: python3-readline
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libreadline +libncursesw
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 readline module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 readline module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-readline-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 readline module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 readline module
+
+    This package contains the Python source files for python3-readline.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-readline
+@@
+
+Package: python3-setuptools
+Submenu: Python
+Version: 65.5.0-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3 +python3-pkg-resources
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 setuptools module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description: Python 3.10 setuptools module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-setuptools-src
+Submenu: Python
+Version: 65.5.0-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 setuptools module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: MIT
+LicenseFiles: LICENSE
+Type: ipkg
+Description:     	Python 3.10 setuptools module
+
+    This package contains the Python source files for python3-setuptools.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-setuptools
+@@
+
+Package: python3-sqlite3
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +libsqlite3
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 sqlite3 module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 sqlite3 module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-sqlite3-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 sqlite3 module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 sqlite3 module
+
+    This package contains the Python source files for python3-sqlite3.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-sqlite3
+@@
+
+Package: python3-unittest
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 unittest module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 unittest module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-unittest-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 unittest module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 unittest module
+
+    This package contains the Python source files for python3-unittest.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-unittest
+@@
+
+Package: python3-urllib
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-email
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 URL library module
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 URL library module
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-urllib-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 URL library module (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 URL library module
+
+    This package contains the Python source files for python3-urllib.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-urllib
 @@
 
 Package: python3-uuid
@@ -18528,6 +18481,53 @@ Jeffery To <jeffery.to@gmail.com>
 @@
 Config:
     depends on PACKAGE_python3-uuid
+@@
+
+Package: python3-xml
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-urllib
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 xml libs
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description: Python 3.10 xml libs
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+
+Package: python3-xml-src
+Submenu: Python
+Version: 3.10.9-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
+Conflicts: 
+Menu-Depends: 
+Provides: 
+Section: lang
+Category: Languages
+Repository: base
+Title: Python 3.10 xml libs (sources)
+Maintainer: Jeffery To <jeffery.to@gmail.com>
+Source: Python-3.10.9.tar.xz
+License: PSF-2.0
+LicenseFiles: LICENSE Doc/copyright.rst Doc/license.rst Modules/_ctypes/darwin/LICENSE Modules/_ctypes/libffi_osx/LICENSE Modules/expat/COPYING
+Type: ipkg
+Description:     	Python 3.10 xml libs
+
+    This package contains the Python source files for python3-xml.
+https://www.python.org/
+Jeffery To <jeffery.to@gmail.com>
+@@
+Config:
+    depends on PACKAGE_python3-xml
 @@
 
 Package: libpython3
@@ -18602,7 +18602,7 @@ Config:
 Package: python3
 Submenu: Python
 Version: 3.10.9-1
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-unittest +python3-ncurses +python3-ctypes +python3-pydoc +python3-decimal +python3-multiprocessing +python3-urllib +python3-readline +python3-xml +python3-sqlite3 +python3-logging +python3-distutils +python3-email +python3-openssl +python3-cgi +python3-cgitb +python3-dbm +python3-codecs +python3-lzma +python3-asyncio +python3-uuid
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +python3-light +python3-asyncio +python3-cgi +python3-cgitb +python3-codecs +python3-ctypes +python3-dbm +python3-decimal +python3-distutils +python3-email +python3-logging +python3-lzma +python3-multiprocessing +python3-ncurses +python3-openssl +python3-pydoc +python3-readline +python3-sqlite3 +python3-unittest +python3-urllib +python3-uuid +python3-xml
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -24619,7 +24619,7 @@ Source-Makefile: feeds/packages/libs/dmx_usb_module/Makefile
 Package: kmod-usb-serial-dmx_usb_module
 Submenu: USB Support
 Version: <LINUX_VERSION>+19.12.1-1
-Depends:  kmod-usb-serial
+Depends: kmod-usb-serial
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -44552,7 +44552,7 @@ Package: lmdb-utils
 Version: 0.9.29-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
-Menu-Depends:  lmdb
+Menu-Depends: lmdb
 Provides: 
 Section: libs
 Category: Libraries
@@ -44572,7 +44572,7 @@ Package: lmdb-test
 Version: 0.9.29-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
-Menu-Depends:  lmdb
+Menu-Depends: lmdb
 Provides: 
 Section: libs
 Category: Libraries
@@ -44712,7 +44712,7 @@ David Woodhouse <dwmw2@infradead.org>
 Source-Makefile: feeds/packages/libs/msgpack-c/Makefile
 
 Package: msgpack-c
-Version: 4.0.0-0
+Version: 5.0.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -44722,7 +44722,7 @@ Category: Libraries
 Repository: base
 Title: MessagePack implementation for C
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: msgpack-c-4.0.0.tar.gz
+Source: msgpack-c-5.0.0.tar.gz
 License: BSL-1.0
 LicenseFiles: COPYING LICENSE_1_0.txt
 Type: ipkg
@@ -46697,7 +46697,7 @@ Source-Makefile: feeds/packages/libs/sqlite3/Makefile
 
 Package: libsqlite3
 Submenu: Database
-Version: 3400000-0
+Version: 3410100-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +zlib
 Conflicts: 
 Menu-Depends: 
@@ -46707,7 +46707,7 @@ Category: Libraries
 Repository: base
 Title: SQLite (v3.x) database engine (library)
 Maintainer: 
-Source: sqlite-autoconf-3400000.tar.gz
+Source: sqlite-autoconf-3410100.tar.gz
 License: PUBLICDOMAIN
 Type: ipkg
 Description:  SQLite is a small C library that implements a self-contained, embeddable,
@@ -46723,7 +46723,7 @@ Config:
 
 Package: sqlite3-cli
 Submenu: Database
-Version: 3400000-0
+Version: 3410100-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libsqlite3 +SQLITE3_LIBEDIT:libedit +SQLITE3_READLINE:libreadline +SQLITE3_READLINE:libncursesw
 Conflicts: 
 Menu-Depends: 
@@ -46733,7 +46733,7 @@ Category: Utilities
 Repository: base
 Title: SQLite (v3.x) database engine (cli)
 Maintainer: 
-Source: sqlite-autoconf-3400000.tar.gz
+Source: sqlite-autoconf-3410100.tar.gz
 License: PUBLICDOMAIN
 Type: ipkg
 Description:  SQLite is a small C library that implements a self-contained, embeddable,
@@ -47273,7 +47273,7 @@ Source-Makefile: feeds/packages/libs/xr_usb_serial_common/Makefile
 Package: kmod-usb-serial-xr_usb_serial_common
 Submenu: USB Support
 Version: <LINUX_VERSION>+2022-03-30-ecc6ebe0141b97942d774e6c6be37a330cc11a74-0
-Depends:  kmod-usb-serial
+Depends: kmod-usb-serial
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -54460,7 +54460,7 @@ http://xupnpd.org/
 Source-Makefile: feeds/packages/multimedia/yt-dlp/Makefile
 
 Package: yt-dlp
-Version: 2023.1.6-1
+Version: 2023.3.4-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +ca-certificates +python3-asyncio +python3-codecs +python3-ctypes +python3-email +python3-openssl +python3-sqlite3 +python3-urllib +python3-xml
 Conflicts: 
 Menu-Depends: 
@@ -54470,7 +54470,7 @@ Category: Multimedia
 Repository: base
 Title: Utility to download videos from YouTube.com
 Maintainer: Michal Vasilek <michal.vasilek@nic.cz>
-Source: yt-dlp-2023.1.6.tar.gz
+Source: yt-dlp-2023.3.4.tar.gz
 License: Unlicense
 LicenseFiles: LICENSE
 Type: ipkg
@@ -54482,7 +54482,7 @@ Michal Vasilek <michal.vasilek@nic.cz>
 @@
 
 Package: yt-dlp-src
-Version: 2023.1.6-1
+Version: 2023.3.4-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -54492,7 +54492,7 @@ Category: Multimedia
 Repository: base
 Title: Utility to download videos from YouTube.com (sources)
 Maintainer: Michal Vasilek <michal.vasilek@nic.cz>
-Source: yt-dlp-2023.1.6.tar.gz
+Source: yt-dlp-2023.3.4.tar.gz
 License: Unlicense
 LicenseFiles: LICENSE
 Type: ipkg
@@ -54554,7 +54554,7 @@ Toke Høiland-Jørgensen <toke@toke.dk>
 Source-Makefile: feeds/packages/net/adblock/Makefile
 
 Package: adblock
-Version: 4.1.5-6
+Version: 4.1.5-7
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +jshn +jsonfilter +coreutils +coreutils-sort +ca-bundle +opkg
 Conflicts: 
 Menu-Depends: 
@@ -55558,21 +55558,21 @@ Christian Beier <cb@shoutrlabs.com>
 Source-Makefile: feeds/packages/net/banip/Makefile
 
 Package: banip
-Version: 0.7.10-6
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +jshn +jsonfilter +ip +ipset +iptables +ca-bundle @BROKEN
+Version: 0.8.2-2
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +jshn +jsonfilter +firewall4 +ca-bundle +logd +rpcd +rpcd-mod-rpcsys
 Conflicts: 
 Menu-Depends: 
 Provides: 
 Section: net
 Category: Network
 Repository: base
-Title: Ban incoming and outgoing ip adresses via ipsets
+Title: banIP blocks IP addresses via named nftables sets
 Maintainer: Dirk Brenken <dev@brenken.org>
 Source: 
 License: GPL-3.0-or-later
 Type: ipkg
-Description: Powerful banIP script to block ip addresses via ipsets.
-The script supports many ip blacklist sites plus manual black- and whitelist overrides.
+Description: banIP blocks IP addresses via named nftables sets.
+banIP supports many IP blocklist feeds and provides a log service to block suspicious IPs in realtime.
 Please see https://github.com/openwrt/packages/blob/master/net/banip/files/README.md for further information.
 
 Dirk Brenken <dev@brenken.org>
@@ -56307,7 +56307,7 @@ Build-Depends: golang/host
 
 Package: cloudflared
 Submenu: Web Servers/Proxies
-Version: 2023.2.1-1
+Version: 2023.3.1-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) +ca-bundle
 Conflicts: 
 Menu-Depends: 
@@ -56317,7 +56317,7 @@ Category: Network
 Repository: base
 Title: Cloudflare Tunnel client
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: cloudflared-2023.2.1.tar.gz
+Source: cloudflared-2023.3.1.tar.gz
 License: Apache-2.0
 LicenseFiles: LICENSE
 Type: ipkg
@@ -56525,7 +56525,7 @@ Source-Makefile: feeds/packages/net/crowdsec/Makefile
 Build-Depends: golang/host
 
 Package: crowdsec
-Version: 1.3.0-0
+Version: 1.4.6-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
 Conflicts: 
 Menu-Depends: 
@@ -56535,7 +56535,7 @@ Category: Network
 Repository: base
 Title: Crowdsec detection engine
 Maintainer: Gerald Kerma <gandalf@gk2.net>
-Source: crowdsec-1.3.0.tar.gz
+Source: crowdsec-1.4.6.tar.gz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg
@@ -56554,8 +56554,8 @@ Source-Makefile: feeds/packages/net/crowdsec-firewall-bouncer/Makefile
 Build-Depends: golang/host
 
 Package: crowdsec-firewall-bouncer
-Version: 0.0.21-0
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(PACKAGE_iptables||PACKAGE_nftables) @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
+Version: 0.0.25-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -56564,7 +56564,7 @@ Category: Network
 Repository: base
 Title: Firewall bouncer for Crowdsec
 Maintainer: Gerald Kerma <gandalf@gk2.net>
-Source: crowdsec-firewall-bouncer-0.0.21.tar.gz
+Source: crowdsec-firewall-bouncer-0.0.25.tar.gz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg
@@ -56573,7 +56573,7 @@ Description:   Crowdsec bouncer written in golang for firewalls.
   crowdsec-firewall-bouncer will fetch new and old decisions
   from a CrowdSec API to add them in a blocklist used by supported firewalls.
 
-  You must install iptables+ipset or nftables.
+  You must install nftables.
 
   This package contains the main program.
 https://github.com/crowdsecurity/cs-firewall-bouncer/
@@ -56608,7 +56608,7 @@ Build-Depends: !BUILD_NLS:libiconv
 
 Package: libcurl
 Menu: 1
-Version: 7.86.0-0
+Version: 7.88.1-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +LIBCURL_WOLFSSL:libwolfssl +LIBCURL_OPENSSL:libopenssl +LIBCURL_GNUTLS:libgnutls +LIBCURL_MBEDTLS:libmbedtls +LIBCURL_ZLIB:zlib +LIBCURL_ZSTD:libzstd +LIBCURL_THREADED_RESOLVER:libpthread +LIBCURL_LDAP:libopenldap +LIBCURL_LIBIDN2:libidn2 +LIBCURL_SSH2:libssh2 +LIBCURL_NGHTTP2:libnghttp2 +ca-bundle
 Conflicts: 
 Menu-Depends: 
@@ -56618,7 +56618,7 @@ Category: Libraries
 Repository: base
 Title: A client-side URL transfer library
 Maintainer: Stan Grishin <stangri@melmac.ca>
-Source: curl-7.86.0.tar.xz
+Source: curl-7.88.1.tar.xz
 License: MIT
 LicenseFiles: COPYING
 Type: ipkg
@@ -56632,7 +56632,7 @@ Config:
 
 Package: curl
 Submenu: File Transfer
-Version: 7.86.0-0
+Version: 7.88.1-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libcurl
 Conflicts: 
 Menu-Depends: 
@@ -56642,7 +56642,7 @@ Category: Network
 Repository: base
 Title: A client-side URL transfer utility
 Maintainer: Stan Grishin <stangri@melmac.ca>
-Source: curl-7.86.0.tar.xz
+Source: curl-7.88.1.tar.xz
 License: MIT
 LicenseFiles: COPYING
 Type: ipkg
@@ -58918,7 +58918,7 @@ Build-Depends: golang/host
 
 Package: frpc
 Submenu: Web Servers/Proxies
-Version: 0.46.1-1
+Version: 0.48.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
 Conflicts: 
 Menu-Depends: 
@@ -58928,7 +58928,7 @@ Category: Network
 Repository: base
 Title: frpc - fast reverse proxy client
 Maintainer: Richard Yu <yurichard3839@gmail.com>
-Source: frp-0.46.1.tar.gz
+Source: frp-0.48.0.tar.gz
 License: Apache-2.0
 LicenseFiles: LICENSE
 Type: ipkg
@@ -58940,7 +58940,7 @@ Richard Yu <yurichard3839@gmail.com>
 
 Package: frps
 Submenu: Web Servers/Proxies
-Version: 0.46.1-1
+Version: 0.48.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
 Conflicts: 
 Menu-Depends: 
@@ -58950,7 +58950,7 @@ Category: Network
 Repository: base
 Title: frps - fast reverse proxy server
 Maintainer: Richard Yu <yurichard3839@gmail.com>
-Source: frp-0.46.1.tar.gz
+Source: frp-0.48.0.tar.gz
 License: Apache-2.0
 LicenseFiles: LICENSE
 Type: ipkg
@@ -59814,7 +59814,7 @@ Source-Makefile: feeds/packages/net/git/Makefile
 
 Package: git
 Submenu: Version Control Systems
-Version: 2.34.6-1
+Version: 2.34.7-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libpthread +librt +zlib
 Conflicts: 
 Menu-Depends: 
@@ -59824,7 +59824,7 @@ Category: Network
 Repository: base
 Title: The fast version control system
 Maintainer: Peter Wagner <tripolar@gmx.at>
-Source: git-2.34.6.tar.xz
+Source: git-2.34.7.tar.xz
 License: GPL-2.0-or-later
 LicenseFiles: COPYING
 Type: ipkg
@@ -59837,7 +59837,7 @@ Peter Wagner <tripolar@gmx.at>
 
 Package: git-http
 Submenu: Version Control Systems
-Version: 2.34.6-1
+Version: 2.34.7-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libpthread +librt +zlib +git +libcurl
 Conflicts: 
 Menu-Depends: 
@@ -59847,7 +59847,7 @@ Category: Network
 Repository: base
 Title: Git HTTP commands
 Maintainer: Peter Wagner <tripolar@gmx.at>
-Source: git-2.34.6.tar.xz
+Source: git-2.34.7.tar.xz
 License: GPL-2.0-or-later
 LicenseFiles: COPYING
 Type: ipkg
@@ -59862,7 +59862,7 @@ Peter Wagner <tripolar@gmx.at>
 
 Package: git-gitweb
 Submenu: Version Control Systems
-Version: 2.34.6-1
+Version: 2.34.7-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libpthread +librt +zlib +git +perl-cgi +perlbase-digest +perlbase-encode +perlbase-essential +perlbase-fcntl +perlbase-file +perlbase-filetest +perlbase-storable +perlbase-time
 Conflicts: 
 Menu-Depends: 
@@ -59872,7 +59872,7 @@ Category: Network
 Repository: base
 Title: Git repository web interface
 Maintainer: Peter Wagner <tripolar@gmx.at>
-Source: git-2.34.6.tar.xz
+Source: git-2.34.7.tar.xz
 License: GPL-2.0-or-later
 LicenseFiles: COPYING
 Type: ipkg
@@ -60860,7 +60860,7 @@ Source-Makefile: feeds/packages/net/haproxy/Makefile
 
 Package: haproxy
 Submenu: Web Servers/Proxies
-Version: 2.4.17-0
+Version: 2.4.22-0
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcre +libltdl +zlib +libpthread +liblua5.3 +libopenssl +libncurses +libreadline +libatomic
 Conflicts: 
 Menu-Depends: 
@@ -60871,7 +60871,7 @@ Category: Network
 Repository: base
 Title: TCP/HTTP Load Balancer with SSL support
 Maintainer: Thomas Heil <heil@terminal-consulting.de>, Christian Lachner <gladiac@gmail.com>
-Source: haproxy-2.4.17.tar.gz
+Source: haproxy-2.4.22.tar.gz
 License: GPL-2.0-only
 LicenseFiles: LICENSE
 Type: ipkg
@@ -60883,7 +60883,7 @@ Thomas Heil <heil@terminal-consulting.de>, Christian Lachner <gladiac@gmail.com>
 
 Package: halog
 Submenu: Web Servers/Proxies
-Version: 2.4.17-0
+Version: 2.4.22-0
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread haproxy
 Conflicts: 
 Menu-Depends: 
@@ -60894,7 +60894,7 @@ Category: Network
 Repository: base
 Title: TCP/HTTP Load Balancer with SSL support halog
 Maintainer: Thomas Heil <heil@terminal-consulting.de>, Christian Lachner <gladiac@gmail.com>
-Source: haproxy-2.4.17.tar.gz
+Source: haproxy-2.4.22.tar.gz
 License: GPL-2.0-only
 LicenseFiles: LICENSE
 Type: ipkg
@@ -60905,7 +60905,7 @@ Thomas Heil <heil@terminal-consulting.de>, Christian Lachner <gladiac@gmail.com>
 
 Package: haproxy-nossl
 Submenu: Web Servers/Proxies
-Version: 2.4.17-0
+Version: 2.4.22-0
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcre +libltdl +zlib +libpthread +liblua5.3 +libatomic
 Conflicts: haproxy
 Menu-Depends: 
@@ -60916,7 +60916,7 @@ Category: Network
 Repository: base
 Title: TCP/HTTP Load Balancer without SSL support
 Maintainer: Thomas Heil <heil@terminal-consulting.de>, Christian Lachner <gladiac@gmail.com>
-Source: haproxy-2.4.17.tar.gz
+Source: haproxy-2.4.22.tar.gz
 License: GPL-2.0-only
 LicenseFiles: LICENSE
 Type: ipkg
@@ -61185,7 +61185,7 @@ Marcin Jurkowski <marcin1j@gmail.com>
 Source-Makefile: feeds/packages/net/https-dns-proxy/Makefile
 
 Package: https-dns-proxy
-Version: 2022-10-15-10
+Version: 2022-10-15-11
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libcares +libcurl +libev +ca-bundle +jsonfilter
 Conflicts: https_dns_proxy
 Menu-Depends: 
@@ -64639,7 +64639,7 @@ Source-Makefile: feeds/packages/net/miniupnpd/Makefile
 
 Package: miniupnpd-iptables
 Submenu: Firewall
-Version: 2022-08-31-68c8ec508a421f4f4af67a63e3eb6f497d2531e1-1
+Version: 2.3.3-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libcap-ng +libmnl +libuuid +IPV6:ip6tables +IPV6:libip6tc +iptables +libip4tc +libnetfilter-conntrack
 Conflicts: 
 Menu-Depends: 
@@ -64650,7 +64650,7 @@ Category: Network
 Repository: base
 Title: Lightweight UPnP IGD, NAT-PMP & PCP daemon (iptables)
 Maintainer: 
-Source: miniupnpd-2022-08-31-68c8ec508a421f4f4af67a63e3eb6f497d2531e1.tar.xz
+Source: miniupnpd-2.3.3.tar.gz
 License: BSD-3-Clause
 LicenseFiles: LICENSE
 Type: ipkg
@@ -64661,7 +64661,7 @@ https://miniupnp.tuxfamily.org/
 
 Package: miniupnpd-nftables
 Submenu: Firewall
-Version: 2022-08-31-68c8ec508a421f4f4af67a63e3eb6f497d2531e1-1
+Version: 2.3.3-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libcap-ng +libmnl +libuuid +libnftnl
 Conflicts: miniupnpd-iptables
 Menu-Depends: 
@@ -64673,7 +64673,7 @@ Category: Network
 Repository: base
 Title: Lightweight UPnP IGD, NAT-PMP & PCP daemon (nftables)
 Maintainer: 
-Source: miniupnpd-2022-08-31-68c8ec508a421f4f4af67a63e3eb6f497d2531e1.tar.xz
+Source: miniupnpd-2.3.3.tar.gz
 License: BSD-3-Clause
 LicenseFiles: LICENSE
 Type: ipkg
@@ -65875,7 +65875,7 @@ Version: 1.21.3-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libopenssl +libpthread +libpcre +nginx-ssl-util +zlib +liblua +libxml2 +libubus +libblobmsg-json +libjson-c
 Conflicts: 
 Menu-Depends: 
-Provides:  nginx-ssl
+Provides: nginx-ssl
 Build-Variant: all-module
 Section: net
 Category: Network
@@ -71361,7 +71361,7 @@ Vladimir Ulrich <admin@evl.su>
 Source-Makefile: feeds/packages/net/simple-adblock/Makefile
 
 Package: simple-adblock
-Version: 1.9.4-3
+Version: 1.9.4-4
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +jshn +wget
 Conflicts: 
 Menu-Depends: 
@@ -72261,7 +72261,7 @@ Build-Depends: !BUILD_NLS:libiconv
 Package: strongswan
 Menu: 1
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +ip +kmod-crypto-authenc +kmod-ipsec +kmod-ipsec4 +IPV6:kmod-ipsec6
 Conflicts: 
 Menu-Depends: 
@@ -72285,7 +72285,7 @@ Config:
 
 Package: strongswan-default
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-charon +strongswan-mod-aes +strongswan-mod-attr +strongswan-mod-connmark +strongswan-mod-constraints +strongswan-mod-des +strongswan-mod-dnskey +strongswan-mod-fips-prf +strongswan-mod-gmp +strongswan-mod-hmac +strongswan-mod-kernel-netlink +strongswan-mod-md5 +strongswan-mod-nonce +strongswan-mod-pem +strongswan-mod-pgp +strongswan-mod-pkcs1 +strongswan-mod-pubkey +strongswan-mod-random +strongswan-mod-rc2 +strongswan-mod-resolve +strongswan-mod-revocation +strongswan-mod-sha1 +strongswan-mod-sha2 +strongswan-mod-socket-default +strongswan-mod-sshkey +strongswan-mod-updown +strongswan-mod-x509 +strongswan-mod-xauth-generic +strongswan-mod-xcbc +strongswan-swanctl
 Conflicts: 
 Menu-Depends: 
@@ -72306,7 +72306,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-full
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-charon +strongswan-charon-cmd +strongswan-ipsec +strongswan-libnttfft +strongswan-mod-addrblock +strongswan-mod-aes +strongswan-mod-af-alg +strongswan-mod-agent +strongswan-mod-attr +strongswan-mod-attr-sql +strongswan-mod-bliss +strongswan-mod-blowfish +strongswan-mod-ccm +strongswan-mod-chapoly +strongswan-mod-cmac +strongswan-mod-constraints +strongswan-mod-connmark +strongswan-mod-coupling +strongswan-mod-ctr +strongswan-mod-curl +strongswan-mod-curve25519 +strongswan-mod-des +strongswan-mod-dhcp +strongswan-mod-dnskey +strongswan-mod-duplicheck +strongswan-mod-eap-identity +strongswan-mod-eap-md5 +strongswan-mod-eap-mschapv2 +strongswan-mod-eap-radius +strongswan-mod-eap-tls +strongswan-mod-farp +strongswan-mod-fips-prf +strongswan-mod-forecast +strongswan-mod-gcm +strongswan-mod-gcrypt +strongswan-mod-gmp +strongswan-mod-ha +strongswan-mod-hmac +strongswan-mod-kernel-netlink +strongswan-mod-ldap +strongswan-mod-led +strongswan-mod-load-tester +strongswan-mod-nonce +strongswan-mod-md4 +strongswan-mod-md5 +strongswan-mod-mgf1 +strongswan-mod-mysql +strongswan-mod-newhope +strongswan-mod-ntru +strongswan-mod-openssl +strongswan-mod-pem +strongswan-mod-pgp +strongswan-mod-pkcs1 +strongswan-mod-pkcs7 +strongswan-mod-pkcs8 +strongswan-mod-pkcs11 +strongswan-mod-pkcs12 +strongswan-mod-pubkey +strongswan-mod-random +strongswan-mod-rc2 +strongswan-mod-resolve +strongswan-mod-revocation +strongswan-mod-sha1 +strongswan-mod-sha2 +strongswan-mod-sha3 +strongswan-mod-smp +strongswan-mod-socket-default +strongswan-mod-sql +strongswan-mod-sqlite +strongswan-mod-sshkey +strongswan-mod-stroke +strongswan-mod-test-vectors +strongswan-mod-uci +strongswan-mod-unity +strongswan-mod-updown +strongswan-mod-vici +strongswan-mod-whitelist +strongswan-mod-wolfssl +strongswan-mod-x509 +strongswan-mod-xauth-eap +strongswan-mod-xauth-generic +strongswan-mod-xcbc +strongswan-pki +strongswan-scepclient +strongswan-swanctl @DEVEL
 Conflicts: 
 Menu-Depends: 
@@ -72330,7 +72330,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-minimal
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-charon +strongswan-mod-aes +strongswan-mod-gmp +strongswan-mod-hmac +strongswan-mod-kernel-netlink +strongswan-mod-nonce +strongswan-mod-pubkey +strongswan-mod-random +strongswan-mod-sha1 +strongswan-mod-socket-default +strongswan-mod-stroke +strongswan-mod-updown +strongswan-mod-x509 +strongswan-mod-xcbc
 Conflicts: 
 Menu-Depends: 
@@ -72351,7 +72351,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-isakmp
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-charon +strongswan-ipsec +strongswan-mod-aes +strongswan-mod-des +strongswan-mod-gmpdh +strongswan-mod-hmac +strongswan-mod-kernel-netlink +strongswan-mod-md5 +strongswan-mod-nonce +strongswan-mod-pubkey +strongswan-mod-random +strongswan-mod-sha1 +strongswan-mod-socket-default +strongswan-mod-stroke +strongswan-mod-uci +strongswan-mod-updown
 Conflicts: 
 Menu-Depends: 
@@ -72374,7 +72374,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-charon
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72395,7 +72395,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-charon-cmd
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-charon
 Conflicts: 
 Menu-Depends: 
@@ -72416,7 +72416,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-ipsec
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72437,7 +72437,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-libnttfft
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72458,7 +72458,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-pki
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72479,7 +72479,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-scepclient
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72500,7 +72500,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-swanctl
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-mod-vici
 Conflicts: 
 Menu-Depends: 
@@ -72521,7 +72521,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-gencerts
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-pki bash
 Conflicts: 
 Menu-Depends: 
@@ -72542,7 +72542,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-libtls
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72564,7 +72564,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-addrblock
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72584,7 +72584,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-aes
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72604,7 +72604,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-af-alg
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +kmod-crypto-user
 Conflicts: 
 Menu-Depends: 
@@ -72624,7 +72624,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-agent
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72644,7 +72644,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-attr
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72664,7 +72664,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-attr-sql
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-charon
 Conflicts: 
 Menu-Depends: 
@@ -72684,7 +72684,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-bliss
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-libnttfft +strongswan-mod-mgf1 +strongswan-mod-hmac
 Conflicts: 
 Menu-Depends: 
@@ -72704,7 +72704,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-blowfish
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72724,7 +72724,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-ccm
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72744,7 +72744,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-chapoly
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +kmod-crypto-chacha20poly1305
 Conflicts: 
 Menu-Depends: 
@@ -72764,7 +72764,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-cmac
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72784,7 +72784,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-connmark
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +libip4tc
 Conflicts: 
 Menu-Depends: 
@@ -72804,7 +72804,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-constraints
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72824,7 +72824,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-coupling
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72844,7 +72844,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-ctr
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72864,7 +72864,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-curl
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +PACKAGE_strongswan-mod-curl:libcurl
 Conflicts: 
 Menu-Depends: 
@@ -72884,7 +72884,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-curve25519
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72904,7 +72904,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-des
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72924,7 +72924,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-dhcp
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72944,7 +72944,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-dnskey
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72964,7 +72964,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-duplicheck
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -72984,7 +72984,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-eap-identity
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73004,7 +73004,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-eap-md5
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73024,7 +73024,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-eap-mschapv2
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-mod-md4 +strongswan-mod-des
 Conflicts: 
 Menu-Depends: 
@@ -73044,7 +73044,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-eap-radius
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73064,7 +73064,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-eap-tls
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-libtls
 Conflicts: 
 Menu-Depends: 
@@ -73084,7 +73084,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-farp
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73104,7 +73104,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-fips-prf
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-mod-sha1
 Conflicts: 
 Menu-Depends: 
@@ -73124,7 +73124,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-forecast
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +libip4tc +kmod-ipt-conntrack-extra
 Conflicts: 
 Menu-Depends: 
@@ -73144,7 +73144,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-gcm
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73164,7 +73164,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-gcrypt
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +PACKAGE_strongswan-mod-gcrypt:libgcrypt
 Conflicts: 
 Menu-Depends: 
@@ -73184,7 +73184,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-gmp
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +PACKAGE_strongswan-mod-gmp:libgmp
 Conflicts: 
 Menu-Depends: 
@@ -73204,7 +73204,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-gmpdh
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73224,7 +73224,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-ha
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73244,7 +73244,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-hmac
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73264,7 +73264,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-kernel-libipsec
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73284,7 +73284,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-kernel-netlink
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73304,7 +73304,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-ldap
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +PACKAGE_strongswan-mod-ldap:libopenldap
 Conflicts: 
 Menu-Depends: 
@@ -73324,7 +73324,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-led
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73344,7 +73344,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-load-tester
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73364,7 +73364,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-nonce
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73384,7 +73384,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-md4
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73404,7 +73404,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-md5
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73424,7 +73424,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-mgf1
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73444,7 +73444,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-mysql
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-mod-sql +PACKAGE_strongswan-mod-mysql:libmysqlclient-r
 Conflicts: 
 Menu-Depends: 
@@ -73464,7 +73464,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-newhope
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-libnttfft +strongswan-mod-chapoly +strongswan-mod-sha3
 Conflicts: 
 Menu-Depends: 
@@ -73484,7 +73484,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-ntru
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-mod-mgf1
 Conflicts: 
 Menu-Depends: 
@@ -73504,7 +73504,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-openssl
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +PACKAGE_strongswan-mod-openssl:libopenssl
 Conflicts: 
 Menu-Depends: 
@@ -73524,7 +73524,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-pem
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73544,7 +73544,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-pgp
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73564,7 +73564,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-pkcs1
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73584,7 +73584,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-pkcs7
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73604,7 +73604,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-pkcs8
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73624,7 +73624,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-pkcs11
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73644,7 +73644,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-pkcs12
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73664,7 +73664,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-pubkey
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73684,7 +73684,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-random
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73704,7 +73704,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-rc2
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73724,7 +73724,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-resolve
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73744,7 +73744,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-revocation
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73764,7 +73764,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-sha1
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73784,7 +73784,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-sha2
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73804,7 +73804,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-sha3
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73824,7 +73824,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-smp
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +PACKAGE_strongswan-mod-smp:libxml2
 Conflicts: 
 Menu-Depends: 
@@ -73844,7 +73844,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-socket-default
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73864,7 +73864,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-socket-dynamic
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73884,7 +73884,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-sql
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73904,7 +73904,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-sqlite
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-mod-sql +PACKAGE_strongswan-mod-sqlite:libsqlite3
 Conflicts: 
 Menu-Depends: 
@@ -73924,7 +73924,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-sshkey
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73944,7 +73944,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-stroke
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +strongswan-charon +strongswan-ipsec
 Conflicts: 
 Menu-Depends: 
@@ -73964,7 +73964,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-test-vectors
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -73984,7 +73984,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-uci
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +PACKAGE_strongswan-mod-uci:libuci
 Conflicts: 
 Menu-Depends: 
@@ -74004,7 +74004,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-unity
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -74024,7 +74024,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-updown
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +iptables-legacy +iptables-mod-ipsec +kmod-ipt-ipsec
 Conflicts: 
 Menu-Depends: 
@@ -74044,7 +74044,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-vici
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -74064,7 +74064,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-whitelist
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -74084,7 +74084,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-wolfssl
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan +PACKAGE_strongswan-mod-wolfssl:libwolfssl
 Conflicts: 
 Menu-Depends: 
@@ -74104,7 +74104,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-x509
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -74124,7 +74124,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-xauth-eap
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -74144,7 +74144,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-xauth-generic
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -74164,7 +74164,7 @@ Philip Prindeville <philipp@redfish-solutions.com>, Noel Kuntze <noel.kuntze@the
 
 Package: strongswan-mod-xcbc
 Submenu: VPN
-Version: 5.9.5-0.1
+Version: 5.9.5-13
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread strongswan
 Conflicts: 
 Menu-Depends: 
@@ -76393,7 +76393,7 @@ Source-Makefile: feeds/packages/net/v2ray-core/Makefile
 Build-Depends: golang/host
 
 Package: v2ray-core
-Version: 5.3.0-1
+Version: 5.4.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) +ca-bundle
 Conflicts: 
 Menu-Depends: 
@@ -76403,7 +76403,7 @@ Category: Network
 Repository: base
 Title: A platform for building proxies to bypass network restrictions
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: v2ray-core-5.3.0.tar.gz
+Source: v2ray-core-5.4.0.tar.gz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg
@@ -76414,7 +76414,7 @@ Tianling Shen <cnsztl@immortalwrt.org>
 @@
 
 Package: v2ray-example
-Version: 5.3.0-1
+Version: 5.4.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread v2ray-core
 Conflicts: 
 Menu-Depends: 
@@ -76424,7 +76424,7 @@ Category: Network
 Repository: base
 Title: A platform for building proxies to bypass network restrictions (example configs)
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: v2ray-core-5.3.0.tar.gz
+Source: v2ray-core-5.4.0.tar.gz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg
@@ -76437,7 +76437,7 @@ Tianling Shen <cnsztl@immortalwrt.org>
 @@
 
 Package: v2ray-extra
-Version: 5.3.0-1
+Version: 5.4.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread v2ray-core
 Conflicts: 
 Menu-Depends: 
@@ -76447,7 +76447,7 @@ Category: Network
 Repository: base
 Title: A platform for building proxies to bypass network restrictions (extra resources)
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: v2ray-core-5.3.0.tar.gz
+Source: v2ray-core-5.4.0.tar.gz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg
@@ -76464,7 +76464,7 @@ Source-Makefile: feeds/packages/net/v2ray-geodata/Makefile
 
 Package: v2ray-geoip
 Submenu: IP Addresses and Names
-Version: 202302090046-1
+Version: 202303090050-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -76485,7 +76485,7 @@ Tianling Shen <cnsztl@immortalwrt.org>
 
 Package: v2ray-geosite
 Submenu: IP Addresses and Names
-Version: 20230208103804-1
+Version: 20230312104722-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
@@ -76510,8 +76510,8 @@ Build-Depends: golang/host
 
 Package: v2raya
 Submenu: Web Servers/Proxies
-Version: 1.5.9.1698.1-2
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) +ca-bundle +iptables +IPV6:ip6tables +iptables-mod-conntrack-extra +iptables-mod-extra +iptables-mod-filter +iptables-mod-tproxy +kmod-ipt-nat6 +xray-core
+Version: 2.0.4-1
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) +ca-bundle +kmod-nft-tproxy +xray-core
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -76520,7 +76520,7 @@ Category: Network
 Repository: base
 Title: A Linux web GUI client of Project V
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: v2rayA-1.5.9.1698.1.tar.gz
+Source: v2rayA-2.0.4.tar.gz
 License: AGPL-3.0-only
 LicenseFiles: LICENSE
 Type: ipkg
@@ -77181,7 +77181,7 @@ Source-Makefile: feeds/packages/net/xray-core/Makefile
 Build-Depends: golang/host
 
 Package: xray-core
-Version: 1.7.5-1
+Version: 1.8.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64) +ca-bundle
 Conflicts: 
 Menu-Depends: 
@@ -77191,7 +77191,7 @@ Category: Network
 Repository: base
 Title: A platform for building proxies to bypass network restrictions
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: xray-core-1.7.5.tar.gz
+Source: xray-core-1.8.0.tar.gz
 License: MPL-2.0
 LicenseFiles: LICENSE
 Type: ipkg
@@ -77202,7 +77202,7 @@ Tianling Shen <cnsztl@immortalwrt.org>
 @@
 
 Package: xray-example
-Version: 1.7.5-1
+Version: 1.8.0-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread xray-core
 Conflicts: 
 Menu-Depends: 
@@ -77212,7 +77212,7 @@ Category: Network
 Repository: base
 Title: A platform for building proxies to bypass network restrictions (example configs)
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: xray-core-1.7.5.tar.gz
+Source: xray-core-1.8.0.tar.gz
 License: MPL-2.0
 LicenseFiles: LICENSE
 Type: ipkg
@@ -78193,7 +78193,7 @@ Source-Makefile: feeds/packages/net/zerotier/Makefile
 
 Package: zerotier
 Submenu: VPN
-Version: 1.10.2-0
+Version: 1.10.3-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpthread +libstdcpp +kmod-tun +ip +libminiupnpc +libnatpmp
 Conflicts: 
 Menu-Depends: 
@@ -78203,7 +78203,7 @@ Category: Network
 Repository: base
 Title: Create flat virtual Ethernet networks of almost unlimited size
 Maintainer: Moritz Warning <moritzwarning@web.de>
-Source: zerotier-1.10.2.tar.gz
+Source: zerotier-1.10.3.tar.gz
 License: BSL 1.1
 LicenseFiles: LICENSE.txt
 Type: ipkg
@@ -91275,7 +91275,7 @@ Oskari Rauta <oskari.rauta@gmail.com>
 Source-Makefile: feeds/packages/utils/mv88e6xxx_dump/Makefile
 
 Package: mv88e6xxx_dump
-Version: 2022.03.29-a3f713f99e0004d17d9282e0cb253505b9ca35b6-1
+Version: 2023.03.08-b4c5247ee8bb5512fb80081503aae183b35ed3c6-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(TARGET_ath79||TARGET_imx||TARGET_kirkwood||TARGET_mvebu||TARGET_qoriq) +libmnl
 Conflicts: 
 Menu-Depends: 
@@ -91285,7 +91285,7 @@ Category: Utilities
 Repository: base
 Title: mv88e6xxx_dump
 Maintainer: Etienne Champetier <champetier.etienne@gmail.com>
-Source: mv88e6xxx_dump-2022.03.29-a3f713f99e0004d17d9282e0cb253505b9ca35b6.tar.xz
+Source: mv88e6xxx_dump-2023.03.08-b4c5247ee8bb5512fb80081503aae183b35ed3c6.tar.xz
 License: GPL-2.0-only
 Type: ipkg
 Description: mv88e6xxx_dump
@@ -99813,7 +99813,7 @@ Source-Makefile: feeds/packages/utils/sed/Makefile
 
 Package: sed
 Version: 4.8-3
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +libpcre
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread 
 Conflicts: 
 Menu-Depends: 
 Provides: 
@@ -105498,7 +105498,7 @@ Source-Makefile: feeds/packages/utils/yq/Makefile
 Build-Depends: golang/host
 
 Package: yq
-Version: 4.30.8-1
+Version: 4.32.2-1
 Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread @(aarch64||arm||i386||i686||mips||mips64||mips64el||mipsel||powerpc64||x86_64)
 Conflicts: 
 Menu-Depends: 
@@ -105508,7 +105508,7 @@ Category: Utilities
 Repository: base
 Title: Portable command-line YAML processor
 Maintainer: Tianling Shen <cnsztl@immortalwrt.org>
-Source: yq-4.30.8.tar.gz
+Source: yq-4.32.2.tar.gz
 License: MIT
 LicenseFiles: LICENSE
 Type: ipkg

@@ -4,7 +4,7 @@ Build-Depends: lua/host luci-base/host LUCI_CSSTIDY:csstidy/host LUCI_SRCDIET:lu
 Package: luci
 Submenu: 1. Collections
 Version: x
-Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +luci-theme-argon +luci-app-firewall +luci-app-opkg +luci-proto-ppp +libiwinfo-lua +IPV6:luci-proto-ipv6 +rpcd-mod-rrdns
+Depends: +libc +USE_GLIBC:librt +USE_GLIBC:libpthread +uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +luci-theme-bootstrap +luci-app-firewall +luci-app-opkg +luci-proto-ppp +libiwinfo-lua +IPV6:luci-proto-ipv6 +rpcd-mod-rrdns
 Conflicts: 
 Menu-Depends: 
 Provides: 

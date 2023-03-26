@@ -114,9 +114,9 @@ define Package/openvpn-$(BUILD_VARIANT)/install
 		$(PKG_INSTALL_DIR)/usr/sbin/openvpn \
 		$(1)/usr/sbin/
 
-#	$(INSTALL_BIN) \
-#		files/openvpn.init \
-#		$(1)/etc/init.d/openvpn
+	$(INSTALL_BIN) \
+		files/openvpn.init \
+		$(1)/etc/init.d/openvpn
 
 	$(INSTALL_BIN) \
 		files/usr/libexec/openvpn-hotplug \
